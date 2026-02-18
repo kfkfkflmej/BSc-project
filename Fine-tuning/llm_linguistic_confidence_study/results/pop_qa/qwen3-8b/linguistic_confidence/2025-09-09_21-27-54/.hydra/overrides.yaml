@@ -1,0 +1,5 @@
+- qa_model=qwen3-8b
+- confidence_extractor=linguistic_confidence_uncertainty
+- dataset=pop_qa
+- pre_runned_batch=popqa-vanilla-uncertainty-qwen3-8b.yaml
+- metrics=all_exlude_train.yaml

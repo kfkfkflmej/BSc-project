@@ -1,0 +1,34 @@
+qa_model:
+  name: gpt-5-mini
+confidence_extractor:
+  name: linguistic_confidence
+  model_name: distilroberta-base
+  state_dict_path: llm_linguistic_confidence_study/pretrained_weights/human_anno_trained_reg_head.pth
+  mapper_name: self-trained
+  qa_template: vanilla
+  type: human_anno_dataset_trained
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: simple_qa
+  url: https://huggingface.co/datasets/basicv8vc/SimpleQA/blob/main/simple_qa_test_set.csv
+  file_path: llm_linguistic_confidence_study/datasets/simple_qa_test_set.csv
+metrics:
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+seed: 42
+pre_runned_batch: vanilla-gpt-5-mini

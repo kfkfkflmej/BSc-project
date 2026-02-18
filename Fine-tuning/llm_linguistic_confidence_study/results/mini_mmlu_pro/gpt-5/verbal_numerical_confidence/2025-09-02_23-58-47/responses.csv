@@ -1,0 +1,260 @@
+question_id,question,options,answer,answer_index,cot_content,category,src,problem,raw_responses,responses,confidences,accuracies
+11859,A cast-iron pulley rotates on a motor shaft at 250 rpm and delivers 50 h.p. Calculate the pulley diameter if density (\rho) of cast-iron is 0.05 lb/in^3 and tensile stress is 150 lbs/in?,"['110.5 in' '77.7 in' '82.2 in' '70.6 in' '75.3 in' '65.4 in' '95.5 in'
+ '100.8 in' '88.9 in' '90.2 in']",C,2,,engineering,stemez-MachineDesign,"A cast-iron pulley rotates on a motor shaft at 250 rpm and delivers 50 h.p. Calculate the pulley diameter if density (\rho) of cast-iron is 0.05 lb/in^3 and tensile stress is 150 lbs/in?
+A) 110.5 in
+B) 77.7 in
+C) 82.2 in
+D) 70.6 in
+E) 75.3 in
+F) 65.4 in
+G) 95.5 in
+H) 100.8 in
+I) 88.9 in
+J) 90.2 in","{
+""answer"": The pulley diameter is 82.2 in (Option C).,
+""confidence_score"": 62
+}",The pulley diameter is 82.2 in (Option C).,0.62,CORRECT
+1248,"Section 2022(a) of a state's medical licensing code provides:""For the purposes of this statute, only those persons who have graduated from an optometry school located in the state and accredited by the board of optometrists shall be licensed to conduct the practice of optometry within the state. ""A doctor graduated from a school of optometry located in a neighboring state. The following month, the doctor was granted a license to practice optometry in that neighboring state by its board of optometrists. For approximately one year, the doctor was engaged in the practice of optometry in the neighboring state. Subsequently, the doctor decided to relocate his practice to the state for which Section 2022(a) applies. The doctor re-domiciled in the state, where he opened a new office for the practice of optometry. When he initially opened his office, the doctor was unaware of the state's licensing provision for optometrists. Since the doctor was a licensed optometrist for 10 years, he assumed that he could practice optometry in the state by reciprocity. The doctor received notification from the state's board of optometrists that he was illegally practicing optometry and that he must immediately cease and desist from such practice. If the doctor challenges the constitutionality of Section 2022(a) of the medical licensing statute as violating the Commerce Clause, which of the following, if factually true, is the WEAKEST defense that the state could offer?","['The statute will help to increase the number of local optometrists who can handle emergencies.'
+ 'The statute will help to ensure that the practicing optometrists in the state are subject to standards of a regulatory body.'
+ 'The statute will help to ensure that only the most qualified optometrists practice in the state.'
+ 'The statute will help protect the optometrists in the state from competition outside the state.'
+ ""The statute will help to ensure that only optometrists who are familiar with the state's unique vision-related health issues practice in the state.""
+ ""The statute will help to provide job security for the state's board of optometrists.""
+ ""The statute will help to maintain the reputation of the state's optometry board.""
+ ""The statute will help to promote the state's optometry school.""
+ ""The statute will help to ensure that the state's optometry school graduates have priority in getting licensed.""
+ 'The statute will help to ensure a continuously available number of practicing optometrists within the state.']",D,3,,law,ori_mmlu-professional_law,"Section 2022(a) of a state's medical licensing code provides:""For the purposes of this statute, only those persons who have graduated from an optometry school located in the state and accredited by the board of optometrists shall be licensed to conduct the practice of optometry within the state. ""A doctor graduated from a school of optometry located in a neighboring state. The following month, the doctor was granted a license to practice optometry in that neighboring state by its board of optometrists. For approximately one year, the doctor was engaged in the practice of optometry in the neighboring state. Subsequently, the doctor decided to relocate his practice to the state for which Section 2022(a) applies. The doctor re-domiciled in the state, where he opened a new office for the practice of optometry. When he initially opened his office, the doctor was unaware of the state's licensing provision for optometrists. Since the doctor was a licensed optometrist for 10 years, he assumed that he could practice optometry in the state by reciprocity. The doctor received notification from the state's board of optometrists that he was illegally practicing optometry and that he must immediately cease and desist from such practice. If the doctor challenges the constitutionality of Section 2022(a) of the medical licensing statute as violating the Commerce Clause, which of the following, if factually true, is the WEAKEST defense that the state could offer?
+A) The statute will help to increase the number of local optometrists who can handle emergencies.
+B) The statute will help to ensure that the practicing optometrists in the state are subject to standards of a regulatory body.
+C) The statute will help to ensure that only the most qualified optometrists practice in the state.
+D) The statute will help protect the optometrists in the state from competition outside the state.
+E) The statute will help to ensure that only optometrists who are familiar with the state's unique vision-related health issues practice in the state.
+F) The statute will help to provide job security for the state's board of optometrists.
+G) The statute will help to maintain the reputation of the state's optometry board.
+H) The statute will help to promote the state's optometry school.
+I) The statute will help to ensure that the state's optometry school graduates have priority in getting licensed.
+J) The statute will help to ensure a continuously available number of practicing optometrists within the state.","{
+""answer"": D) The statute will help protect the optometrists in the state from competition outside the state, because protectionism is not a legitimate local interest under the Commerce Clause and is the weakest possible justification for a facially discriminatory licensing scheme."",
+""confidence_score"": 88
+}",D) The statute will help protect the optometrists in the state from competition outside the state,0.88,CORRECT
+202,According to Belbin (1981) an extroverted and enthusiastic person fits with what role?,"['Problem Solver' 'Resource investigator' 'Specialist' 'Monitor Evaluator'
+ 'Completer Finisher' 'Innovator' 'Implementer']",B,1,,business,ori_mmlu-management,"According to Belbin (1981) an extroverted and enthusiastic person fits with what role?
+A) Problem Solver
+B) Resource investigator
+C) Specialist
+D) Monitor Evaluator
+E) Completer Finisher
+F) Innovator
+G) Implementer","{
+""answer"": ""B) Resource investigator"",
+""confidence_score"": 93
+}",B) Resource investigator,0.93,CORRECT
+6233,"A 77-year-old female presents to the office for evaluation of a syncopal event that occurred while she was walking. Cardiac examination reveals a grade 3/6 systolic murmur, heard best at the right upper sternal border. There is radiation of the murmur into the neck. The valvular abnormality that most likely caused this episode is","['bicuspid aortic valve' 'aortic insufficiency' 'mitral valve prolapse'
+ 'tricuspid stenosis' 'mitral regurgitation' 'pulmonary regurgitation'
+ 'aortic stenosis' 'pulmonary stenosis' 'tricuspid regurgitation'
+ 'mitral stenosis']",G,6,,health,ori_mmlu-professional_medicine,"A 77-year-old female presents to the office for evaluation of a syncopal event that occurred while she was walking. Cardiac examination reveals a grade 3/6 systolic murmur, heard best at the right upper sternal border. There is radiation of the murmur into the neck. The valvular abnormality that most likely caused this episode is
+A) bicuspid aortic valve
+B) aortic insufficiency
+C) mitral valve prolapse
+D) tricuspid stenosis
+E) mitral regurgitation
+F) pulmonary regurgitation
+G) aortic stenosis
+H) pulmonary stenosis
+I) tricuspid regurgitation
+J) mitral stenosis","{
+""answer"": ""G) aortic stenosis"",
+""confidence_score"": 98
+}",G) aortic stenosis,0.98,CORRECT
+7973,"In year N, the 300th day of the year is a Tuesday. In year N + 1, the 200th day is also a Tuesday. Suppose Monday is the 1-th day of the week, on which day of the week did the 100th day of the year N - 1 occur? Return a numeric between 1 and 7.","['1' '5' '1 (again, to introduce some redundancy)'
+ '5 (again, as a distractor)' '6' '4' '7' '3' '2'
+ '2 (again, to introduce some redundancy)']",F,5,,math,theoremQA-Math,"In year N, the 300th day of the year is a Tuesday. In year N + 1, the 200th day is also a Tuesday. Suppose Monday is the 1-th day of the week, on which day of the week did the 100th day of the year N - 1 occur? Return a numeric between 1 and 7.
+A) 1
+B) 5
+C) 1 (again, to introduce some redundancy)
+D) 5 (again, as a distractor)
+E) 6
+F) 4
+G) 7
+H) 3
+I) 2
+J) 2 (again, to introduce some redundancy)","{
+""answer"": 6,
+""confidence_score"": 83
+}",6,0.83,INCORRECT
+4440,"During a delay, spins with an offset frequency Ω = 250 rad s-1 precess through an angle of 60°. How long is the delay?","['1.8 seconds' '400 ms' '32.7 ms' '2 seconds' '4.19 ms' '26.3 ms' '500 ms'
+ '240 ms' '1510 ms' '8.5 ms']",E,4,,chemistry,ori_mmlu-college_chemistry,"During a delay, spins with an offset frequency Ω = 250 rad s-1 precess through an angle of 60°. How long is the delay?
+A) 1.8 seconds
+B) 400 ms
+C) 32.7 ms
+D) 2 seconds
+E) 4.19 ms
+F) 26.3 ms
+G) 500 ms
+H) 240 ms
+I) 1510 ms
+J) 8.5 ms","{
+""answer"": ""The delay is t = θ/Ω = (60° × π/180)/250 = (π/3)/250 ≈ 4.19 ms, so E) 4.19 ms."",
+""confidence_score"": 97
+}","The delay is t = θ/Ω = (60° × π/180)/250 = (π/3)/250 ≈ 4.19 ms, so E) 4.19 ms.",0.97,CORRECT
+1385,"A defendant was angry at his friend for marrying the defendant's former girlfriend. As the friend was painting his house one afternoon, the defendant fired a shot from his gun at him. Although the shot missed the friend, the bullet struck and killed the friend's daughter. The defendant is subsequently charged with the first-degree murder of the daughter. The relevant statutes in effect in this jurisdiction are as follows:Section 169: Murder in the first degree is the unlawful and intentional killing of a human being with malice aforethought. Section 170: Malice is expressed when there is manifested a deliberate intention to take away the life of another. Which of the following, if established, would provide the defendant with his best defense?","['The gun discharged accidentally.'
+ 'The killing was the result of negligence in missing the friend.'
+ 'He was under the influence of alcohol at the time.'
+ 'The bullet was deflected and did not hit the intended target.'
+ 'He was acting out of anger and not with a deliberate intention.'
+ 'He did not intend to kill anyone, only to scare the friend.'
+ 'He intended only to wound the friend.'
+ 'He was unaware of the elements of malice.']",G,6,,law,ori_mmlu-professional_law,"A defendant was angry at his friend for marrying the defendant's former girlfriend. As the friend was painting his house one afternoon, the defendant fired a shot from his gun at him. Although the shot missed the friend, the bullet struck and killed the friend's daughter. The defendant is subsequently charged with the first-degree murder of the daughter. The relevant statutes in effect in this jurisdiction are as follows:Section 169: Murder in the first degree is the unlawful and intentional killing of a human being with malice aforethought. Section 170: Malice is expressed when there is manifested a deliberate intention to take away the life of another. Which of the following, if established, would provide the defendant with his best defense?
+A) The gun discharged accidentally.
+B) The killing was the result of negligence in missing the friend.
+C) He was under the influence of alcohol at the time.
+D) The bullet was deflected and did not hit the intended target.
+E) He was acting out of anger and not with a deliberate intention.
+F) He did not intend to kill anyone, only to scare the friend.
+G) He intended only to wound the friend.
+H) He was unaware of the elements of malice.","{
+""answer"": The best defense is A) The gun discharged accidentally, because an accidental discharge negates the deliberate intent (malice aforethought) required for first-degree murder, whereas the other options still reflect an intentional, wrongful shooting or do not negate malice. ,
+""confidence_score"": 88
+}",The best defense is A) The gun discharged accidentally,0.88,INCORRECT
+9605,"A boy bailing a boat lifts 2.0 kg of water to a height of 1.2 m above the bilge as he pours the water over the side, (a) How much work does he perform? (b) How much work is done by the force of gravity?","['18 joules, -18 joules' '20 joules, -20 joules' '27 joules, -25 joules'
+ '21 joules, -19 joules' '26 joules, -26 joules' '22 joules, -22 joules'
+ '23.5 joules, -23.5 joules' '24 joules, -24 joules'
+ '19 joules, -21 joules' '25 joules, -25 joules']",G,6,,physics,stemez-Physics,"A boy bailing a boat lifts 2.0 kg of water to a height of 1.2 m above the bilge as he pours the water over the side, (a) How much work does he perform? (b) How much work is done by the force of gravity?
+A) 18 joules, -18 joules
+B) 20 joules, -20 joules
+C) 27 joules, -25 joules
+D) 21 joules, -19 joules
+E) 26 joules, -26 joules
+F) 22 joules, -22 joules
+G) 23.5 joules, -23.5 joules
+H) 24 joules, -24 joules
+I) 19 joules, -21 joules
+J) 25 joules, -25 joules","{
+""answer"": ""A) 18 joules, -18 joules"",
+""confidence_score"": 94
+}","A) 18 joules, -18 joules",0.94,INCORRECT
+10540,"Let $X \sim N(0,1)$ and let the distortion measure be squared error. Here we do not allow block descriptions. Compute the minimum expected distortion for one bit quantization of $X$ using a squared error distortion measure.","['0.625' '0.212' '0.411' '0.363' '0.1' '0.75' '0.498' '0.333' '0.256'
+ '0.125']",D,3,,computer science,theoremQA-EECS,"Let $X \sim N(0,1)$ and let the distortion measure be squared error. Here we do not allow block descriptions. Compute the minimum expected distortion for one bit quantization of $X$ using a squared error distortion measure.
+A) 0.625
+B) 0.212
+C) 0.411
+D) 0.363
+E) 0.1
+F) 0.75
+G) 0.498
+H) 0.333
+I) 0.256
+J) 0.125","{
+""answer"": The minimum expected distortion is 0.363 (option D), achieved by a symmetric 1-bit quantizer with threshold 0 and reconstruction levels at the conditional means ±E[|X||X>0]=±sqrt(2/π).,
+""confidence_score"": 74
+}",The minimum expected distortion is 0.363 (option D),0.74,CORRECT
+10484,"Which of the following considerations applies (apply) to choosing the page size in a paging system?
+I. An advantage of larger pages is that they lead to smaller page tables.
+II. An advantage of smaller pages is that they lead to less waste due to internal fragmentation.
+III. Normally, the dominant factor in disk access time is not dependent on page length, so longer pages can be used advantageously.","['III only' 'II only' 'Only II and I apply, not III' 'I only'
+ 'I and III only' 'I and II only' 'I, II, and III'
+ 'Only III and I apply, not II' 'II and III only'
+ 'None of the above considerations apply']",G,6,,computer science,ori_mmlu-college_computer_science,"Which of the following considerations applies (apply) to choosing the page size in a paging system?
+I. An advantage of larger pages is that they lead to smaller page tables.
+II. An advantage of smaller pages is that they lead to less waste due to internal fragmentation.
+III. Normally, the dominant factor in disk access time is not dependent on page length, so longer pages can be used advantageously.
+A) III only
+B) II only
+C) Only II and I apply, not III
+D) I only
+E) I and III only
+F) I and II only
+G) I, II, and III
+H) Only III and I apply, not II
+I) II and III only
+J) None of the above considerations apply","{
+""answer"": ""G) I, II, and III"",
+""confidence_score"": 86
+}","G) I, II, and III",0.86,CORRECT
+9578,"Six simple harmonic motions, each of the same amplitude and period, acting along the same straight line, are superimposed. If the phase difference between each successive pair is the same, find one value of this phase difference for which the resultant amplitude is zero.","['120 degrees' '90 degrees' '75 degrees' '180 degrees' '210 degrees'
+ '60 degrees' '45 degrees' '30 degrees' '135 degrees' '150 degrees']",A,0,,physics,stemez-Optics,"Six simple harmonic motions, each of the same amplitude and period, acting along the same straight line, are superimposed. If the phase difference between each successive pair is the same, find one value of this phase difference for which the resultant amplitude is zero.
+A) 120 degrees
+B) 90 degrees
+C) 75 degrees
+D) 180 degrees
+E) 210 degrees
+F) 60 degrees
+G) 45 degrees
+H) 30 degrees
+I) 135 degrees
+J) 150 degrees","{
+""answer"": 60 degrees,
+""confidence_score"": 94
+}",60 degrees,0.94,INCORRECT
+3118,"Based on the characteristic population curves that result from plotting population growth of a species, the most effective means of controlling the mosquito population is to","['opt for zero population control once the K value of the curve has been reached'
+ 'maintain the population at the highest point of its logistic curve'
+ 'reduce the carrying capacity cif the environment to lower the K value'
+ 'decrease the mortality rate' 'increase the birth rate of the species'
+ 'drastically reduce the population below the K value'
+ 'maintain the population at a point corresponding to the midpoint of its logistic curve'
+ 'increase the carrying capacity of the environment to raise the K value'
+ 'opt for zero population control at the beginning of the logistic curve']",C,2,,biology,ori_mmlu-college_biology,"Based on the characteristic population curves that result from plotting population growth of a species, the most effective means of controlling the mosquito population is to
+A) opt for zero population control once the K value of the curve has been reached
+B) maintain the population at the highest point of its logistic curve
+C) reduce the carrying capacity cif the environment to lower the K value
+D) decrease the mortality rate
+E) increase the birth rate of the species
+F) drastically reduce the population below the K value
+G) maintain the population at a point corresponding to the midpoint of its logistic curve
+H) increase the carrying capacity of the environment to raise the K value
+I) opt for zero population control at the beginning of the logistic curve","{
+""answer"": ""C) reduce the carrying capacity of the environment to lower the K value, thereby sustainably limiting the maximum mosquito population size."",
+""confidence_score"": 84
+}","C) reduce the carrying capacity of the environment to lower the K value, thereby sustainably limiting the maximum mosquito population size.",0.84,CORRECT
+8526,Use Euler's method to find the solution to the differential equation dy/dx=y^2e^x at x=6 with the initial condition y(0)=0.01 and step size h=0.5. What is y(6)?,"['4.764' '5.019' '5.202' '4.928' '5.231' '5.075' '5.345' '4.987' '4.856'
+ '5.113']",J,9,,math,theoremQA-Math,"Use Euler's method to find the solution to the differential equation dy/dx=y^2e^x at x=6 with the initial condition y(0)=0.01 and step size h=0.5. What is y(6)?
+A) 4.764
+B) 5.019
+C) 5.202
+D) 4.928
+E) 5.231
+F) 5.075
+G) 5.345
+H) 4.987
+I) 4.856
+J) 5.113","{
+""answer"": ""Using Euler’s method with h=0.5 for y' = y^2 e^x from y(0)=0.01 up to x=6 yields y(6) ≈ 5.113 (option J)."",
+""confidence_score"": 74
+}",Using Euler’s method with h=0.5 for y' = y^2 e^x from y(0)=0.01 up to x=6 yields y(6) ≈ 5.113 (option J).,0.74,CORRECT
+899,"A man and a woman were passengers on a plane. They were seated next to one another in the first- class section of the plane. Midway through the flight, the woman excused herself and went to the restroom. While she was gone, the man rummaged through the woman's purse and stole $100 in cash. Unknown to the man, a flight attendant saw him steal the money. As is customary in such situations, the flight attendant radioed ahead, and police officers arrested the man when the plane landed. The man was subsequently charged with violating an applicable federal larceny statute. During the trial, the prosecuting attorney called the man's wife as a willing witness against her husband. She proposed to testify that the man confided to her that he did steal the woman's money during the flight. The man's attorney objected on the grounds of hearsay and privilege. The wife's proposed testimony is","['admissible, because it is privileged, though it is not hearsay.'
+ 'admissible, because it is neither hearsay nor privileged.'
+ 'admissible, because it is hearsay within a recognized exception and not privileged.'
+ 'inadmissible, both because it discloses a privileged communication and because it is hearsay not within any recognized exception.'
+ 'admissible, both because it discloses a privileged communication and because it is hearsay not within any recognized exception.'
+ 'inadmissible, because it is hearsay not within any recognized exception, and it discloses a privileged communication.'
+ 'inadmissible, because it discloses a privileged communication, though it is not hearsay.'
+ 'admissible, both because it does not disclose a privileged communication and because it is hearsay within a recognized exception.'
+ 'inadmissible, because it is hearsay within a recognized exception, though it is not privileged.'
+ 'inadmissible, because it is hearsay not within any recognized exception, though it is not privileged.']",G,6,,law,ori_mmlu-professional_law,"A man and a woman were passengers on a plane. They were seated next to one another in the first- class section of the plane. Midway through the flight, the woman excused herself and went to the restroom. While she was gone, the man rummaged through the woman's purse and stole $100 in cash. Unknown to the man, a flight attendant saw him steal the money. As is customary in such situations, the flight attendant radioed ahead, and police officers arrested the man when the plane landed. The man was subsequently charged with violating an applicable federal larceny statute. During the trial, the prosecuting attorney called the man's wife as a willing witness against her husband. She proposed to testify that the man confided to her that he did steal the woman's money during the flight. The man's attorney objected on the grounds of hearsay and privilege. The wife's proposed testimony is
+A) admissible, because it is privileged, though it is not hearsay.
+B) admissible, because it is neither hearsay nor privileged.
+C) admissible, because it is hearsay within a recognized exception and not privileged.
+D) inadmissible, both because it discloses a privileged communication and because it is hearsay not within any recognized exception.
+E) admissible, both because it discloses a privileged communication and because it is hearsay not within any recognized exception.
+F) inadmissible, because it is hearsay not within any recognized exception, and it discloses a privileged communication.
+G) inadmissible, because it discloses a privileged communication, though it is not hearsay.
+H) admissible, both because it does not disclose a privileged communication and because it is hearsay within a recognized exception.
+I) inadmissible, because it is hearsay within a recognized exception, though it is not privileged.
+J) inadmissible, because it is hearsay not within any recognized exception, though it is not privileged.","{
+""answer"": ""H) admissible, both because it does not disclose a privileged communication and because it is hearsay within a recognized exception, since a spouse’s testimony to the defendant’s own admission is non-privileged in a criminal case where the spouse is a willing witness (no spousal adverse testimonial privilege invoked and marital communications privilege does not bar the spouse’s voluntary testimony about the defendant’s admission to a crime), and the statement is an opposing party’s statement (not hearsay under FRE 801(d)(2))."",
+""confidence_score"": 74
+}","H) admissible, both because it does not disclose a privileged communication and because it is hearsay within a recognized exception, since a spouse’s testimony to the defendant’s own admission is non-privileged in a criminal case where the spouse is a willing witness (no spousal adverse testimonial privilege invoked and marital communications privilege does not bar the spouse’s voluntary testimony about the defendant’s admission to a crime), and the statement is an opposing party’s statement (not hearsay under FRE 801(d)(2)).",0.74,INCORRECT
+5526,How many centimetres must the cervix dilute to before a baby can be born?,['8' '35' '25' '15' '20' '30' '5' '10' '18' '12'],H,7,,other,ori_mmlu-human_sexuality,"How many centimetres must the cervix dilute to before a baby can be born?
+A) 8
+B) 35
+C) 25
+D) 15
+E) 20
+F) 30
+G) 5
+H) 10
+I) 18
+J) 12","{
+""answer"": ""H) 10"",
+""confidence_score"": 97
+}",H) 10,0.97,CORRECT

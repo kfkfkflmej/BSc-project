@@ -1,0 +1,144 @@
+[2025-09-10 14:12:11,629][root][INFO] - qa_model:
+  name: qwen3-8b-lora-mapper0
+  model_name: Qwen/Qwen3-8B
+  temperature: 0.6
+  top_p: 0.95
+  top_k: 20
+  min_p: 0.0
+  enable_thinking: false
+  max_tokens: 1024
+  tokenize_output: false
+  add_generation_prompt: true
+  tensor_parallel_size: 1
+  gpu_memory_utilization: 0.8
+  disable_log_stats: true
+  trust_remote_code: true
+  dtype: auto
+  enable_lora: true
+  lora_weight_path: improve_llm_linguistic_confidence/model/Qwen3-8B/8bit/mapper0
+  max_lora_rank: 32
+confidence_extractor:
+  name: linguistic_confidence
+  model_name: null
+  state_dict_path: null
+  mapper_name: direct-prompt
+  qa_template: vanilla_uncertainty
+  type: human_anno_dataset_trained
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: pop_qa
+  url: None
+  file_path: llm_linguistic_confidence_study/datasets/pop_qa_subset.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+    exclude_training: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+    exclude_training: false
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+    exclude_training: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+    exclude_training: false
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+    exclude_training: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+    exclude_training: false
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+    exclude_training: false
+pre_runned_batch:
+  qa_batch_id: llm_linguistic_confidence_study/prerunned_batch/pop_qa/qwen3-8b-lora-mapper0/linguistic_confidence/vanilla-qwen3-8b-lora-mapper0.csv
+  grader_batch_id: batch_68bfcdac354c8190999e515aec7db215
+  ece_batch_id: null
+seed: 42
+
+[2025-09-10 14:12:11,808][root][INFO] - Batch job None for simple_qa_qwen3-8b-lora-mapper0_lc_ece is computing by direct prompt.
+[2025-09-10 14:12:11,809][root][INFO] - ##################### START to ECE #######################################
+[2025-09-10 14:12:12,105][root][INFO] - Batch task file saved to llm_linguistic_confidence_study/batch_tasks/simple_qa_qwen3-8b-lora-mapper0_lc_ece_20250910_141212.jsonl
+[2025-09-10 14:12:14,026][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/files "HTTP/1.1 200 OK"
+[2025-09-10 14:12:14,443][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/batches "HTTP/1.1 200 OK"
+[2025-09-10 14:12:14,451][root][INFO] - Batch job created: batch_68c0fa9e2d84819091978ec545ba1e32
+[2025-09-10 14:12:14,778][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c0fa9e2d84819091978ec545ba1e32 "HTTP/1.1 200 OK"
+[2025-09-10 14:12:14,780][root][INFO] - Batch job batch_68c0fa9e2d84819091978ec545ba1e32 for simple_qa_qwen3-8b-lora-mapper0_lc_ece is validating, waiting for 60 seconds...
+[2025-09-10 14:13:15,208][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c0fa9e2d84819091978ec545ba1e32 "HTTP/1.1 200 OK"
+[2025-09-10 14:13:15,209][root][INFO] - Batch job batch_68c0fa9e2d84819091978ec545ba1e32 for simple_qa_qwen3-8b-lora-mapper0_lc_ece is in_progress, waiting for 60 seconds...
+[2025-09-10 14:14:15,534][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c0fa9e2d84819091978ec545ba1e32 "HTTP/1.1 200 OK"
+[2025-09-10 14:14:15,536][root][INFO] - Batch job batch_68c0fa9e2d84819091978ec545ba1e32 for simple_qa_qwen3-8b-lora-mapper0_lc_ece is in_progress, waiting for 60 seconds...
+[2025-09-10 14:15:15,853][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c0fa9e2d84819091978ec545ba1e32 "HTTP/1.1 200 OK"
+[2025-09-10 14:15:15,855][root][INFO] - Batch job batch_68c0fa9e2d84819091978ec545ba1e32 for simple_qa_qwen3-8b-lora-mapper0_lc_ece is in_progress, waiting for 60 seconds...
+[2025-09-10 14:16:16,224][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c0fa9e2d84819091978ec545ba1e32 "HTTP/1.1 200 OK"
+[2025-09-10 14:16:16,226][root][INFO] - Batch job batch_68c0fa9e2d84819091978ec545ba1e32 for simple_qa_qwen3-8b-lora-mapper0_lc_ece is in_progress, waiting for 60 seconds...
+[2025-09-10 14:17:16,529][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c0fa9e2d84819091978ec545ba1e32 "HTTP/1.1 200 OK"
+[2025-09-10 14:17:16,530][root][INFO] - Batch job batch_68c0fa9e2d84819091978ec545ba1e32 for simple_qa_qwen3-8b-lora-mapper0_lc_ece is in_progress, waiting for 60 seconds...
+[2025-09-10 14:18:16,831][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c0fa9e2d84819091978ec545ba1e32 "HTTP/1.1 200 OK"
+[2025-09-10 14:18:16,833][root][INFO] - Batch job batch_68c0fa9e2d84819091978ec545ba1e32 for simple_qa_qwen3-8b-lora-mapper0_lc_ece is in_progress, waiting for 60 seconds...
+[2025-09-10 14:19:17,160][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c0fa9e2d84819091978ec545ba1e32 "HTTP/1.1 200 OK"
+[2025-09-10 14:19:17,162][root][INFO] - Batch job batch_68c0fa9e2d84819091978ec545ba1e32 for simple_qa_qwen3-8b-lora-mapper0_lc_ece is in_progress, waiting for 60 seconds...
+[2025-09-10 14:20:17,480][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c0fa9e2d84819091978ec545ba1e32 "HTTP/1.1 200 OK"
+[2025-09-10 14:20:17,482][root][INFO] - Batch job batch_68c0fa9e2d84819091978ec545ba1e32 for simple_qa_qwen3-8b-lora-mapper0_lc_ece is in_progress, waiting for 60 seconds...
+[2025-09-10 14:21:17,802][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c0fa9e2d84819091978ec545ba1e32 "HTTP/1.1 200 OK"
+[2025-09-10 14:21:17,804][root][INFO] - Batch job batch_68c0fa9e2d84819091978ec545ba1e32 for simple_qa_qwen3-8b-lora-mapper0_lc_ece is in_progress, waiting for 60 seconds...
+[2025-09-10 14:22:18,130][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c0fa9e2d84819091978ec545ba1e32 "HTTP/1.1 200 OK"
+[2025-09-10 14:22:18,133][root][INFO] - Batch job batch_68c0fa9e2d84819091978ec545ba1e32 for simple_qa_qwen3-8b-lora-mapper0_lc_ece is in_progress, waiting for 60 seconds...
+[2025-09-10 14:23:18,505][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c0fa9e2d84819091978ec545ba1e32 "HTTP/1.1 200 OK"
+[2025-09-10 14:23:18,507][root][INFO] - Batch job batch_68c0fa9e2d84819091978ec545ba1e32 for simple_qa_qwen3-8b-lora-mapper0_lc_ece is in_progress, waiting for 60 seconds...
+[2025-09-10 14:24:18,810][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c0fa9e2d84819091978ec545ba1e32 "HTTP/1.1 200 OK"
+[2025-09-10 14:24:18,812][root][INFO] - Batch job batch_68c0fa9e2d84819091978ec545ba1e32 for simple_qa_qwen3-8b-lora-mapper0_lc_ece is in_progress, waiting for 60 seconds...
+[2025-09-10 14:25:19,156][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c0fa9e2d84819091978ec545ba1e32 "HTTP/1.1 200 OK"
+[2025-09-10 14:25:19,157][root][INFO] - Batch job batch_68c0fa9e2d84819091978ec545ba1e32 for simple_qa_qwen3-8b-lora-mapper0_lc_ece is in_progress, waiting for 60 seconds...
+[2025-09-10 14:26:19,582][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c0fa9e2d84819091978ec545ba1e32 "HTTP/1.1 200 OK"
+[2025-09-10 14:26:19,583][root][INFO] - Batch job batch_68c0fa9e2d84819091978ec545ba1e32 for simple_qa_qwen3-8b-lora-mapper0_lc_ece is in_progress, waiting for 60 seconds...
+[2025-09-10 14:27:19,896][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c0fa9e2d84819091978ec545ba1e32 "HTTP/1.1 200 OK"
+[2025-09-10 14:27:19,898][root][INFO] - Batch job batch_68c0fa9e2d84819091978ec545ba1e32 for simple_qa_qwen3-8b-lora-mapper0_lc_ece is in_progress, waiting for 60 seconds...
+[2025-09-10 14:28:20,394][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c0fa9e2d84819091978ec545ba1e32 "HTTP/1.1 200 OK"
+[2025-09-10 14:28:20,396][root][INFO] - Batch job batch_68c0fa9e2d84819091978ec545ba1e32 for simple_qa_qwen3-8b-lora-mapper0_lc_ece is in_progress, waiting for 60 seconds...
+[2025-09-10 14:29:20,720][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c0fa9e2d84819091978ec545ba1e32 "HTTP/1.1 200 OK"
+[2025-09-10 14:29:20,723][root][INFO] - Batch job batch_68c0fa9e2d84819091978ec545ba1e32 for simple_qa_qwen3-8b-lora-mapper0_lc_ece is in_progress, waiting for 60 seconds...
+[2025-09-10 14:30:21,040][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c0fa9e2d84819091978ec545ba1e32 "HTTP/1.1 200 OK"
+[2025-09-10 14:30:21,042][root][INFO] - Batch job batch_68c0fa9e2d84819091978ec545ba1e32 for simple_qa_qwen3-8b-lora-mapper0_lc_ece is finalizing, waiting for 60 seconds...
+[2025-09-10 14:31:21,329][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c0fa9e2d84819091978ec545ba1e32 "HTTP/1.1 200 OK"
+[2025-09-10 14:31:21,331][root][INFO] - Batch job batch_68c0fa9e2d84819091978ec545ba1e32 for simple_qa_qwen3-8b-lora-mapper0_lc_ece is finalizing, waiting for 60 seconds...
+[2025-09-10 14:32:21,671][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c0fa9e2d84819091978ec545ba1e32 "HTTP/1.1 200 OK"
+[2025-09-10 14:32:21,673][root][INFO] - Batch job batch_68c0fa9e2d84819091978ec545ba1e32 for simple_qa_qwen3-8b-lora-mapper0_lc_ece is completed
+[2025-09-10 14:32:21,987][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c0fa9e2d84819091978ec545ba1e32 "HTTP/1.1 200 OK"
+[2025-09-10 14:32:22,448][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-4a1t56fPUn2LCmETWQshH8/content "HTTP/1.1 200 OK"
+[2025-09-10 14:32:23,385][root][INFO] - ##################### END to ECE #######################################
+[2025-09-10 14:32:23,838][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bfcdac354c8190999e515aec7db215 "HTTP/1.1 200 OK"
+[2025-09-10 14:32:24,330][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-S3KhS1To4x4hdEYmGtU8qY/content "HTTP/1.1 200 OK"
+[2025-09-10 14:32:25,617][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': False, 'exclude_training': False}: 0.186
+[2025-09-10 14:32:25,636][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': True, 'exclude_training': False}: 0.18674698795180722
+[2025-09-10 14:32:25,657][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': False, 'exclude_training': False}: 0.67495
+[2025-09-10 14:32:25,678][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': True, 'exclude_training': False}: 0.6763052208835341
+[2025-09-10 14:32:25,707][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': False, 'exclude_training': False}: 0.6771518586034715
+[2025-09-10 14:32:25,732][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': True, 'exclude_training': False}: 0.6763772733306784
+[2025-09-10 14:32:25,750][root][INFO] - {'_target_': 'metrics.AttemptedCount', 'name': 'attempted_count', 'format': 'simpleqa_like', 'exclude_not_attempted': True, 'exclude_training': False}: 996
+[2025-09-10 14:32:25,771][root][INFO] - Outputs saved to /mnt/sda/home/bokai/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/results/pop_qa/qwen3-8b-lora-mapper0/linguistic_confidence/2025-09-10_14-12-11

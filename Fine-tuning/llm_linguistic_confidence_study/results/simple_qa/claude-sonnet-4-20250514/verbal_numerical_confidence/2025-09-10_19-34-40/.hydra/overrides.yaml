@@ -1,0 +1,4 @@
+- dataset=simple_qa
+- qa_model=claude-sonnet-4-20250514
+- confidence_extractor=verbal_numerical_confidence
+- pre_runned_batch=no_run.yaml

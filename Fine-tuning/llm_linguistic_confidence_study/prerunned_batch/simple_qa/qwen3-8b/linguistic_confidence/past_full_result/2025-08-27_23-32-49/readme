@@ -1,0 +1,4 @@
+  name: Qwen3-8B
+  name: linguistic_confidence
+  qa_template: vanilla
+  name: simple_qa

@@ -1,0 +1,71 @@
+[2025-09-05 03:11:18,705][root][INFO] - qa_model:
+  name: Qwen/Qwen3-235B-A22B-Instruct-2507-tput
+confidence_extractor:
+  name: p_true
+  qa_template: vanilla
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: mmlu_pro
+  url: hf://datasets/TIGER-Lab/MMLU-Pro/data/test-00000-of-00001.parquet
+  file_path: llm_linguistic_confidence_study/datasets/mmlu_pro_test_set.pkl
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: 0e1e60b3-8d2e-4df2-9814-19c163d9476f
+  grader_batch_id: batch_68b7fdb62c088190b2c96c64050b1c4c
+  p_true_self_eval_batch_id: null
+  semantic_ids_path: null
+seed: 42
+
+[2025-09-05 03:11:19,022][root][INFO] - Batch job 0e1e60b3-8d2e-4df2-9814-19c163d9476f is runned before, download the output file now...
+[2025-09-05 03:11:26,296][root][INFO] - Batch task file saved to llm_linguistic_confidence_study/batch_tasks/mmlu_pro_Qwen3-235B-A22B-Instruct-2507-tput_ptrue_self_eval_20250905_031126.jsonl
+[2025-09-05 03:11:33,725][root][INFO] - Batch job 67261d5a-2722-4b61-b7ed-708b5bd692b9 for mmlu_pro_Qwen3-235B-A22B-Instruct-2507-tput_ptrue_self_eval is BatchJobStatus.VALIDATING, waiting for 60 seconds...
+[2025-09-05 03:12:33,895][root][INFO] - Batch job 67261d5a-2722-4b61-b7ed-708b5bd692b9 for mmlu_pro_Qwen3-235B-A22B-Instruct-2507-tput_ptrue_self_eval is BatchJobStatus.IN_PROGRESS, waiting for 60 seconds...
+[2025-09-05 03:13:34,063][root][INFO] - Batch job 67261d5a-2722-4b61-b7ed-708b5bd692b9 for mmlu_pro_Qwen3-235B-A22B-Instruct-2507-tput_ptrue_self_eval is BatchJobStatus.IN_PROGRESS, waiting for 60 seconds...
+[2025-09-05 03:14:37,265][root][INFO] - Batch job 67261d5a-2722-4b61-b7ed-708b5bd692b9 for mmlu_pro_Qwen3-235B-A22B-Instruct-2507-tput_ptrue_self_eval is BatchJobStatus.IN_PROGRESS, waiting for 60 seconds...
+[2025-09-05 03:15:37,474][root][INFO] - Batch job 67261d5a-2722-4b61-b7ed-708b5bd692b9 for mmlu_pro_Qwen3-235B-A22B-Instruct-2507-tput_ptrue_self_eval is BatchJobStatus.IN_PROGRESS, waiting for 60 seconds...
+[2025-09-05 03:16:37,650][root][INFO] - Batch job 67261d5a-2722-4b61-b7ed-708b5bd692b9 for mmlu_pro_Qwen3-235B-A22B-Instruct-2507-tput_ptrue_self_eval is BatchJobStatus.IN_PROGRESS, waiting for 60 seconds...
+[2025-09-05 03:17:40,853][root][INFO] - Batch job 67261d5a-2722-4b61-b7ed-708b5bd692b9 for mmlu_pro_Qwen3-235B-A22B-Instruct-2507-tput_ptrue_self_eval is completed
+[2025-09-05 03:17:44,684][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b7fdb62c088190b2c96c64050b1c4c "HTTP/1.1 200 OK"
+[2025-09-05 03:17:46,918][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-2wQnNs865UmpWHtQgoczAy/content "HTTP/1.1 200 OK"
+[2025-09-05 03:17:49,081][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-4jzcpekKPqLULokZu5rvSD/content "HTTP/1.1 200 OK"
+[2025-09-05 03:17:49,607][root][WARNING] - Some grade results are invalid, not in [A, B, C, None]
+[2025-09-05 03:17:50,103][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.6930684840425532
+[2025-09-05 03:17:50,106][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.7103671522276174

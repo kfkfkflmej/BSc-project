@@ -1,0 +1,5 @@
+- qa_model=qwen3-8b-lora-mapper2
+- confidence_extractor=semantic_uncertainty
+- dataset=simple_qa
+- pre_runned_batch=vanilla-su-qwen3-8b-lora-mapper2.yaml
+- metrics=all_exlude_train.yaml

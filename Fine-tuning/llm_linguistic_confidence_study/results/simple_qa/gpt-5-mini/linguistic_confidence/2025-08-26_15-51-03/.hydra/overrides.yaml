@@ -1,0 +1,2 @@
+- confidence_extractor=linguistic_confidence_llm_anno
+- pre_runned_batch=vanilla-gpt-5-mini

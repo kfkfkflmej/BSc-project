@@ -1,0 +1,3 @@
+qa_batch_id: llm_linguistic_confidence_study/prerunned_batch/simple_qa/qwen3-8b-lora-mapper3/semantic_uncertainty/vanilla-qwen3-8b-lora-mapper3.csv
+grader_batch_id: batch_68b9d2f226088190abc7b4911a22539d
+semantic_ids_path: llm_linguistic_confidence_study/pretrained_weights/semantic_ids_qwen3-8b-lora-mapper3.npy

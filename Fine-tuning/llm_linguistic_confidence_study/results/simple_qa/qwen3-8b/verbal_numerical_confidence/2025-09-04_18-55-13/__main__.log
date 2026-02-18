@@ -1,0 +1,154 @@
+[2025-09-04 18:55:13,606][root][INFO] - qa_model:
+  name: qwen3-8b
+  model_name: Qwen/Qwen3-8B
+  temperature: 0.6
+  top_p: 0.95
+  top_k: 20
+  min_p: 0.0
+  enable_thinking: false
+  max_tokens: 1024
+  tokenize_output: false
+  add_generation_prompt: true
+  tensor_parallel_size: 1
+  gpu_memory_utilization: 0.9
+  disable_log_stats: true
+  trust_remote_code: true
+  dtype: auto
+confidence_extractor:
+  name: verbal_numerical_confidence
+  qa_template: vanilla
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: simple_qa
+  url: https://huggingface.co/datasets/basicv8vc/SimpleQA/blob/main/simple_qa_test_set.csv
+  file_path: llm_linguistic_confidence_study/datasets/simple_qa_test_set.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: llm_linguistic_confidence_study/prerunned_batch/simple_qa/Qwem3-8B/verbal_numerical_confidence/vanilla-vnc-qwen3-8b.csv
+  grader_batch_id: null
+seed: 42
+
+[2025-09-04 18:59:35,028][root][INFO] - Batch task file saved to llm_linguistic_confidence_study/batch_tasks/simple_qa_qwen3-8b_vnc_grader_20250904_185934.jsonl
+[2025-09-04 18:59:43,237][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/files "HTTP/1.1 200 OK"
+[2025-09-04 18:59:43,969][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/batches "HTTP/1.1 200 OK"
+[2025-09-04 18:59:43,973][root][INFO] - Batch job created: batch_68b954ff9c4c8190a92018a8ecbe5640
+[2025-09-04 18:59:44,261][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 18:59:44,277][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is validating, waiting for 60 seconds...
+[2025-09-04 19:00:44,608][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:00:44,610][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is validating, waiting for 60 seconds...
+[2025-09-04 19:01:44,918][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:01:44,921][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:02:45,283][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:02:45,285][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:03:45,628][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:03:45,649][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:04:45,958][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:04:45,960][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:05:46,313][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:05:46,316][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:06:46,849][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:06:46,850][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:07:47,181][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:07:47,186][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:08:47,509][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:08:47,513][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:09:47,851][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:09:47,856][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:10:48,299][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:10:48,301][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:11:48,664][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:11:48,667][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:12:49,014][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:12:49,019][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:13:49,329][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:13:49,331][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:14:49,695][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:14:49,698][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:15:50,039][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:15:50,040][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:16:50,380][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:16:50,384][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:17:50,718][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:17:50,720][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:18:51,023][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:18:51,025][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:19:51,344][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:19:51,348][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:20:51,690][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:20:51,694][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:21:52,054][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:21:52,057][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:22:52,372][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:22:52,376][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:23:52,673][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:23:52,675][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:24:53,021][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:24:53,024][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:25:53,337][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:25:53,341][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:26:53,644][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:26:53,647][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:27:53,993][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:27:53,998][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:28:54,338][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:28:54,340][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:29:54,676][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:29:54,682][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:30:55,019][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:30:55,023][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:31:55,377][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:31:55,380][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:32:55,684][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:32:55,686][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:33:55,976][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:33:55,978][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:34:56,326][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:34:56,329][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:35:56,656][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:35:56,660][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:36:56,981][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:36:56,985][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:37:57,291][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:37:57,294][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:38:57,656][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:38:57,660][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-04 19:39:57,976][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b954ff9c4c8190a92018a8ecbe5640 "HTTP/1.1 200 OK"
+[2025-09-04 19:39:57,980][root][INFO] - Batch job batch_68b954ff9c4c8190a92018a8ecbe5640 for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...

@@ -1,0 +1,99 @@
+[2025-09-11 00:07:38,128][root][INFO] - qa_model:
+  name: qwen3-8b-lora-mapper0
+  model_name: Qwen/Qwen3-8B
+  temperature: 0.6
+  top_p: 0.95
+  top_k: 20
+  min_p: 0.0
+  enable_thinking: false
+  max_tokens: 1024
+  tokenize_output: false
+  add_generation_prompt: true
+  tensor_parallel_size: 1
+  gpu_memory_utilization: 0.8
+  disable_log_stats: true
+  trust_remote_code: true
+  dtype: auto
+  enable_lora: true
+  lora_weight_path: improve_llm_linguistic_confidence/model/Qwen3-8B/8bit/mapper0
+  max_lora_rank: 32
+confidence_extractor:
+  name: linguistic_confidence
+  model_name: null
+  state_dict_path: null
+  mapper_name: direct-prompt
+  qa_template: vanilla
+  type: human_anno_dataset_trained
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: simple_qa
+  url: https://huggingface.co/datasets/basicv8vc/SimpleQA/blob/main/simple_qa_test_set.csv
+  file_path: llm_linguistic_confidence_study/datasets/simple_qa_test_set.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+    exclude_training: true
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+    exclude_training: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+    exclude_training: true
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+    exclude_training: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+    exclude_training: true
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+    exclude_training: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+    exclude_training: true
+pre_runned_batch:
+  qa_batch_id: llm_linguistic_confidence_study/prerunned_batch/simple_qa/qwen3-8b-lora-mapper0/linguistic_confidence/vanilla-qwen3-8b-lora-mapper0.csv
+  grader_batch_id: batch_68bfbc6b549881908867e0f99ce83909
+  ece_batch_id: batch_68c10d867fdc81908720761caa91d6ff
+seed: 42
+
+[2025-09-11 00:07:38,468][root][INFO] - Batch job batch_68c10d867fdc81908720761caa91d6ff for simple_qa_qwen3-8b-lora-mapper0_lc_ece is computing by direct prompt.
+[2025-09-11 00:07:38,474][root][INFO] - ##################### START to ECE #######################################
+[2025-09-11 00:07:39,409][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c10d867fdc81908720761caa91d6ff "HTTP/1.1 200 OK"
+[2025-09-11 00:07:44,273][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-BjwbAFFDY97kTCA6BumZad/content "HTTP/1.1 200 OK"
+[2025-09-11 00:07:45,726][root][INFO] - The length of the responses of ece_model: 4326
+[2025-09-11 00:07:45,727][root][INFO] - ##################### END to ECE #######################################
+[2025-09-11 00:07:46,283][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bfbc6b549881908867e0f99ce83909 "HTTP/1.1 200 OK"
+[2025-09-11 00:07:47,428][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-VEbEGfBZzxXMCfUCu4XuX4/content "HTTP/1.1 200 OK"
+[2025-09-11 00:07:58,893][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': False, 'exclude_training': True}: 0.03296170625302957
+[2025-09-11 00:07:58,898][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': True, 'exclude_training': True}: 0.03458799593082401
+[2025-09-11 00:07:58,903][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': False, 'exclude_training': True}: 0.839689772176442
+[2025-09-11 00:07:58,909][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': True, 'exclude_training': True}: 0.8709587995930825
+[2025-09-11 00:07:58,923][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': False, 'exclude_training': True}: 0.5869978254459678
+[2025-09-11 00:07:58,933][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': True, 'exclude_training': True}: 0.5683914569515899
+[2025-09-11 00:07:58,937][root][INFO] - {'_target_': 'metrics.AttemptedCount', 'name': 'attempted_count', 'format': 'simpleqa_like', 'exclude_not_attempted': True, 'exclude_training': True}: 3932
+[2025-09-11 00:07:59,020][root][INFO] - Outputs saved to /mnt/sda/home/bokai/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/results/simple_qa/qwen3-8b-lora-mapper0/linguistic_confidence/2025-09-11_00-07-38

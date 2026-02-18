@@ -1,0 +1,44 @@
+qa_model:
+  name: gpt-5-mini
+confidence_extractor:
+  name: semantic_uncertainty
+  qa_template: vanilla
+  sample_times: 10
+  semantic_id_path_debug: llm_linguistic_confidence_study/pretrained_weights/semantic_ids_list_list.npy
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: simple_qa
+  url: https://huggingface.co/datasets/basicv8vc/SimpleQA/blob/main/simple_qa_test_set.csv
+  file_path: llm_linguistic_confidence_study/datasets/simple_qa_test_set.csv
+metrics:
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+pre_runned_batch:
+  qa_batch_id:
+  - batch_689eced6e8308190adaac64542a3dfbc
+  - batch_689eced403808190b3b338bb8b94bb7a
+  - batch_689eced218dc8190b357f7ba462dc48d
+  - batch_689ececf9c388190a750f0b7b6b7a66e
+  - batch_689ececd166c8190a75eac3abe645d58
+  - batch_689ececa116c819094b7bad59a1794d6
+  - batch_689ecec7b0408190ac9e9a27efa7cec0
+  - batch_689ecec51ea88190ae087136181a220e
+  - batch_689ecebf2e9c81909771d97a1e3c8e2d
+  - batch_689da7e0394881908ea6ad1d2bb7a249
+  grader_batch_id: batch_68ad3cef7e5881909310c4dd7d8cf5a9
+seed: 42

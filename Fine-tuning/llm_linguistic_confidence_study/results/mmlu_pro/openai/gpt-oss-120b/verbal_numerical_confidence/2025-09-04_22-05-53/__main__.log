@@ -1,0 +1,68 @@
+[2025-09-04 22:05:53,310][root][INFO] - qa_model:
+  name: openai/gpt-oss-120b
+confidence_extractor:
+  name: verbal_numerical_confidence
+  qa_template: vanilla
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: mmlu_pro
+  url: hf://datasets/TIGER-Lab/MMLU-Pro/data/test-00000-of-00001.parquet
+  file_path: llm_linguistic_confidence_study/datasets/mmlu_pro_test_set.pkl
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: 57f3e4b8-2819-40ea-a87c-2df47e13e665
+  grader_batch_id: batch_68b7fccbd6d881909c26378d2999462c
+  semantic_ids_path: null
+seed: 42
+
+[2025-09-04 22:05:53,679][root][INFO] - Batch job 57f3e4b8-2819-40ea-a87c-2df47e13e665 is runned before, download the output file now...
+[2025-09-04 22:06:01,857][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b7fccbd6d881909c26378d2999462c "HTTP/1.1 200 OK"
+[2025-09-04 22:06:03,822][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-NXJzVGHpyA1AuctYYqJ1Ta/content "HTTP/1.1 200 OK"
+[2025-09-04 22:06:05,913][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-GrnXxmcKtfy5AUWQPctXNQ/content "HTTP/1.1 200 OK"
+[2025-09-04 22:06:06,211][root][WARNING] - Some grade results are invalid, not in [A, B, C, None]
+[2025-09-04 22:06:06,767][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.7198304521276596
+[2025-09-04 22:06:06,769][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.7313798344874176
+[2025-09-04 22:06:06,771][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.1974888214760639
+[2025-09-04 22:06:06,777][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.1944296149299105
+[2025-09-04 22:06:06,787][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.7859406352593212
+[2025-09-04 22:06:06,798][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.7916332420374405
+[2025-09-04 22:06:06,800][root][INFO] - {'_target_': 'metrics.AttemptedCount', 'name': 'attempted_count', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 11842
+[2025-09-04 22:06:07,352][root][INFO] - Outputs saved to /home/ivan/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/results/mmlu_pro/openai/gpt-oss-120b/verbal_numerical_confidence/2025-09-04_22-05-53

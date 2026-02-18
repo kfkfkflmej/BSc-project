@@ -1,0 +1,6 @@
+defaults:
+  - grader_model: gpt-5-mini
+
+name: mini_nq_open
+url: https://huggingface.co/datasets/baonn/nqopen
+file_path: llm_linguistic_confidence_study/datasets/mini_nq_open.csv

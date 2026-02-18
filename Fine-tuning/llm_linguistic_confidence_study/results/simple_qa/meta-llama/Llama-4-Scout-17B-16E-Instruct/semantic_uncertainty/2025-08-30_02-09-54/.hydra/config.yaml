@@ -1,0 +1,55 @@
+qa_model:
+  name: meta-llama/Llama-4-Scout-17B-16E-Instruct
+confidence_extractor:
+  name: semantic_uncertainty
+  qa_template: vanilla
+  sample_times: 10
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: simple_qa
+  url: https://huggingface.co/datasets/basicv8vc/SimpleQA/blob/main/simple_qa_test_set.csv
+  file_path: llm_linguistic_confidence_study/datasets/simple_qa_test_set.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: 27cd835f-691c-4afe-95a0-d59b6c0b712f
+  grader_batch_id: null
+  semantic_ids_path: llm_linguistic_confidence_study/pretrained_weights/semantic_ids_Llama-4-Scout-17B-16E-Instruct.npy
+seed: 42

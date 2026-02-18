@@ -1,0 +1,56 @@
+[2025-09-04 22:08:54,979][root][INFO] - qa_model:
+  name: openai/gpt-oss-20b
+confidence_extractor:
+  name: verbal_numerical_confidence
+  qa_template: vanilla
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: mmlu_pro
+  url: hf://datasets/TIGER-Lab/MMLU-Pro/data/test-00000-of-00001.parquet
+  file_path: llm_linguistic_confidence_study/datasets/mmlu_pro_test_set.pkl
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: c50c025d-6f09-4d24-9187-fe59fca6e06e
+  grader_batch_id: null
+  semantic_ids_path: null
+seed: 42
+
+[2025-09-04 22:08:55,315][root][INFO] - Batch job c50c025d-6f09-4d24-9187-fe59fca6e06e is runned before, download the output file now...

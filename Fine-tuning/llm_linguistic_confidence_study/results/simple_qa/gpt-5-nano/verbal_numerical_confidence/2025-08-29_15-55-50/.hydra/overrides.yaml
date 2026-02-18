@@ -1,0 +1,3 @@
+- qa_model=gpt-5-nano
+- confidence_extractor=verbal_numerical_confidence
+- pre_runned_batch=vanilla-vnc-gpt-5-nano.yaml

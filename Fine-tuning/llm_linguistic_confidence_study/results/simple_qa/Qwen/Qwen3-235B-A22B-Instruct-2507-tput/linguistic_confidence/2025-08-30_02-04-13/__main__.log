@@ -1,0 +1,69 @@
+[2025-08-30 02:04:13,374][root][INFO] - qa_model:
+  name: Qwen/Qwen3-235B-A22B-Instruct-2507-tput
+confidence_extractor:
+  name: linguistic_confidence
+  model_name: distilroberta-base
+  state_dict_path: llm_linguistic_confidence_study/pretrained_weights/human_anno_trained_reg_head.pth
+  mapper_name: self-trained
+  qa_template: vanilla_uncertainty
+  type: human_anno_dataset_trained
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: simple_qa
+  url: https://huggingface.co/datasets/basicv8vc/SimpleQA/blob/main/simple_qa_test_set.csv
+  file_path: llm_linguistic_confidence_study/datasets/simple_qa_test_set.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: f6089de2-4b94-4614-95c0-804662db2504
+  grader_batch_id: batch_68b08077e9ac8190805c771780015753
+seed: 42
+
+[2025-08-30 02:04:14,010][root][INFO] - Batch job f6089de2-4b94-4614-95c0-804662db2504 is runned before, download the output file now...
+[2025-08-30 02:04:20,638][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b08077e9ac8190805c771780015753 "HTTP/1.1 200 OK"
+[2025-08-30 02:04:22,215][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-764pLJTaDpwYuq7iffRHse/content "HTTP/1.1 200 OK"
+[2025-08-30 02:04:23,689][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.5249653259361997
+[2025-08-30 02:04:23,690][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.5265476466496638
+[2025-08-30 02:04:23,692][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.29867314498732056
+[2025-08-30 02:04:23,694][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.29728179135649824
+[2025-08-30 02:04:23,698][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.5102219779489833
+[2025-08-30 02:04:23,702][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.509614152985456
+[2025-08-30 02:04:23,703][root][INFO] - {'_target_': 'metrics.AttemptedCount', 'name': 'attempted_count', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 4313
+[2025-08-30 02:04:23,742][root][INFO] - Outputs saved to /home/ivan/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/results/simple_qa/Qwen/Qwen3-235B-A22B-Instruct-2507-tput/linguistic_confidence/2025-08-30_02-04-13

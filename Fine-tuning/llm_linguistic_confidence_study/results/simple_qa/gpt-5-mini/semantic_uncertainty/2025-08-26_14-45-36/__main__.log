@@ -1,0 +1,141 @@
+[2025-08-26 14:45:36,727][root][INFO] - qa_model:
+  name: gpt-5-mini
+confidence_extractor:
+  name: semantic_uncertainty
+  qa_template: vanilla
+  sample_times: 10
+  semantic_id_path_debug: llm_linguistic_confidence_study/pretrained_weights/semantic_ids_list_list.npy
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: simple_qa
+  url: https://huggingface.co/datasets/basicv8vc/SimpleQA/blob/main/simple_qa_test_set.csv
+  file_path: llm_linguistic_confidence_study/datasets/simple_qa_test_set.csv
+metrics:
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+pre_runned_batch:
+  qa_batch_id:
+  - batch_689eced6e8308190adaac64542a3dfbc
+  - batch_689eced403808190b3b338bb8b94bb7a
+  - batch_689eced218dc8190b357f7ba462dc48d
+  - batch_689ececf9c388190a750f0b7b6b7a66e
+  - batch_689ececd166c8190a75eac3abe645d58
+  - batch_689ececa116c819094b7bad59a1794d6
+  - batch_689ecec7b0408190ac9e9a27efa7cec0
+  - batch_689ecec51ea88190ae087136181a220e
+  - batch_689ecebf2e9c81909771d97a1e3c8e2d
+  - batch_689da7e0394881908ea6ad1d2bb7a249
+  grader_batch_id: null
+seed: 42
+
+[2025-08-26 14:45:41,598][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689eced6e8308190adaac64542a3dfbc "HTTP/1.1 200 OK"
+[2025-08-26 14:45:42,167][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-DexT6HYsAgGC1Aau7V7Y5K/content "HTTP/1.1 200 OK"
+[2025-08-26 14:45:43,949][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689eced403808190b3b338bb8b94bb7a "HTTP/1.1 200 OK"
+[2025-08-26 14:45:44,826][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-7VART3SebKbDFzvdSN1C4d/content "HTTP/1.1 200 OK"
+[2025-08-26 14:45:46,587][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689eced218dc8190b357f7ba462dc48d "HTTP/1.1 200 OK"
+[2025-08-26 14:45:47,859][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-Eb36PGZhhmTjo9a7ySqAzo/content "HTTP/1.1 200 OK"
+[2025-08-26 14:45:49,608][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689ececf9c388190a750f0b7b6b7a66e "HTTP/1.1 200 OK"
+[2025-08-26 14:45:50,548][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-BARQUYQ1NDedKAEYgoiAUe/content "HTTP/1.1 200 OK"
+[2025-08-26 14:45:52,240][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689ececd166c8190a75eac3abe645d58 "HTTP/1.1 200 OK"
+[2025-08-26 14:45:52,711][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-AKrpqp2wSB9vjw9CouCXwS/content "HTTP/1.1 200 OK"
+[2025-08-26 14:45:54,422][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689ececa116c819094b7bad59a1794d6 "HTTP/1.1 200 OK"
+[2025-08-26 14:45:54,882][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-Rf4w6KA6b2LwpYWZG69FnR/content "HTTP/1.1 200 OK"
+[2025-08-26 14:45:56,619][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689ecec7b0408190ac9e9a27efa7cec0 "HTTP/1.1 200 OK"
+[2025-08-26 14:45:57,392][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-V11Dux5zGak83na8ce6uWz/content "HTTP/1.1 200 OK"
+[2025-08-26 14:45:59,170][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689ecec51ea88190ae087136181a220e "HTTP/1.1 200 OK"
+[2025-08-26 14:45:59,673][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-6cW7c3vikpGQmQnoSAPf5e/content "HTTP/1.1 200 OK"
+[2025-08-26 14:46:01,266][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689ecebf2e9c81909771d97a1e3c8e2d "HTTP/1.1 200 OK"
+[2025-08-26 14:46:02,031][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-EtKe6ueGDCFKPcJ5gAZTVd/content "HTTP/1.1 200 OK"
+[2025-08-26 14:46:03,817][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689da7e0394881908ea6ad1d2bb7a249 "HTTP/1.1 200 OK"
+[2025-08-26 14:46:04,560][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-Eg4392JQCsVPzYvDRhSS7N/content "HTTP/1.1 200 OK"
+[2025-08-26 14:49:45,470][root][INFO] - Batch task file saved to llm_linguistic_confidence_study/batch_tasks/simple_qa_su_grader_20250826_144945.jsonl
+[2025-08-26 14:49:51,320][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/files "HTTP/1.1 200 OK"
+[2025-08-26 14:49:51,869][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/batches "HTTP/1.1 200 OK"
+[2025-08-26 14:49:51,871][root][INFO] - Batch job created: batch_68ad3cef7e5881909310c4dd7d8cf5a9
+[2025-08-26 14:49:52,144][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 14:49:52,145][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is validating, waiting for 60 seconds...
+[2025-08-26 14:50:52,417][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 14:50:52,424][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is validating, waiting for 60 seconds...
+[2025-08-26 14:51:52,748][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 14:51:52,753][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-26 14:52:53,030][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 14:52:53,038][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-26 14:53:53,314][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 14:53:53,322][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-26 14:54:53,608][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 14:54:53,616][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-26 14:55:53,898][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 14:55:53,900][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-26 14:56:54,165][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 14:56:54,167][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-26 14:57:54,434][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 14:57:54,437][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-26 14:58:54,690][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 14:58:54,691][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-26 14:59:54,980][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 14:59:54,981][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-26 15:00:55,247][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:00:55,248][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-26 15:01:55,533][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:01:55,541][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-26 15:02:55,817][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:02:55,818][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-26 15:03:56,172][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:03:56,179][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-26 15:04:56,504][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:04:56,506][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-26 15:05:56,784][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:05:56,792][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-26 15:06:57,059][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:06:57,066][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-26 15:07:57,333][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:07:57,341][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-26 15:08:57,609][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:08:57,616][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-26 15:09:57,896][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:09:57,903][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-26 15:10:58,173][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:10:58,180][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-26 15:11:58,559][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:11:58,566][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-26 15:12:58,865][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:12:58,872][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-26 15:13:59,143][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:13:59,151][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-26 15:14:59,438][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:14:59,442][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is finalizing, waiting for 60 seconds...
+[2025-08-26 15:15:59,722][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:15:59,731][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is finalizing, waiting for 60 seconds...
+[2025-08-26 15:17:00,094][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:17:00,096][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is finalizing, waiting for 60 seconds...
+[2025-08-26 15:18:00,384][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:18:00,391][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is finalizing, waiting for 60 seconds...
+[2025-08-26 15:19:00,675][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:19:00,683][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is finalizing, waiting for 60 seconds...
+[2025-08-26 15:20:00,953][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:20:00,961][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is finalizing, waiting for 60 seconds...
+[2025-08-26 15:21:01,283][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:21:01,284][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is finalizing, waiting for 60 seconds...
+[2025-08-26 15:22:01,599][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:22:01,607][root][INFO] - Batch job batch_68ad3cef7e5881909310c4dd7d8cf5a9 for simple_qa_su_grader is completed
+[2025-08-26 15:22:01,918][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:22:02,584][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-BtQBougep7F7gkiub1Lahq/content "HTTP/1.1 200 OK"
+[2025-08-26 15:25:16,599][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.3667763157894737
+[2025-08-26 15:25:16,607][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.2601151315789474
+[2025-08-26 15:25:16,613][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.7260974729100449
+[2025-08-26 15:25:16,716][root][INFO] - Outputs saved to /home/linwei/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/results/simple_qa/gpt-5-mini/semantic_uncertainty/2025-08-26_14-45-36

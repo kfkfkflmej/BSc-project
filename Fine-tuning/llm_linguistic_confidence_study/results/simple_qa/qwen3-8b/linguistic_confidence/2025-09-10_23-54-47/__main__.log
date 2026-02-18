@@ -1,0 +1,90 @@
+[2025-09-10 23:54:47,291][root][INFO] - qa_model:
+  name: qwen3-8b
+  model_name: Qwen/Qwen3-8B
+  temperature: 0.6
+  top_p: 0.95
+  top_k: 20
+  min_p: 0.0
+  enable_thinking: false
+  max_tokens: 1024
+  tokenize_output: false
+  add_generation_prompt: true
+  tensor_parallel_size: 1
+  gpu_memory_utilization: 0.8
+  disable_log_stats: true
+  trust_remote_code: true
+  dtype: auto
+  enable_lora: false
+  lora_weight_path: null
+  max_lora_rank: 32
+confidence_extractor:
+  name: linguistic_confidence
+  model_name: null
+  state_dict_path: null
+  mapper_name: direct-prompt
+  qa_template: vanilla_uncertainty
+  type: human_anno_dataset_trained
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: simple_qa
+  url: https://huggingface.co/datasets/basicv8vc/SimpleQA/blob/main/simple_qa_test_set.csv
+  file_path: llm_linguistic_confidence_study/datasets/simple_qa_test_set.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+    exclude_training: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+    exclude_training: false
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+    exclude_training: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+    exclude_training: false
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+    exclude_training: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+    exclude_training: false
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+    exclude_training: false
+pre_runned_batch:
+  qa_batch_id: llm_linguistic_confidence_study/prerunned_batch/simple_qa/qwen3-8b/linguistic_confidence/vanilla-uncertainty-qwen3-8b.csv
+  grader_batch_id: batch_68af16bf66108190a7c7f5d5a7b2f6d1
+  ece_batch_id: batch_68c10d6235f8819087765e6ffd165d6a
+seed: 42
+
+[2025-09-10 23:54:47,622][root][INFO] - Batch job batch_68c10d6235f8819087765e6ffd165d6a for simple_qa_qwen3-8b_lc_ece is computing by direct prompt.
+[2025-09-10 23:54:47,628][root][INFO] - ##################### START to ECE #######################################
+[2025-09-10 23:54:48,399][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c10d6235f8819087765e6ffd165d6a "HTTP/1.1 200 OK"
+[2025-09-10 23:54:50,221][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-MkJrVVCfuF2sWfYTWMAsBW/content "HTTP/1.1 200 OK"
+[2025-09-10 23:54:51,679][root][INFO] - The length of the responses of ece_model: 4326
+[2025-09-10 23:54:51,680][root][INFO] - The length of the responses of ece_model: 1
+[2025-09-10 23:54:51,680][root][INFO] - ##################### END to ECE #######################################

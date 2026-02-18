@@ -1,0 +1,73 @@
+[2025-09-09 13:38:20,578][root][INFO] - qa_model:
+  name: Qwen/Qwen3-235B-A22B-Instruct-2507-tput
+confidence_extractor:
+  name: p_true
+  qa_template: vanilla
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: pop_qa
+  url: None
+  file_path: llm_linguistic_confidence_study/datasets/pop_qa_subset.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: 48ccf5d0-010e-4ffc-9a63-fdb93363c01e
+  grader_batch_id: batch_68bf8cc616ec8190a026b74ff1a4889f
+  p_true_self_eval_batch_id: dec32ec8-aa05-479a-bf9b-139fa8caebdc
+  semantic_ids_path: null
+seed: 42
+
+[2025-09-09 13:38:20,610][root][INFO] - Batch job 48ccf5d0-010e-4ffc-9a63-fdb93363c01e is runned before, download the output file now...
+[2025-09-09 13:38:25,152][root][INFO] - Batch job dec32ec8-aa05-479a-bf9b-139fa8caebdc is runned before, download the output file now...
+[2025-09-09 13:38:25,315][root][INFO] - Batch job dec32ec8-aa05-479a-bf9b-139fa8caebdc for pop_qa_Qwen3-235B-A22B-Instruct-2507-tput_ptrue_self_eval is BatchJobStatus.IN_PROGRESS, waiting for 60 seconds...
+[2025-09-09 13:39:25,893][root][INFO] - Batch job dec32ec8-aa05-479a-bf9b-139fa8caebdc for pop_qa_Qwen3-235B-A22B-Instruct-2507-tput_ptrue_self_eval is BatchJobStatus.IN_PROGRESS, waiting for 60 seconds...
+[2025-09-09 13:40:26,086][root][INFO] - Batch job dec32ec8-aa05-479a-bf9b-139fa8caebdc for pop_qa_Qwen3-235B-A22B-Instruct-2507-tput_ptrue_self_eval is completed
+[2025-09-09 13:40:30,233][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bf8cc616ec8190a026b74ff1a4889f "HTTP/1.1 200 OK"
+[2025-09-09 13:40:30,240][root][INFO] - Batch job batch_68bf8cc616ec8190a026b74ff1a4889f for pop_qa_Qwen3-235B-A22B-Instruct-2507-tput_ptrue_grader is completed
+[2025-09-09 13:40:30,564][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bf8cc616ec8190a026b74ff1a4889f "HTTP/1.1 200 OK"
+[2025-09-09 13:40:31,233][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-Vxmop2pRs5r2aqANzPxREd/content "HTTP/1.1 200 OK"
+[2025-09-09 13:40:32,106][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.462
+[2025-09-09 13:40:32,107][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.46998982706002035
+[2025-09-09 13:40:32,108][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.29728382636360545
+[2025-09-09 13:40:32,110][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.29525194344242583
+[2025-09-09 13:40:32,114][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.5355622518773617
+[2025-09-09 13:40:32,118][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.5317612380250553
+[2025-09-09 13:40:32,119][root][INFO] - {'_target_': 'metrics.AttemptedCount', 'name': 'attempted_count', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 983
+[2025-09-09 13:40:32,130][root][INFO] - Outputs saved to /home/ivan/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/results/pop_qa/Qwen/Qwen3-235B-A22B-Instruct-2507-tput/p_true/2025-09-09_13-38-20

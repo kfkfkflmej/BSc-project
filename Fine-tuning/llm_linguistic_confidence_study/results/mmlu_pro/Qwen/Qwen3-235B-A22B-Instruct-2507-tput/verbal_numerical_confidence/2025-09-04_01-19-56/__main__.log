@@ -1,0 +1,59 @@
+[2025-09-04 01:19:56,445][root][INFO] - qa_model:
+  name: Qwen/Qwen3-235B-A22B-Instruct-2507-tput
+confidence_extractor:
+  name: verbal_numerical_confidence
+  qa_template: vanilla
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: mmlu_pro
+  url: hf://datasets/TIGER-Lab/MMLU-Pro/data/test-00000-of-00001.parquet
+  file_path: llm_linguistic_confidence_study/datasets/mmlu_pro_test_set.pkl
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: 390839ac-a47b-4295-be86-e73384506c37
+  grader_batch_id: null
+  semantic_ids_path: null
+seed: 42
+
+[2025-09-04 01:19:56,768][root][INFO] - Batch job 390839ac-a47b-4295-be86-e73384506c37 is runned before, download the output file now...
+[2025-09-04 01:20:18,106][root][INFO] - Batch task file saved to llm_linguistic_confidence_study/batch_tasks/mmlu_pro_Qwen3-235B-A22B-Instruct-2507-tput_vnc_grader_20250904_012017.jsonl
+[2025-09-04 01:20:21,980][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/files "HTTP/1.1 200 OK"
+[2025-09-04 01:20:22,289][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/batches "HTTP/1.1 400 Bad Request"

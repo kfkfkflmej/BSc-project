@@ -1,0 +1,3 @@
+qa_batch_id: batch_68ae60b04fb0819099288a6c9831d4fc
+grader_batch_id: batch_68b1b93040248190909378b1b25ca474
+semantic_ids_path: llm_linguistic_confidence_study/pretrained_weights/semantic_ids_gpt-5-nano.npy

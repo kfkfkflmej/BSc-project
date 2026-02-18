@@ -1,0 +1,91 @@
+[2025-09-10 14:05:46,160][root][INFO] - qa_model:
+  name: qwen3-8b
+  model_name: Qwen/Qwen3-8B
+  temperature: 0.6
+  top_p: 0.95
+  top_k: 20
+  min_p: 0.0
+  enable_thinking: false
+  max_tokens: 1024
+  tokenize_output: false
+  add_generation_prompt: true
+  tensor_parallel_size: 1
+  gpu_memory_utilization: 0.8
+  disable_log_stats: true
+  trust_remote_code: true
+  dtype: auto
+  enable_lora: false
+  lora_weight_path: null
+  max_lora_rank: 32
+confidence_extractor:
+  name: linguistic_confidence
+  model_name: null
+  state_dict_path: null
+  mapper_name: direct-prompt
+  qa_template: vanilla_uncertainty
+  type: human_anno_dataset_trained
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: pop_qa
+  url: None
+  file_path: llm_linguistic_confidence_study/datasets/pop_qa_subset.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+    exclude_training: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+    exclude_training: false
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+    exclude_training: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+    exclude_training: false
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+    exclude_training: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+    exclude_training: false
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+    exclude_training: false
+pre_runned_batch:
+  qa_batch_id: llm_linguistic_confidence_study/prerunned_batch/pop_qa/qwen3-8b/linguistic_confidence/vanilla-qwen3-8b.csv
+  grader_batch_id: batch_68bfcc72c2348190a8897e2575e6df46
+  ece_batch_id: null
+seed: 42
+
+[2025-09-10 14:05:46,363][root][INFO] - Batch job None for simple_qa_qwen3-8b_lc_ece is computing by direct prompt.
+[2025-09-10 14:05:46,365][root][INFO] - ##################### START to ECE #######################################
+[2025-09-10 14:05:46,652][root][INFO] - Batch task file saved to llm_linguistic_confidence_study/batch_tasks/simple_qa_qwen3-8b_lc_ece_20250910_140546.jsonl
+[2025-09-10 14:05:48,533][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/files "HTTP/1.1 200 OK"
+[2025-09-10 14:05:49,666][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/batches "HTTP/1.1 200 OK"
+[2025-09-10 14:05:49,673][root][INFO] - Batch job created: batch_68c0f91d114881908884dfa03c3fd6c9
+[2025-09-10 14:05:50,003][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c0f91d114881908884dfa03c3fd6c9 "HTTP/1.1 200 OK"
+[2025-09-10 14:05:50,006][root][INFO] - Batch job batch_68c0f91d114881908884dfa03c3fd6c9 for simple_qa_qwen3-8b_lc_ece is validating, waiting for 60 seconds...

@@ -1,0 +1,85 @@
+[2025-09-09 21:23:12,407][root][INFO] - qa_model:
+  name: qwen3-8b-lora-mapper2
+  model_name: Qwen/Qwen3-8B
+  temperature: 0.6
+  top_p: 0.95
+  top_k: 20
+  min_p: 0.0
+  enable_thinking: false
+  max_tokens: 1024
+  tokenize_output: false
+  add_generation_prompt: true
+  tensor_parallel_size: 1
+  gpu_memory_utilization: 0.8
+  disable_log_stats: true
+  trust_remote_code: true
+  dtype: auto
+  enable_lora: true
+  lora_weight_path: improve_llm_linguistic_confidence/model/Qwen3-8B/8bit/mapper2
+  max_lora_rank: 32
+confidence_extractor:
+  name: linguistic_confidence
+  model_name: distilroberta-base
+  state_dict_path: llm_linguistic_confidence_study/pretrained_weights/human_anno_trained_reg_head.pth
+  mapper_name: self-trained
+  qa_template: vanilla
+  type: human_anno_dataset_trained
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: simple_qa
+  url: https://huggingface.co/datasets/basicv8vc/SimpleQA/blob/main/simple_qa_test_set.csv
+  file_path: llm_linguistic_confidence_study/datasets/simple_qa_test_set.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like_exclude_training
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like_exclude_training
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like_exclude_training
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like_exclude_training
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like_exclude_training
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like_exclude_training
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like_exclude_training
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: llm_linguistic_confidence_study/prerunned_batch/simple_qa/qwen3-8b-lora-mapper2/linguistic_confidence/vanilla-qwen3-8b-lora-mapper2.csv
+  grader_batch_id: batch_68bfbe245588819092c01250bc0b956f
+seed: 42
+
+[2025-09-09 21:23:18,234][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bfbe245588819092c01250bc0b956f "HTTP/1.1 200 OK"
+[2025-09-09 21:23:19,832][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-4ad1Ad6xmDpN2CzuP6G1E5/content "HTTP/1.1 200 OK"
+[2025-09-09 21:23:21,280][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like_exclude_training', 'exclude_not_attempted': False}: 0.034173533688802715
+[2025-09-09 21:23:21,285][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like_exclude_training', 'exclude_not_attempted': True}: 0.036265432098765434
+[2025-09-09 21:23:21,290][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like_exclude_training', 'exclude_not_attempted': False}: 0.7390026257951688
+[2025-09-09 21:23:21,296][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like_exclude_training', 'exclude_not_attempted': True}: 0.7574575972233597
+[2025-09-09 21:23:21,308][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like_exclude_training', 'exclude_not_attempted': False}: 0.582207213219787
+[2025-09-09 21:23:21,319][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like_exclude_training', 'exclude_not_attempted': True}: 0.5572410647193877
+[2025-09-09 21:23:21,323][root][INFO] - {'_target_': 'metrics.AttemptedCount', 'name': 'attempted_count', 'format': 'simpleqa_like_exclude_training', 'exclude_not_attempted': True}: 3888
+[2025-09-09 21:23:21,424][root][INFO] - Outputs saved to /mnt/sda/home/bokai/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/results/simple_qa/qwen3-8b-lora-mapper2/linguistic_confidence/2025-09-09_21-23-12

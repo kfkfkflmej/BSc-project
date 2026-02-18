@@ -1,0 +1,67 @@
+[2025-08-30 02:49:59,182][root][INFO] - qa_model:
+  name: claude-3-5-haiku-20241022
+confidence_extractor:
+  name: verbal_numerical_confidence
+  qa_template: vanilla
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: simple_qa
+  url: https://huggingface.co/datasets/basicv8vc/SimpleQA/blob/main/simple_qa_test_set.csv
+  file_path: llm_linguistic_confidence_study/datasets/simple_qa_test_set.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: msgbatch_01HKAi2HS3rAAShPAWHcNDvu
+  grader_batch_id: batch_68b05253fb3481908278dd92a661dfb5
+seed: 42
+
+[2025-08-30 02:49:59,297][root][INFO] - Batch job msgbatch_01HKAi2HS3rAAShPAWHcNDvu is runned before, download the output file now...
+[2025-08-30 02:49:59,641][httpx][INFO] - HTTP Request: GET https://api.anthropic.com/v1/messages/batches/msgbatch_01HKAi2HS3rAAShPAWHcNDvu "HTTP/1.1 200 OK"
+[2025-08-30 02:50:00,051][httpx][INFO] - HTTP Request: GET https://api.anthropic.com/v1/messages/batches/msgbatch_01HKAi2HS3rAAShPAWHcNDvu/results "HTTP/1.1 200 OK"
+[2025-08-30 02:50:02,399][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b05253fb3481908278dd92a661dfb5 "HTTP/1.1 200 OK"
+[2025-08-30 02:50:04,001][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-1GcJAhUHLzxkuHiMEBNEYo/content "HTTP/1.1 200 OK"
+[2025-08-30 02:50:05,483][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.029588534442903373
+[2025-08-30 02:50:05,485][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.12890231621349446
+[2025-08-30 02:50:05,486][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.7736823855755893
+[2025-08-30 02:50:05,488][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.721802618328298
+[2025-08-30 02:50:05,492][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.6402239533706526
+[2025-08-30 02:50:05,495][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.630784862716763
+[2025-08-30 02:50:05,496][root][INFO] - {'_target_': 'metrics.AttemptedCount', 'name': 'attempted_count', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 993
+[2025-08-30 02:50:05,541][root][INFO] - Outputs saved to /home/ivan/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/results/simple_qa/claude-3-5-haiku-20241022/verbal_numerical_confidence/2025-08-30_02-49-59

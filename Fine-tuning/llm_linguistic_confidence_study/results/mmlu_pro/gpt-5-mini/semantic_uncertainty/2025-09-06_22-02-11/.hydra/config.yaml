@@ -1,0 +1,60 @@
+qa_model:
+  name: gpt-5-mini
+confidence_extractor:
+  name: semantic_uncertainty
+  qa_template: vanilla
+  sample_times: 10
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: mmlu_pro
+  url: hf://datasets/TIGER-Lab/MMLU-Pro/data/test-00000-of-00001.parquet
+  file_path: llm_linguistic_confidence_study/datasets/mmlu_pro_test_set.pkl
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id:
+  - batch_68b99b4a362c81908e252925594375be
+  - batch_68b99b49ebb48190b7dbe82c5d3e74aa
+  - batch_68b99b5d909c8190b54feb12f8e630bd
+  - batch_68b99b497d908190b9f9355fd3767144
+  grader_batch_id: batch_68bc0e9dac0c81909acb8f2fc2e5c7be
+  p_true_self_eval_batch_id: null
+  semantic_ids_path: llm_linguistic_confidence_study/pretrained_weights/mmlu_pro_gpt-5-mini.npy
+seed: 42

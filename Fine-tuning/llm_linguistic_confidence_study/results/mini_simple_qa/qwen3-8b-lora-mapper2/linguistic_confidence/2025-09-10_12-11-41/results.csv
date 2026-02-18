@@ -1,0 +1,3 @@
+metric,score
+_target_: metrics.Accuracy; name: acc; format: simpleqa_like; exclude_not_attempted: false; exclude_training: false; ,0.1875
+_target_: metrics.Accuracy; name: acc; format: simpleqa_like; exclude_not_attempted: false; exclude_training: true; ,0.1875

@@ -1,0 +1,105 @@
+[2025-09-18 10:46:52,919][root][INFO] - qa_model:
+  name: qwen3-8b
+  model_name: Qwen/Qwen3-8B
+  temperature: 0.6
+  top_p: 0.95
+  top_k: 20
+  min_p: 0.0
+  enable_thinking: false
+  max_tokens: 1024
+  tokenize_output: false
+  add_generation_prompt: true
+  tensor_parallel_size: 1
+  gpu_memory_utilization: 0.8
+  disable_log_stats: true
+  trust_remote_code: true
+  dtype: auto
+  enable_lora: false
+  lora_weight_path: null
+  max_lora_rank: 32
+  seed: 42
+confidence_extractor:
+  name: verbal_numerical_confidence
+  qa_template: vanilla
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: simple_qa
+  url: https://huggingface.co/datasets/basicv8vc/SimpleQA/blob/main/simple_qa_test_set.csv
+  file_path: llm_linguistic_confidence_study/datasets/simple_qa_test_set.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+    exclude_training: true
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+    exclude_training: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+    exclude_training: true
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+    exclude_training: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+    exclude_training: true
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+    exclude_training: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+    exclude_training: true
+pre_runned_batch:
+  qa_batch_id: llm_linguistic_confidence_study/prerunned_batch/simple_qa/qwen3-8b/verbal_numerical_confidence/vanilla-vnc-qwen3-8b-exclude.csv
+  grader_batch_id: null
+seed: 42
+
+[2025-09-18 10:50:48,041][root][INFO] - Batch task file saved to llm_linguistic_confidence_study/batch_tasks/simple_qa_qwen3-8b_vnc_grader_20250918_105047.jsonl
+[2025-09-18 10:52:34,620][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/files "HTTP/1.1 200 OK"
+[2025-09-18 10:52:34,972][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/batches "HTTP/1.1 200 OK"
+[2025-09-18 10:52:34,975][root][INFO] - Batch job created: batch_68cb57d2bd5c819089ee9f37d21c6cee
+[2025-09-18 10:52:35,239][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68cb57d2bd5c819089ee9f37d21c6cee "HTTP/1.1 200 OK"
+[2025-09-18 10:52:35,239][root][INFO] - Batch job batch_68cb57d2bd5c819089ee9f37d21c6cee for simple_qa_qwen3-8b_vnc_grader is validating, waiting for 60 seconds...
+[2025-09-18 10:53:35,540][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68cb57d2bd5c819089ee9f37d21c6cee "HTTP/1.1 200 OK"
+[2025-09-18 10:53:35,542][root][INFO] - Batch job batch_68cb57d2bd5c819089ee9f37d21c6cee for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-18 10:54:35,827][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68cb57d2bd5c819089ee9f37d21c6cee "HTTP/1.1 200 OK"
+[2025-09-18 10:54:35,829][root][INFO] - Batch job batch_68cb57d2bd5c819089ee9f37d21c6cee for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-18 10:55:36,146][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68cb57d2bd5c819089ee9f37d21c6cee "HTTP/1.1 200 OK"
+[2025-09-18 10:55:36,148][root][INFO] - Batch job batch_68cb57d2bd5c819089ee9f37d21c6cee for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-18 10:56:36,444][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68cb57d2bd5c819089ee9f37d21c6cee "HTTP/1.1 200 OK"
+[2025-09-18 10:56:36,465][root][INFO] - Batch job batch_68cb57d2bd5c819089ee9f37d21c6cee for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-18 10:57:36,749][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68cb57d2bd5c819089ee9f37d21c6cee "HTTP/1.1 200 OK"
+[2025-09-18 10:57:36,751][root][INFO] - Batch job batch_68cb57d2bd5c819089ee9f37d21c6cee for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-18 10:58:37,035][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68cb57d2bd5c819089ee9f37d21c6cee "HTTP/1.1 200 OK"
+[2025-09-18 10:58:37,037][root][INFO] - Batch job batch_68cb57d2bd5c819089ee9f37d21c6cee for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-18 10:59:37,344][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68cb57d2bd5c819089ee9f37d21c6cee "HTTP/1.1 200 OK"
+[2025-09-18 10:59:37,345][root][INFO] - Batch job batch_68cb57d2bd5c819089ee9f37d21c6cee for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-18 11:00:37,642][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68cb57d2bd5c819089ee9f37d21c6cee "HTTP/1.1 200 OK"
+[2025-09-18 11:00:37,644][root][INFO] - Batch job batch_68cb57d2bd5c819089ee9f37d21c6cee for simple_qa_qwen3-8b_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-18 11:01:37,973][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68cb57d2bd5c819089ee9f37d21c6cee "HTTP/1.1 200 OK"
+[2025-09-18 11:01:37,975][root][INFO] - Batch job batch_68cb57d2bd5c819089ee9f37d21c6cee for simple_qa_qwen3-8b_vnc_grader is finalizing, waiting for 60 seconds...
+[2025-09-18 11:02:38,275][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68cb57d2bd5c819089ee9f37d21c6cee "HTTP/1.1 200 OK"
+[2025-09-18 11:02:38,282][root][INFO] - Batch job batch_68cb57d2bd5c819089ee9f37d21c6cee for simple_qa_qwen3-8b_vnc_grader is finalizing, waiting for 60 seconds...

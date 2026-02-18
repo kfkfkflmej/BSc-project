@@ -1,0 +1,8 @@
+metric,score
+_target_: metrics.Accuracy; name: acc; format: simpleqa_like; exclude_not_attempted: false; exclude_training: true; ,0.28282548476454294
+_target_: metrics.Accuracy; name: acc; format: simpleqa_like; exclude_not_attempted: true; exclude_training: true; ,0.29792821709950396
+_target_: metrics.ECE; name: ece; n_bins: 15; format: simpleqa_like; exclude_not_attempted: false; exclude_training: true; ,0.4911025634742344
+_target_: metrics.ECE; name: ece; n_bins: 15; format: simpleqa_like; exclude_not_attempted: true; exclude_training: true; ,0.48189459893736153
+_target_: metrics.AUROC; name: auroc; format: simpleqa_like; exclude_not_attempted: false; exclude_training: true; ,0.5518781146332578
+_target_: metrics.AUROC; name: auroc; format: simpleqa_like; exclude_not_attempted: true; exclude_training: true; ,0.5412788222066447
+_target_: metrics.AttemptedCount; name: attempted_count; format: simpleqa_like; exclude_not_attempted: true; exclude_training: true; ,3427.0

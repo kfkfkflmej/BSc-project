@@ -1,0 +1,9 @@
+# include
+qa_batch_id: llm_linguistic_confidence_study/prerunned_batch/simple_qa/qwen3-8b/semantic_uncertainty/vanilla-qwen3-8b.csv
+grader_batch_id: batch_68b8ea54bdf88190ace9c56dad271bbe
+semantic_ids_path: llm_linguistic_confidence_study/pretrained_weights/semantic_ids_qwen3-8b.npy
+
+# exclude
+# qa_batch_id: llm_linguistic_confidence_study/prerunned_batch/simple_qa/qwen3-8b/semantic_uncertainty/vanilla-qwen3-8b-exclude.csv
+# grader_batch_id: null
+# semantic_ids_path: llm_linguistic_confidence_study/pretrained_weights/semantic_ids_qwen3-8b-exclude.npy

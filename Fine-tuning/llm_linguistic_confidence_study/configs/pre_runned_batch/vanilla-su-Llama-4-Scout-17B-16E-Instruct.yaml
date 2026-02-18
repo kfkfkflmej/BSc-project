@@ -1,0 +1,3 @@
+qa_batch_id: 27cd835f-691c-4afe-95a0-d59b6c0b712f
+grader_batch_id: batch_68b1d715a6408190b5125a8c57f07348
+semantic_ids_path: llm_linguistic_confidence_study/pretrained_weights/semantic_ids_Llama-4-Scout-17B-16E-Instruct.npy

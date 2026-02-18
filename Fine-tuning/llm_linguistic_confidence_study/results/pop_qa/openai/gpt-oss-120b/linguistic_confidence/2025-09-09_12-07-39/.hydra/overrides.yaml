@@ -1,0 +1,4 @@
+- dataset=pop_qa
+- qa_model=gpt-oss-120b
+- confidence_extractor=linguistic_confidence_vanilla_uncertainty
+- pre_runned_batch=no_run.yaml

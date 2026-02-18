@@ -1,0 +1,58 @@
+[2025-08-27 21:07:09,190][root][INFO] - qa_model:
+  name: gpt-5-nano
+confidence_extractor:
+  name: linguistic_confidence
+  model_name: distilroberta-base
+  state_dict_path: llm_linguistic_confidence_study/pretrained_weights/human_anno_trained_reg_head.pth
+  mapper_name: self-trained
+  qa_template: vanilla
+  type: human_anno_dataset_trained
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: simple_qa
+  url: https://huggingface.co/datasets/basicv8vc/SimpleQA/blob/main/simple_qa_test_set.csv
+  file_path: llm_linguistic_confidence_study/datasets/simple_qa_test_set.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: batch_68ad5712c96881909f3f51871b5f697b
+  grader_batch_id: batch_68ae4ce984bc81909279ed5302cf7065
+seed: 42
+
+[2025-08-27 21:07:10,601][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad5712c96881909f3f51871b5f697b "HTTP/1.1 200 OK"
+[2025-08-27 21:07:11,158][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-UDeR6z4yR48PHaiKLaGKh7/content "HTTP/1.1 200 OK"
+[2025-08-27 21:07:14,366][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ae4ce984bc81909279ed5302cf7065 "HTTP/1.1 200 OK"
+[2025-08-27 21:07:14,816][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-MDTKuZUifLex79U6g39WQa/content "HTTP/1.1 200 OK"
+[2025-08-27 21:10:27,213][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.0

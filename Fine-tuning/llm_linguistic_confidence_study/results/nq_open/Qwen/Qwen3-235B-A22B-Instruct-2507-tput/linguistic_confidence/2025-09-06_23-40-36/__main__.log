@@ -1,0 +1,154 @@
+[2025-09-06 23:40:36,217][root][INFO] - qa_model:
+  name: Qwen/Qwen3-235B-A22B-Instruct-2507-tput
+confidence_extractor:
+  name: linguistic_confidence
+  model_name: distilroberta-base
+  state_dict_path: llm_linguistic_confidence_study/pretrained_weights/human_anno_trained_reg_head.pth
+  mapper_name: self-trained
+  qa_template: vanilla
+  type: human_anno_dataset_trained
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: nq_open
+  url: https://huggingface.co/datasets/baonn/nqopen
+  file_path: llm_linguistic_confidence_study/datasets/nq_open.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: null
+  grader_batch_id: null
+  p_true_self_eval_batch_id: null
+  semantic_ids_path: null
+seed: 42
+
+[2025-09-06 23:40:37,397][root][INFO] - Batch task file saved to llm_linguistic_confidence_study/batch_tasks/nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_qa_20250906_234037.jsonl
+[2025-09-06 23:40:43,563][root][INFO] - Batch job b50a393b-f055-4e83-b22c-a58684e01b90 for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_qa is BatchJobStatus.VALIDATING, waiting for 60 seconds...
+[2025-09-06 23:41:44,141][root][INFO] - Batch job b50a393b-f055-4e83-b22c-a58684e01b90 for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_qa is BatchJobStatus.IN_PROGRESS, waiting for 60 seconds...
+[2025-09-06 23:42:45,377][root][INFO] - Batch job b50a393b-f055-4e83-b22c-a58684e01b90 for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_qa is BatchJobStatus.IN_PROGRESS, waiting for 60 seconds...
+[2025-09-06 23:43:48,667][root][INFO] - Batch job b50a393b-f055-4e83-b22c-a58684e01b90 for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_qa is BatchJobStatus.IN_PROGRESS, waiting for 60 seconds...
+[2025-09-06 23:44:50,079][root][INFO] - Batch job b50a393b-f055-4e83-b22c-a58684e01b90 for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_qa is BatchJobStatus.IN_PROGRESS, waiting for 60 seconds...
+[2025-09-06 23:45:50,499][root][INFO] - Batch job b50a393b-f055-4e83-b22c-a58684e01b90 for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_qa is BatchJobStatus.IN_PROGRESS, waiting for 60 seconds...
+[2025-09-06 23:46:50,814][root][INFO] - Batch job b50a393b-f055-4e83-b22c-a58684e01b90 for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_qa is BatchJobStatus.IN_PROGRESS, waiting for 60 seconds...
+[2025-09-06 23:47:51,098][root][INFO] - Batch job b50a393b-f055-4e83-b22c-a58684e01b90 for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_qa is BatchJobStatus.IN_PROGRESS, waiting for 60 seconds...
+[2025-09-06 23:48:51,439][root][INFO] - Batch job b50a393b-f055-4e83-b22c-a58684e01b90 for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_qa is completed
+[2025-09-06 23:55:41,942][root][INFO] - Batch task file saved to llm_linguistic_confidence_study/batch_tasks/nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader_20250906_235541.jsonl
+[2025-09-06 23:55:52,182][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/files "HTTP/1.1 200 OK"
+[2025-09-06 23:55:52,596][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/batches "HTTP/1.1 200 OK"
+[2025-09-06 23:55:52,601][root][INFO] - Batch job created: batch_68bc3d68520081909f4cfaff67ba045b
+[2025-09-06 23:55:53,891][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-06 23:55:53,905][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is validating, waiting for 60 seconds...
+[2025-09-06 23:56:54,179][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-06 23:56:54,180][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is validating, waiting for 60 seconds...
+[2025-09-06 23:57:54,467][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-06 23:57:54,467][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 23:58:54,743][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-06 23:58:54,743][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 23:59:55,039][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-06 23:59:55,045][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:00:55,349][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:00:55,465][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:01:55,748][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:01:55,793][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:02:56,070][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:02:56,071][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:03:56,339][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:03:56,545][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:04:56,824][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:04:56,825][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:05:57,182][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:05:57,183][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:06:57,461][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:06:57,462][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:07:58,097][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:07:58,098][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:08:58,414][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:08:58,414][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:09:58,688][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:09:58,689][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:10:58,956][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:10:58,956][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:11:59,232][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:11:59,233][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:12:59,553][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:12:59,578][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:13:59,854][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:13:59,855][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:15:00,132][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:15:00,132][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:16:00,400][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:16:00,401][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:17:00,700][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:17:00,701][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:18:00,963][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:18:00,964][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:19:01,398][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:19:01,398][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:20:01,686][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:20:01,687][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:21:01,942][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:21:02,141][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:22:02,410][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:22:02,410][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:23:02,691][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:23:02,692][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-07 00:24:02,969][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:24:02,970][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is finalizing, waiting for 60 seconds...
+[2025-09-07 00:25:03,231][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:25:03,231][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is finalizing, waiting for 60 seconds...
+[2025-09-07 00:26:03,517][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:26:03,518][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is finalizing, waiting for 60 seconds...
+[2025-09-07 00:27:03,787][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:27:03,788][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is finalizing, waiting for 60 seconds...
+[2025-09-07 00:28:04,072][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:28:04,072][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is finalizing, waiting for 60 seconds...
+[2025-09-07 00:29:04,342][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:29:04,343][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is finalizing, waiting for 60 seconds...
+[2025-09-07 00:30:04,609][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:30:04,610][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_lc_grader is completed
+[2025-09-07 00:30:05,344][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 00:30:05,794][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-DSd6VhJQCRKQJdh7jJDwPw/content "HTTP/1.1 200 OK"
+[2025-09-07 00:30:07,085][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.502770083102493
+[2025-09-07 00:30:07,087][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.510548523206751
+[2025-09-07 00:30:07,088][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.3044843920958009
+[2025-09-07 00:30:07,090][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.29793714923697684
+[2025-09-07 00:30:07,095][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.5296975835846436
+[2025-09-07 00:30:07,100][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.524901364744625
+[2025-09-07 00:30:07,101][root][INFO] - {'_target_': 'metrics.AttemptedCount', 'name': 'attempted_count', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 3555
+[2025-09-07 00:30:07,129][root][INFO] - Outputs saved to /home/ivan/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/results/nq_open/Qwen/Qwen3-235B-A22B-Instruct-2507-tput/linguistic_confidence/2025-09-06_23-40-36

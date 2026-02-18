@@ -1,0 +1,6 @@
+name: linguistic_confidence
+model_name: null
+state_dict_path: null
+mapper_name: direct-prompt
+qa_template: vanilla
+type: human_anno_dataset_trained

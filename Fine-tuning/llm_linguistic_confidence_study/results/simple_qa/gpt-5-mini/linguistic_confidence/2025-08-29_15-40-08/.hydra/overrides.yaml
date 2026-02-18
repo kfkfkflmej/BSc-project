@@ -1,0 +1,2 @@
+- qa_model=gpt-5-mini
+- confidence_extractor=linguistic_confidence

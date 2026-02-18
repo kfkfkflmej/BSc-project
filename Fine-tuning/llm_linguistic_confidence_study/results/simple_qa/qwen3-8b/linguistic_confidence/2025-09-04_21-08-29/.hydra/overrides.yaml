@@ -1,0 +1,3 @@
+- qa_model=qwen3-8b
+- confidence_extractor=linguistic_confidence
+- pre_runned_batch=vanilla-qwen3-8b.yaml

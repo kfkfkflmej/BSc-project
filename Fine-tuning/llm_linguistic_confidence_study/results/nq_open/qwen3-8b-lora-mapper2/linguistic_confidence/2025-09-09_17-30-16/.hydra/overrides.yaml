@@ -1,0 +1,5 @@
+- qa_model=qwen3-8b-lora-mapper2
+- confidence_extractor=linguistic_confidence_llm_anno
+- dataset=nq_open
+- pre_runned_batch=nqopen-vanilla-qwen3-8b-lora-mapper2.yaml
+- metrics=all_exlude_train.yaml

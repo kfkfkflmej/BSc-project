@@ -1,0 +1,69 @@
+[2025-09-09 10:17:47,126][root][INFO] - qa_model:
+  name: openai/gpt-oss-120b
+confidence_extractor:
+  name: logits_perplexity
+  qa_template: vanilla
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: mmlu_pro
+  url: hf://datasets/TIGER-Lab/MMLU-Pro/data/test-00000-of-00001.parquet
+  file_path: llm_linguistic_confidence_study/datasets/mmlu_pro_test_set.pkl
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: 6b101934-671e-4cce-84b6-6e72f45c7c19
+  grader_batch_id: batch_68b9806a40648190928609ea44836102
+  p_true_self_eval_batch_id: null
+  semantic_ids_path: null
+seed: 42
+
+[2025-09-09 10:17:47,454][root][INFO] - Batch job 6b101934-671e-4cce-84b6-6e72f45c7c19 is runned before, download the output file now...
+[2025-09-09 10:17:54,195][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b9806a40648190928609ea44836102 "HTTP/1.1 200 OK"
+[2025-09-09 10:17:54,200][root][INFO] - Batch job batch_68b9806a40648190928609ea44836102 for mmlu_pro_gpt-oss-120b_perplexity_grader is completed
+[2025-09-09 10:17:55,016][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b9806a40648190928609ea44836102 "HTTP/1.1 200 OK"
+[2025-09-09 10:17:56,805][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-UPfhFzvwhxAFPYKiEkDCph/content "HTTP/1.1 200 OK"
+[2025-09-09 10:18:00,114][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.7310505319148937
+[2025-09-09 10:18:00,116][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.7317194908909409
+[2025-09-09 10:18:00,119][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.12797520812146934
+[2025-09-09 10:18:00,123][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.1273229805323995
+[2025-09-09 10:18:00,132][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.7022595252027695
+[2025-09-09 10:18:00,142][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.7023393649685727
+[2025-09-09 10:18:00,144][root][INFO] - {'_target_': 'metrics.AttemptedCount', 'name': 'attempted_count', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 12021
+[2025-09-09 10:18:01,656][root][INFO] - Outputs saved to /home/ivan/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/results/mmlu_pro/openai/gpt-oss-120b/logits_perplexity/2025-09-09_10-17-47

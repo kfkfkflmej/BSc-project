@@ -1,0 +1,5 @@
+defaults:
+ - qwen3-8b
+
+name: qwen3-32b
+model_name: Qwen/Qwen3-32B

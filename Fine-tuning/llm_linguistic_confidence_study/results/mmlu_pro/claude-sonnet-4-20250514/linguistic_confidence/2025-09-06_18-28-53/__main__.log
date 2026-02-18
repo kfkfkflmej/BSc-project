@@ -1,0 +1,73 @@
+[2025-09-06 18:28:53,455][root][INFO] - qa_model:
+  name: claude-sonnet-4-20250514
+confidence_extractor:
+  name: linguistic_confidence
+  model_name: distilroberta-base
+  state_dict_path: llm_linguistic_confidence_study/pretrained_weights/human_anno_trained_reg_head.pth
+  mapper_name: self-trained
+  qa_template: vanilla
+  type: human_anno_dataset_trained
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: mmlu_pro
+  url: hf://datasets/TIGER-Lab/MMLU-Pro/data/test-00000-of-00001.parquet
+  file_path: llm_linguistic_confidence_study/datasets/mmlu_pro_test_set.pkl
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: msgbatch_01AUQrqtXf2zpDKTEpHmMYEg
+  grader_batch_id: batch_68b991cc39b48190a57c3f3ba1829db3
+  p_true_self_eval_batch_id: null
+  semantic_ids_path: llm_linguistic_confidence_study/pretrained_weights/mmlu_pro_gpt-5-mini.npy
+seed: 42
+
+[2025-09-06 18:28:54,846][root][INFO] - Batch job msgbatch_01AUQrqtXf2zpDKTEpHmMYEg is runned before, download the output file now...
+[2025-09-06 18:28:55,142][httpx][INFO] - HTTP Request: GET https://api.anthropic.com/v1/messages/batches/msgbatch_01AUQrqtXf2zpDKTEpHmMYEg "HTTP/1.1 200 OK"
+[2025-09-06 18:28:55,694][httpx][INFO] - HTTP Request: GET https://api.anthropic.com/v1/messages/batches/msgbatch_01AUQrqtXf2zpDKTEpHmMYEg/results "HTTP/1.1 200 OK"
+[2025-09-06 18:29:23,425][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b991cc39b48190a57c3f3ba1829db3 "HTTP/1.1 200 OK"
+[2025-09-06 18:29:24,030][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-QxbZ1SAoKKekZeAVVPpJbH/content "HTTP/1.1 200 OK"
+[2025-09-06 18:29:26,287][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.7984541223404256
+[2025-09-06 18:29:26,289][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.7993842569479115
+[2025-09-06 18:29:26,292][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.14927486550097574
+[2025-09-06 18:29:26,296][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.14988714901435632
+[2025-09-06 18:29:26,305][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.533987223663158
+[2025-09-06 18:29:26,314][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.5316074787683545
+[2025-09-06 18:29:26,316][root][INFO] - {'_target_': 'metrics.AttemptedCount', 'name': 'attempted_count', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 12018
+[2025-09-06 18:29:26,953][root][INFO] - Outputs saved to /home/ivan/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/results/mmlu_pro/claude-sonnet-4-20250514/linguistic_confidence/2025-09-06_18-28-53

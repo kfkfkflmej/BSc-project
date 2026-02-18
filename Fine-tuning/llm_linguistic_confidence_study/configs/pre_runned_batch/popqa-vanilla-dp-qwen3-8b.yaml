@@ -1,0 +1,3 @@
+qa_batch_id: llm_linguistic_confidence_study/prerunned_batch/pop_qa/qwen3-8b/linguistic_confidence/vanilla-qwen3-8b.csv
+grader_batch_id: batch_68bfcc72c2348190a8897e2575e6df46
+ece_batch_id: batch_68c0e2c2bd748190aef26daa5fe2685b

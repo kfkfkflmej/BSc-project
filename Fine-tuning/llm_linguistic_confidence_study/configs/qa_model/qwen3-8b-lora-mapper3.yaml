@@ -1,0 +1,6 @@
+defaults:
+ - qwen3-8b
+
+name: qwen3-8b-lora-mapper3
+enable_lora: true
+lora_weight_path: improve_llm_linguistic_confidence/model/Qwen3-8B/8bit/mapper3

@@ -1,0 +1,14 @@
+confidence_method          , response_batch_job_id                 , grader_batch_job_id
+vanilla                    , batch_689da7dd35708190a6d0ed4012152e50, batch_689eedb57d9c81909f0bd660fa2a3271
+vanilla_uncertainty        , batch_689f470723288190a79fb84227cce093, batch_689f4f41fe3c8190beb3763dd2c0b142
+verbal_numerical_confidence, batch_689da7e30b008190a9768c88d235d896, batch_689f4f03e654819081f9525271526e3a
+semantic_uncertainty1      , batch_689eced6e8308190adaac64542a3dfbc, batch_689f636db59c8190b2c572497f85e57e
+semantic_uncertainty2      , batch_689eced403808190b3b338bb8b94bb7a, batch_689f63a9ce1481908996f1a456f5585a
+semantic_uncertainty3      , batch_689eced218dc8190b357f7ba462dc48d, batch_689f63b9f4d48190a38d46ea81dd59c2
+semantic_uncertainty4      , batch_689ececf9c388190a750f0b7b6b7a66e, batch_689f63db5d1881909b770784b1ff129e
+semantic_uncertainty5      , batch_689ececd166c8190a75eac3abe645d58, batch_689f63f2bf1c81909e20125a02e753fe
+semantic_uncertainty6      , batch_689ececa116c819094b7bad59a1794d6, batch_689f640a30108190a4118a426be0a34a
+semantic_uncertainty7      , batch_689ecec7b0408190ac9e9a27efa7cec0, batch_689f64219ad88190991902fe2b934d00
+semantic_uncertainty8      , batch_689ecec51ea88190ae087136181a220e, batch_689f643a32a48190a7bd886825b4e62d
+semantic_uncertainty9      , batch_689ecebf2e9c81909771d97a1e3c8e2d, batch_689f6456b69c8190b1dd3559549425ad
+semantic_uncertainty10     , batch_689da7e0394881908ea6ad1d2bb7a249, batch_689f647272d88190ae412dcb614c354d

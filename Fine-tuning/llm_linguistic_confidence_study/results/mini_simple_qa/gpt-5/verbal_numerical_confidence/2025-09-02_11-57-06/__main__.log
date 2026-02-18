@@ -1,0 +1,94 @@
+[2025-09-02 11:57:06,528][root][INFO] - qa_model:
+  name: gpt-5
+confidence_extractor:
+  name: verbal_numerical_confidence
+  qa_template: vanilla
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: mini_simple_qa
+  url: None
+  file_path: llm_linguistic_confidence_study/datasets/mini_simple_qa_test_set.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: null
+  grader_batch_id: null
+seed: 42
+
+[2025-09-02 11:57:06,530][root][INFO] - Batch task file saved to llm_linguistic_confidence_study/batch_tasks/simple_qa_gpt-5_vnc_qa_20250902_115706.jsonl
+[2025-09-02 11:57:07,337][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/files "HTTP/1.1 200 OK"
+[2025-09-02 11:57:08,065][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/batches "HTTP/1.1 200 OK"
+[2025-09-02 11:57:08,069][root][INFO] - Batch job created: batch_68b64ef395cc81909179b033faf6352f
+[2025-09-02 11:57:08,346][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b64ef395cc81909179b033faf6352f "HTTP/1.1 200 OK"
+[2025-09-02 11:57:08,346][root][INFO] - Batch job batch_68b64ef395cc81909179b033faf6352f for simple_qa_gpt-5_vnc_qa is validating, waiting for 60 seconds...
+[2025-09-02 11:58:08,667][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b64ef395cc81909179b033faf6352f "HTTP/1.1 200 OK"
+[2025-09-02 11:58:08,668][root][INFO] - Batch job batch_68b64ef395cc81909179b033faf6352f for simple_qa_gpt-5_vnc_qa is validating, waiting for 60 seconds...
+[2025-09-02 11:59:08,960][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b64ef395cc81909179b033faf6352f "HTTP/1.1 200 OK"
+[2025-09-02 11:59:08,961][root][INFO] - Batch job batch_68b64ef395cc81909179b033faf6352f for simple_qa_gpt-5_vnc_qa is in_progress, waiting for 60 seconds...
+[2025-09-02 12:00:09,242][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b64ef395cc81909179b033faf6352f "HTTP/1.1 200 OK"
+[2025-09-02 12:00:09,246][root][INFO] - Batch job batch_68b64ef395cc81909179b033faf6352f for simple_qa_gpt-5_vnc_qa is in_progress, waiting for 60 seconds...
+[2025-09-02 12:01:09,550][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b64ef395cc81909179b033faf6352f "HTTP/1.1 200 OK"
+[2025-09-02 12:01:09,551][root][INFO] - Batch job batch_68b64ef395cc81909179b033faf6352f for simple_qa_gpt-5_vnc_qa is completed
+[2025-09-02 12:01:09,837][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b64ef395cc81909179b033faf6352f "HTTP/1.1 200 OK"
+[2025-09-02 12:01:10,257][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-8inNzVZznp1qK6MXakQ8VL/content "HTTP/1.1 200 OK"
+[2025-09-02 12:01:10,434][root][INFO] - Batch task file saved to llm_linguistic_confidence_study/batch_tasks/simple_qa_gpt-5_vnc_grader_20250902_120110.jsonl
+[2025-09-02 12:01:11,147][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/files "HTTP/1.1 200 OK"
+[2025-09-02 12:01:11,462][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/batches "HTTP/1.1 200 OK"
+[2025-09-02 12:01:11,463][root][INFO] - Batch job created: batch_68b64fe7442c8190aaf4ebb720e90a69
+[2025-09-02 12:01:11,772][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b64fe7442c8190aaf4ebb720e90a69 "HTTP/1.1 200 OK"
+[2025-09-02 12:01:11,773][root][INFO] - Batch job batch_68b64fe7442c8190aaf4ebb720e90a69 for simple_qa_gpt-5_vnc_grader is validating, waiting for 60 seconds...
+[2025-09-02 12:02:12,044][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b64fe7442c8190aaf4ebb720e90a69 "HTTP/1.1 200 OK"
+[2025-09-02 12:02:12,045][root][INFO] - Batch job batch_68b64fe7442c8190aaf4ebb720e90a69 for simple_qa_gpt-5_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-02 12:03:12,316][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b64fe7442c8190aaf4ebb720e90a69 "HTTP/1.1 200 OK"
+[2025-09-02 12:03:12,316][root][INFO] - Batch job batch_68b64fe7442c8190aaf4ebb720e90a69 for simple_qa_gpt-5_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-02 12:04:12,601][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b64fe7442c8190aaf4ebb720e90a69 "HTTP/1.1 200 OK"
+[2025-09-02 12:04:12,601][root][INFO] - Batch job batch_68b64fe7442c8190aaf4ebb720e90a69 for simple_qa_gpt-5_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-02 12:05:12,896][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b64fe7442c8190aaf4ebb720e90a69 "HTTP/1.1 200 OK"
+[2025-09-02 12:05:12,897][root][INFO] - Batch job batch_68b64fe7442c8190aaf4ebb720e90a69 for simple_qa_gpt-5_vnc_grader is completed
+[2025-09-02 12:05:13,223][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b64fe7442c8190aaf4ebb720e90a69 "HTTP/1.1 200 OK"
+[2025-09-02 12:05:13,911][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-H1QCBJUfEcjfCmHQcK7LtG/content "HTTP/1.1 200 OK"
+[2025-09-02 12:05:13,923][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.4375
+[2025-09-02 12:05:13,924][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.4375
+[2025-09-02 12:05:13,925][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.3393749999999999
+[2025-09-02 12:05:13,926][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.3393749999999999
+[2025-09-02 12:05:13,929][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.6746031746031746
+[2025-09-02 12:05:13,931][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.6746031746031746
+[2025-09-02 12:05:13,932][root][INFO] - {'_target_': 'metrics.AttemptedCount', 'name': 'attempted_count', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 16
+[2025-09-02 12:05:13,935][root][INFO] - Outputs saved to /home/ivan/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/results/mini_simple_qa/gpt-5/verbal_numerical_confidence/2025-09-02_11-57-06

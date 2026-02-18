@@ -1,0 +1,3 @@
+qa_batch_id: msgbatch_01G8CyDwb8DiBX3tu2voPDe6
+grader_batch_id: batch_68b1d794a4748190a624a224b80d9b6a
+semantic_ids_path: llm_linguistic_confidence_study/pretrained_weights/semantic_ids_claude-3-5-haiku-20241022.npy

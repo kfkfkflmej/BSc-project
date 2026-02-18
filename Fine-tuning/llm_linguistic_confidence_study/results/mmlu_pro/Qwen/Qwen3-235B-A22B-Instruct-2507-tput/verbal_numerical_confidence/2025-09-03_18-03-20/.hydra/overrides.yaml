@@ -1,0 +1,4 @@
+- dataset=mmlu_pro
+- qa_model=Qwen3-235B-A22B-Instruct-2507-tput
+- confidence_extractor=verbal_numerical_confidence
+- pre_runned_batch=no_run.yaml

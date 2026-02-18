@@ -1,0 +1,149 @@
+[2025-09-10 19:34:40,386][root][INFO] - qa_model:
+  name: claude-sonnet-4-20250514
+confidence_extractor:
+  name: verbal_numerical_confidence
+  qa_template: vanilla
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: simple_qa
+  url: https://huggingface.co/datasets/basicv8vc/SimpleQA/blob/main/simple_qa_test_set.csv
+  file_path: llm_linguistic_confidence_study/datasets/simple_qa_test_set.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: null
+  grader_batch_id: null
+  p_true_self_eval_batch_id: null
+  semantic_ids_path: null
+seed: 42
+
+[2025-09-10 19:34:43,975][httpx][INFO] - HTTP Request: POST https://api.anthropic.com/v1/messages/batches "HTTP/1.1 200 OK"
+[2025-09-10 19:34:44,260][httpx][INFO] - HTTP Request: GET https://api.anthropic.com/v1/messages/batches/msgbatch_01ScqXzCfJL53JenKxyE2FuM "HTTP/1.1 200 OK"
+[2025-09-10 19:34:44,261][root][INFO] - Batch job msgbatch_01ScqXzCfJL53JenKxyE2FuM for simple_qa_claude-sonnet-4-20250514_vnc_qa is in_progress, waiting for 60 seconds...
+[2025-09-10 19:35:44,544][httpx][INFO] - HTTP Request: GET https://api.anthropic.com/v1/messages/batches/msgbatch_01ScqXzCfJL53JenKxyE2FuM "HTTP/1.1 200 OK"
+[2025-09-10 19:35:44,545][root][INFO] - Batch job msgbatch_01ScqXzCfJL53JenKxyE2FuM for simple_qa_claude-sonnet-4-20250514_vnc_qa is in_progress, waiting for 60 seconds...
+[2025-09-10 19:36:44,816][httpx][INFO] - HTTP Request: GET https://api.anthropic.com/v1/messages/batches/msgbatch_01ScqXzCfJL53JenKxyE2FuM "HTTP/1.1 200 OK"
+[2025-09-10 19:36:44,816][root][INFO] - Batch job msgbatch_01ScqXzCfJL53JenKxyE2FuM for simple_qa_claude-sonnet-4-20250514_vnc_qa is in_progress, waiting for 60 seconds...
+[2025-09-10 19:37:45,163][httpx][INFO] - HTTP Request: GET https://api.anthropic.com/v1/messages/batches/msgbatch_01ScqXzCfJL53JenKxyE2FuM "HTTP/1.1 200 OK"
+[2025-09-10 19:37:45,163][root][INFO] - Batch job msgbatch_01ScqXzCfJL53JenKxyE2FuM for simple_qa_claude-sonnet-4-20250514_vnc_qa is in_progress, waiting for 60 seconds...
+[2025-09-10 19:38:45,428][httpx][INFO] - HTTP Request: GET https://api.anthropic.com/v1/messages/batches/msgbatch_01ScqXzCfJL53JenKxyE2FuM "HTTP/1.1 200 OK"
+[2025-09-10 19:38:45,433][root][INFO] - Batch job msgbatch_01ScqXzCfJL53JenKxyE2FuM for simple_qa_claude-sonnet-4-20250514_vnc_qa is in_progress, waiting for 60 seconds...
+[2025-09-10 19:39:45,735][httpx][INFO] - HTTP Request: GET https://api.anthropic.com/v1/messages/batches/msgbatch_01ScqXzCfJL53JenKxyE2FuM "HTTP/1.1 200 OK"
+[2025-09-10 19:39:45,736][root][INFO] - Batch job msgbatch_01ScqXzCfJL53JenKxyE2FuM for simple_qa_claude-sonnet-4-20250514_vnc_qa is completed
+[2025-09-10 19:39:46,008][httpx][INFO] - HTTP Request: GET https://api.anthropic.com/v1/messages/batches/msgbatch_01ScqXzCfJL53JenKxyE2FuM "HTTP/1.1 200 OK"
+[2025-09-10 19:39:46,358][httpx][INFO] - HTTP Request: GET https://api.anthropic.com/v1/messages/batches/msgbatch_01ScqXzCfJL53JenKxyE2FuM/results "HTTP/1.1 200 OK"
+[2025-09-10 19:39:48,347][root][INFO] - Batch task file saved to llm_linguistic_confidence_study/batch_tasks/simple_qa_claude-sonnet-4-20250514_vnc_grader_20250910_193948.jsonl
+[2025-09-10 19:39:55,955][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/files "HTTP/1.1 200 OK"
+[2025-09-10 19:39:56,355][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/batches "HTTP/1.1 200 OK"
+[2025-09-10 19:39:56,359][root][INFO] - Batch job created: batch_68c1476c165c8190b130ee7d42387abb
+[2025-09-10 19:39:56,649][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 19:39:56,650][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is validating, waiting for 60 seconds...
+[2025-09-10 19:40:56,948][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 19:40:56,956][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 19:41:57,252][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 19:41:57,252][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 19:42:57,558][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 19:42:57,559][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 19:43:58,566][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 19:43:58,567][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 19:44:58,874][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 19:44:58,875][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 19:45:59,147][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 19:45:59,148][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 19:46:59,427][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 19:46:59,428][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 19:47:59,741][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 19:47:59,741][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 19:49:00,042][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 19:49:00,043][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 19:50:00,331][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 19:50:00,332][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 19:51:00,611][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 19:51:00,612][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 19:52:00,875][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 19:52:00,876][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 19:53:01,168][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 19:53:01,168][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 19:54:01,432][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 19:54:01,433][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 19:55:01,715][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 19:55:01,715][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 19:56:02,008][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 19:56:02,009][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 19:57:02,332][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 19:57:02,333][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 19:58:02,597][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 19:58:02,604][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 19:59:02,902][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 19:59:02,903][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 20:00:03,264][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 20:00:03,265][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 20:01:03,549][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 20:01:03,549][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 20:02:03,815][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 20:02:03,816][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 20:03:04,125][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 20:03:04,125][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 20:04:04,391][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 20:04:04,392][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 20:05:04,660][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 20:05:04,667][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is in_progress, waiting for 60 seconds...
+[2025-09-10 20:06:04,930][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 20:06:04,931][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is finalizing, waiting for 60 seconds...
+[2025-09-10 20:07:05,206][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 20:07:05,207][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is finalizing, waiting for 60 seconds...
+[2025-09-10 20:08:05,486][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 20:08:05,487][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is finalizing, waiting for 60 seconds...
+[2025-09-10 20:09:05,754][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 20:09:05,755][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is finalizing, waiting for 60 seconds...
+[2025-09-10 20:10:06,044][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 20:10:06,045][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is finalizing, waiting for 60 seconds...
+[2025-09-10 20:11:06,368][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 20:11:06,369][root][INFO] - Batch job batch_68c1476c165c8190b130ee7d42387abb for simple_qa_claude-sonnet-4-20250514_vnc_grader is completed
+[2025-09-10 20:11:06,667][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68c1476c165c8190b130ee7d42387abb "HTTP/1.1 200 OK"
+[2025-09-10 20:11:07,719][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-7f1Wen7CCwrHZPDCgadVUx/content "HTTP/1.1 200 OK"
+[2025-09-10 20:11:09,201][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.17059639389736478
+[2025-09-10 20:11:09,202][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.3565217391304348
+[2025-09-10 20:11:09,204][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.6212205270457698
+[2025-09-10 20:11:09,206][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.4946859903381641
+[2025-09-10 20:11:09,210][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.4922487031447794
+[2025-09-10 20:11:09,214][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.6211638467736029
+[2025-09-10 20:11:09,215][root][INFO] - {'_target_': 'metrics.AttemptedCount', 'name': 'attempted_count', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 2070
+[2025-09-10 20:11:09,328][root][INFO] - Outputs saved to /home/ivan/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/results/simple_qa/claude-sonnet-4-20250514/verbal_numerical_confidence/2025-09-10_19-34-40

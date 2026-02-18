@@ -1,0 +1,71 @@
+[2025-08-26 15:30:32,912][root][INFO] - qa_model:
+  name: gpt-5-mini
+confidence_extractor:
+  name: semantic_uncertainty
+  qa_template: vanilla
+  sample_times: 10
+  semantic_id_path_debug: llm_linguistic_confidence_study/pretrained_weights/semantic_ids_list_list.npy
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: simple_qa
+  url: https://huggingface.co/datasets/basicv8vc/SimpleQA/blob/main/simple_qa_test_set.csv
+  file_path: llm_linguistic_confidence_study/datasets/simple_qa_test_set.csv
+metrics:
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+pre_runned_batch:
+  qa_batch_id:
+  - batch_689eced6e8308190adaac64542a3dfbc
+  - batch_689eced403808190b3b338bb8b94bb7a
+  - batch_689eced218dc8190b357f7ba462dc48d
+  - batch_689ececf9c388190a750f0b7b6b7a66e
+  - batch_689ececd166c8190a75eac3abe645d58
+  - batch_689ececa116c819094b7bad59a1794d6
+  - batch_689ecec7b0408190ac9e9a27efa7cec0
+  - batch_689ecec51ea88190ae087136181a220e
+  - batch_689ecebf2e9c81909771d97a1e3c8e2d
+  - batch_689da7e0394881908ea6ad1d2bb7a249
+  grader_batch_id: batch_68ad3cef7e5881909310c4dd7d8cf5a9
+seed: 42
+
+[2025-08-26 15:30:37,836][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689eced6e8308190adaac64542a3dfbc "HTTP/1.1 200 OK"
+[2025-08-26 15:30:38,535][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-DexT6HYsAgGC1Aau7V7Y5K/content "HTTP/1.1 200 OK"
+[2025-08-26 15:30:41,221][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689eced403808190b3b338bb8b94bb7a "HTTP/1.1 200 OK"
+[2025-08-26 15:30:43,827][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-7VART3SebKbDFzvdSN1C4d/content "HTTP/1.1 200 OK"
+[2025-08-26 15:30:46,072][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689eced218dc8190b357f7ba462dc48d "HTTP/1.1 200 OK"
+[2025-08-26 15:30:47,966][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-Eb36PGZhhmTjo9a7ySqAzo/content "HTTP/1.1 200 OK"
+[2025-08-26 15:30:49,666][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689ececf9c388190a750f0b7b6b7a66e "HTTP/1.1 200 OK"
+[2025-08-26 15:30:50,731][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-BARQUYQ1NDedKAEYgoiAUe/content "HTTP/1.1 200 OK"
+[2025-08-26 15:30:52,615][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689ececd166c8190a75eac3abe645d58 "HTTP/1.1 200 OK"
+[2025-08-26 15:30:53,079][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-AKrpqp2wSB9vjw9CouCXwS/content "HTTP/1.1 200 OK"
+[2025-08-26 15:30:54,786][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689ececa116c819094b7bad59a1794d6 "HTTP/1.1 200 OK"
+[2025-08-26 15:30:55,244][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-Rf4w6KA6b2LwpYWZG69FnR/content "HTTP/1.1 200 OK"
+[2025-08-26 15:30:57,152][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689ecec7b0408190ac9e9a27efa7cec0 "HTTP/1.1 200 OK"
+[2025-08-26 15:30:57,612][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-V11Dux5zGak83na8ce6uWz/content "HTTP/1.1 200 OK"
+[2025-08-26 15:30:59,154][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689ecec51ea88190ae087136181a220e "HTTP/1.1 200 OK"
+[2025-08-26 15:30:59,665][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-6cW7c3vikpGQmQnoSAPf5e/content "HTTP/1.1 200 OK"
+[2025-08-26 15:31:01,582][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689ecebf2e9c81909771d97a1e3c8e2d "HTTP/1.1 200 OK"
+[2025-08-26 15:31:02,673][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-EtKe6ueGDCFKPcJ5gAZTVd/content "HTTP/1.1 200 OK"
+[2025-08-26 15:31:05,036][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689da7e0394881908ea6ad1d2bb7a249 "HTTP/1.1 200 OK"
+[2025-08-26 15:31:06,414][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-Eg4392JQCsVPzYvDRhSS7N/content "HTTP/1.1 200 OK"
+[2025-08-26 15:31:08,594][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ad3cef7e5881909310c4dd7d8cf5a9 "HTTP/1.1 200 OK"
+[2025-08-26 15:31:09,014][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-BtQBougep7F7gkiub1Lahq/content "HTTP/1.1 200 OK"
+[2025-08-26 15:31:13,320][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.2061950993989829
+[2025-08-26 15:31:13,323][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.3937355524734165
+[2025-08-26 15:31:13,329][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.7260974729100449
+[2025-08-26 15:31:13,417][root][INFO] - Outputs saved to /home/linwei/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/results/simple_qa/gpt-5-mini/semantic_uncertainty/2025-08-26_15-30-32

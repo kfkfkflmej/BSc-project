@@ -1,0 +1,198 @@
+[2025-09-05 22:41:15,097][root][INFO] - qa_model:
+  name: gpt-5-mini
+confidence_extractor:
+  name: linguistic_confidence
+  model_name: distilroberta-base
+  state_dict_path: llm_linguistic_confidence_study/pretrained_weights/human_anno_trained_reg_head.pth
+  mapper_name: self-trained
+  qa_template: vanilla
+  type: human_anno_dataset_trained
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: nq_open
+  url: https://huggingface.co/datasets/baonn/nqopen
+  file_path: llm_linguistic_confidence_study/datasets/nq_open.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: null
+  grader_batch_id: null
+  p_true_self_eval_batch_id: null
+  semantic_ids_path: null
+seed: 42
+
+[2025-09-05 22:41:15,738][root][INFO] - Batch task file saved to llm_linguistic_confidence_study/batch_tasks/nq_open_gpt-5-mini_lc_qa_20250905_224115.jsonl
+[2025-09-05 22:41:17,439][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/files "HTTP/1.1 200 OK"
+[2025-09-05 22:41:17,897][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/batches "HTTP/1.1 200 OK"
+[2025-09-05 22:41:17,901][root][INFO] - Batch job created: batch_68bada6db0248190984dd5fb8e105477
+[2025-09-05 22:41:18,258][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 22:41:18,259][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is validating, waiting for 60 seconds...
+[2025-09-05 22:42:18,528][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 22:42:18,529][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is in_progress, waiting for 60 seconds...
+[2025-09-05 22:43:18,820][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 22:43:18,820][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is in_progress, waiting for 60 seconds...
+[2025-09-05 22:44:19,156][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 22:44:19,157][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is in_progress, waiting for 60 seconds...
+[2025-09-05 22:45:19,448][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 22:45:19,449][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is in_progress, waiting for 60 seconds...
+[2025-09-05 22:46:19,712][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 22:46:19,712][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is in_progress, waiting for 60 seconds...
+[2025-09-05 22:47:20,042][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 22:47:20,042][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is in_progress, waiting for 60 seconds...
+[2025-09-05 22:48:20,316][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 22:48:20,317][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is in_progress, waiting for 60 seconds...
+[2025-09-05 22:49:20,594][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 22:49:20,594][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is in_progress, waiting for 60 seconds...
+[2025-09-05 22:50:20,870][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 22:50:20,871][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is in_progress, waiting for 60 seconds...
+[2025-09-05 22:51:21,174][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 22:51:21,175][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is in_progress, waiting for 60 seconds...
+[2025-09-05 22:52:21,439][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 22:52:21,445][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is in_progress, waiting for 60 seconds...
+[2025-09-05 22:53:21,701][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 22:53:21,702][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is in_progress, waiting for 60 seconds...
+[2025-09-05 22:54:21,984][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 22:54:21,985][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is in_progress, waiting for 60 seconds...
+[2025-09-05 22:55:22,993][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 22:55:22,994][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is in_progress, waiting for 60 seconds...
+[2025-09-05 22:56:23,292][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 22:56:23,293][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is in_progress, waiting for 60 seconds...
+[2025-09-05 22:57:23,573][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 22:57:23,574][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is in_progress, waiting for 60 seconds...
+[2025-09-05 22:58:23,831][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 22:58:23,831][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is in_progress, waiting for 60 seconds...
+[2025-09-05 22:59:24,143][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 22:59:24,144][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is in_progress, waiting for 60 seconds...
+[2025-09-05 23:00:24,424][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 23:00:24,425][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is in_progress, waiting for 60 seconds...
+[2025-09-05 23:01:24,697][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 23:01:24,698][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is in_progress, waiting for 60 seconds...
+[2025-09-05 23:02:24,969][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 23:02:24,969][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is in_progress, waiting for 60 seconds...
+[2025-09-05 23:03:25,270][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 23:03:25,271][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is in_progress, waiting for 60 seconds...
+[2025-09-05 23:04:25,540][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 23:04:25,541][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is finalizing, waiting for 60 seconds...
+[2025-09-05 23:05:25,833][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 23:05:25,834][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is finalizing, waiting for 60 seconds...
+[2025-09-05 23:06:26,124][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 23:06:26,125][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is finalizing, waiting for 60 seconds...
+[2025-09-05 23:07:26,403][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 23:07:26,404][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is finalizing, waiting for 60 seconds...
+[2025-09-05 23:08:27,710][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 23:08:27,711][root][INFO] - Batch job batch_68bada6db0248190984dd5fb8e105477 for nq_open_gpt-5-mini_lc_qa is completed
+[2025-09-05 23:08:28,007][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bada6db0248190984dd5fb8e105477 "HTTP/1.1 200 OK"
+[2025-09-05 23:08:29,145][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-LhMENbUmbkUkuoi1gsfqLJ/content "HTTP/1.1 200 OK"
+[2025-09-05 23:08:32,928][root][INFO] - Batch task file saved to llm_linguistic_confidence_study/batch_tasks/nq_open_gpt-5-mini_lc_grader_20250905_230832.jsonl
+[2025-09-05 23:08:37,426][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/files "HTTP/1.1 200 OK"
+[2025-09-05 23:08:37,780][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/batches "HTTP/1.1 200 OK"
+[2025-09-05 23:08:37,780][root][INFO] - Batch job created: batch_68bae0d58ddc8190b835186536bba6d4
+[2025-09-05 23:08:38,059][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:08:38,060][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is validating, waiting for 60 seconds...
+[2025-09-05 23:09:38,345][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:09:38,346][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-05 23:10:38,645][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:10:38,646][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-05 23:11:38,936][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:11:38,936][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-05 23:12:39,212][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:12:39,213][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-05 23:13:39,500][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:13:39,501][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-05 23:14:39,778][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:14:39,787][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-05 23:15:40,199][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:15:40,200][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-05 23:16:40,467][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:16:40,468][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-05 23:17:40,739][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:17:40,740][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-05 23:18:41,035][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:18:41,036][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-05 23:19:41,314][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:19:41,315][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-05 23:20:41,592][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:20:41,593][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-05 23:21:41,877][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:21:41,886][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-05 23:22:42,161][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:22:42,162][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-05 23:23:42,422][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:23:42,423][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-05 23:24:42,735][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:24:42,736][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-05 23:25:43,029][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:25:43,030][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-05 23:26:43,291][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:26:43,292][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-05 23:27:43,569][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:27:43,570][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-05 23:28:43,899][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:28:43,907][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is in_progress, waiting for 60 seconds...
+[2025-09-05 23:29:44,166][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:29:44,167][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is finalizing, waiting for 60 seconds...
+[2025-09-05 23:30:44,440][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:30:44,441][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is finalizing, waiting for 60 seconds...
+[2025-09-05 23:31:44,708][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:31:44,708][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is finalizing, waiting for 60 seconds...
+[2025-09-05 23:32:44,971][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:32:44,972][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is finalizing, waiting for 60 seconds...
+[2025-09-05 23:33:45,259][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:33:45,260][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is finalizing, waiting for 60 seconds...
+[2025-09-05 23:34:45,567][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:34:45,568][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is finalizing, waiting for 60 seconds...
+[2025-09-05 23:35:45,862][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:35:45,870][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is finalizing, waiting for 60 seconds...
+[2025-09-05 23:36:46,125][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:36:46,126][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is finalizing, waiting for 60 seconds...
+[2025-09-05 23:37:46,500][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:37:46,501][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is finalizing, waiting for 60 seconds...
+[2025-09-05 23:38:46,778][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:38:46,779][root][INFO] - Batch job batch_68bae0d58ddc8190b835186536bba6d4 for nq_open_gpt-5-mini_lc_grader is completed
+[2025-09-05 23:38:47,045][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bae0d58ddc8190b835186536bba6d4 "HTTP/1.1 200 OK"
+[2025-09-05 23:38:48,012][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-CpNKzauFQ4bn9f7H8E3wM8/content "HTTP/1.1 200 OK"
+[2025-09-05 23:38:49,307][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.5257617728531856
+[2025-09-05 23:38:49,308][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.5477633477633478
+[2025-09-05 23:38:49,310][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.2586663010171576
+[2025-09-05 23:38:49,312][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.2542718647104321
+[2025-09-05 23:38:49,317][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.5431188942123041
+[2025-09-05 23:38:49,321][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.5111414426767034
+[2025-09-05 23:38:49,322][root][INFO] - {'_target_': 'metrics.AttemptedCount', 'name': 'attempted_count', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 3465
+[2025-09-05 23:38:49,349][root][INFO] - Outputs saved to /home/ivan/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/results/nq_open/gpt-5-mini/linguistic_confidence/2025-09-05_22-41-15

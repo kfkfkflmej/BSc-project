@@ -1,0 +1,7 @@
+# include
+qa_batch_id: llm_linguistic_confidence_study/prerunned_batch/simple_qa/qwen3-8b/linguistic_confidence/vanilla-uncertainty-qwen3-8b.csv
+grader_batch_id: batch_68af16bf66108190a7c7f5d5a7b2f6d1
+
+# exclude
+# qa_batch_id: llm_linguistic_confidence_study/prerunned_batch/simple_qa/qwen3-8b/linguistic_confidence/vanilla-uncertainty-qwen3-8b-exclude.csv
+# grader_batch_id: batch_68cb56ab4748819082e282a2d0a52675

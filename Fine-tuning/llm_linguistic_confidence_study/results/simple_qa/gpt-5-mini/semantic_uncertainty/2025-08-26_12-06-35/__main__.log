@@ -1,0 +1,64 @@
+[2025-08-26 12:06:35,634][root][INFO] - qa_model:
+  name: gpt-5-mini
+confidence_extractor:
+  name: semantic_uncertainty
+  qa_template: vanilla
+  sample_times: 10
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: simple_qa
+  url: https://huggingface.co/datasets/basicv8vc/SimpleQA/blob/main/simple_qa_test_set.csv
+  file_path: llm_linguistic_confidence_study/datasets/simple_qa_test_set.csv
+metrics:
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+pre_runned_batch:
+  qa_batch_id:
+  - batch_689eced6e8308190adaac64542a3dfbc
+  - batch_689eced403808190b3b338bb8b94bb7a
+  - batch_689eced218dc8190b357f7ba462dc48d
+  - batch_689ececf9c388190a750f0b7b6b7a66e
+  - batch_689ececd166c8190a75eac3abe645d58
+  - batch_689ececa116c819094b7bad59a1794d6
+  - batch_689ecec7b0408190ac9e9a27efa7cec0
+  - batch_689ecec51ea88190ae087136181a220e
+  - batch_689ecebf2e9c81909771d97a1e3c8e2d
+  - batch_689da7e0394881908ea6ad1d2bb7a249
+  grader_batch_id: null
+seed: 42
+
+[2025-08-26 12:06:40,531][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689eced6e8308190adaac64542a3dfbc "HTTP/1.1 200 OK"
+[2025-08-26 12:06:41,183][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-DexT6HYsAgGC1Aau7V7Y5K/content "HTTP/1.1 200 OK"
+[2025-08-26 12:06:42,944][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689eced403808190b3b338bb8b94bb7a "HTTP/1.1 200 OK"
+[2025-08-26 12:06:43,474][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-7VART3SebKbDFzvdSN1C4d/content "HTTP/1.1 200 OK"
+[2025-08-26 12:06:44,796][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689eced218dc8190b357f7ba462dc48d "HTTP/1.1 200 OK"
+[2025-08-26 12:06:46,034][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-Eb36PGZhhmTjo9a7ySqAzo/content "HTTP/1.1 200 OK"
+[2025-08-26 12:06:47,756][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689ececf9c388190a750f0b7b6b7a66e "HTTP/1.1 200 OK"
+[2025-08-26 12:06:49,010][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-BARQUYQ1NDedKAEYgoiAUe/content "HTTP/1.1 200 OK"
+[2025-08-26 12:06:50,728][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689ececd166c8190a75eac3abe645d58 "HTTP/1.1 200 OK"
+[2025-08-26 12:06:51,184][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-AKrpqp2wSB9vjw9CouCXwS/content "HTTP/1.1 200 OK"
+[2025-08-26 12:06:52,905][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689ececa116c819094b7bad59a1794d6 "HTTP/1.1 200 OK"
+[2025-08-26 12:06:53,567][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-Rf4w6KA6b2LwpYWZG69FnR/content "HTTP/1.1 200 OK"
+[2025-08-26 12:06:55,501][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689ecec7b0408190ac9e9a27efa7cec0 "HTTP/1.1 200 OK"
+[2025-08-26 12:06:55,932][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-V11Dux5zGak83na8ce6uWz/content "HTTP/1.1 200 OK"
+[2025-08-26 12:06:57,556][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689ecec51ea88190ae087136181a220e "HTTP/1.1 200 OK"
+[2025-08-26 12:06:57,990][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-6cW7c3vikpGQmQnoSAPf5e/content "HTTP/1.1 200 OK"
+[2025-08-26 12:06:59,391][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689ecebf2e9c81909771d97a1e3c8e2d "HTTP/1.1 200 OK"
+[2025-08-26 12:07:00,672][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-EtKe6ueGDCFKPcJ5gAZTVd/content "HTTP/1.1 200 OK"
+[2025-08-26 12:07:02,799][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689da7e0394881908ea6ad1d2bb7a249 "HTTP/1.1 200 OK"
+[2025-08-26 12:07:04,426][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-Eg4392JQCsVPzYvDRhSS7N/content "HTTP/1.1 200 OK"

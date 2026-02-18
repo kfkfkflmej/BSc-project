@@ -1,0 +1,3 @@
+- qa_model=gpt-5-mini
+- confidence_extractor=linguistic_confidence
+- pre_runned_batch=vanilla-gpt-5-mini.yaml

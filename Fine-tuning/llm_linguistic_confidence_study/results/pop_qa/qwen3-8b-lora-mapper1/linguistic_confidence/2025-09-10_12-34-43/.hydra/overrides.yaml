@@ -1,0 +1,5 @@
+- qa_model=qwen3-8b-lora-mapper1
+- confidence_extractor=linguistic_confidence
+- dataset=pop_qa
+- pre_runned_batch=popqa-vanilla-qwen3-8b-lora-mapper1
+- metrics=all2

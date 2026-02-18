@@ -1,0 +1,3 @@
+qa_batch_id: llm_linguistic_confidence_study/prerunned_batch/simple_qa/qwen3-8b-lora-mapper1/linguistic_confidence/vanilla-qwen3-8b-lora-mapper1.csv
+grader_batch_id: batch_68bfbd363e148190af33e63340978f77
+ece_batch_id: batch_68c10db38f5c81909014403c89f876ce

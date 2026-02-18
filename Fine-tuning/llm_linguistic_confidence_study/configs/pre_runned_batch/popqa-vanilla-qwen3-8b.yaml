@@ -1,0 +1,7 @@
+# include 
+qa_batch_id: llm_linguistic_confidence_study/prerunned_batch/pop_qa/qwen3-8b/linguistic_confidence/vanilla-qwen3-8b.csv
+grader_batch_id: batch_68bfcc72c2348190a8897e2575e6df46
+
+# exclude
+# qa_batch_id: llm_linguistic_confidence_study/prerunned_batch/pop_qa/qwen3-8b/linguistic_confidence/vanilla-qwen3-8b-exclude.csv
+# grader_batch_id: batch_68cb5aaad5308190ace089ce2d2bdd53

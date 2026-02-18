@@ -1,0 +1,67 @@
+[2025-09-06 18:42:33,203][root][INFO] - qa_model:
+  name: openai/gpt-oss-120b
+confidence_extractor:
+  name: p_true
+  qa_template: vanilla
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: mmlu_pro
+  url: hf://datasets/TIGER-Lab/MMLU-Pro/data/test-00000-of-00001.parquet
+  file_path: llm_linguistic_confidence_study/datasets/mmlu_pro_test_set.pkl
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: 6b101934-671e-4cce-84b6-6e72f45c7c19
+  grader_batch_id: batch_68b9806a40648190928609ea44836102
+  p_true_self_eval_batch_id: null
+  semantic_ids_path: llm_linguistic_confidence_study/pretrained_weights/mmlu_pro_Qwen3-235B-A22B-Instruct-2507-tput.npy
+seed: 42
+
+[2025-09-06 18:42:33,538][root][INFO] - Batch job 6b101934-671e-4cce-84b6-6e72f45c7c19 is runned before, download the output file now...
+[2025-09-06 18:42:41,472][root][INFO] - Batch task file saved to llm_linguistic_confidence_study/batch_tasks/mmlu_pro_gpt-oss-120b_ptrue_self_eval_20250906_184241.jsonl
+[2025-09-06 18:42:50,437][root][INFO] - Batch job 1385ba25-1dde-4a00-98ac-eead77547e1a for mmlu_pro_gpt-oss-120b_ptrue_self_eval is BatchJobStatus.VALIDATING, waiting for 60 seconds...
+[2025-09-06 18:43:50,635][root][INFO] - Batch job 1385ba25-1dde-4a00-98ac-eead77547e1a for mmlu_pro_gpt-oss-120b_ptrue_self_eval is BatchJobStatus.IN_PROGRESS, waiting for 60 seconds...
+[2025-09-06 18:44:50,830][root][INFO] - Batch job 1385ba25-1dde-4a00-98ac-eead77547e1a for mmlu_pro_gpt-oss-120b_ptrue_self_eval is BatchJobStatus.IN_PROGRESS, waiting for 60 seconds...
+[2025-09-06 18:45:54,048][root][INFO] - Batch job 1385ba25-1dde-4a00-98ac-eead77547e1a for mmlu_pro_gpt-oss-120b_ptrue_self_eval is BatchJobStatus.IN_PROGRESS, waiting for 60 seconds...
+[2025-09-06 18:46:54,248][root][INFO] - Batch job 1385ba25-1dde-4a00-98ac-eead77547e1a for mmlu_pro_gpt-oss-120b_ptrue_self_eval is BatchJobStatus.IN_PROGRESS, waiting for 60 seconds...
+[2025-09-06 18:47:54,453][root][INFO] - Batch job 1385ba25-1dde-4a00-98ac-eead77547e1a for mmlu_pro_gpt-oss-120b_ptrue_self_eval is BatchJobStatus.IN_PROGRESS, waiting for 60 seconds...
+[2025-09-06 18:48:57,682][root][INFO] - Batch job 1385ba25-1dde-4a00-98ac-eead77547e1a for mmlu_pro_gpt-oss-120b_ptrue_self_eval is BatchJobStatus.IN_PROGRESS, waiting for 60 seconds...
+[2025-09-06 18:49:57,860][root][INFO] - Batch job 1385ba25-1dde-4a00-98ac-eead77547e1a for mmlu_pro_gpt-oss-120b_ptrue_self_eval is BatchJobStatus.IN_PROGRESS, waiting for 60 seconds...
+[2025-09-06 18:50:58,037][root][INFO] - Batch job 1385ba25-1dde-4a00-98ac-eead77547e1a for mmlu_pro_gpt-oss-120b_ptrue_self_eval is completed

@@ -1,0 +1,5 @@
+- qa_model=qwen3-8b
+- confidence_extractor=linguistic_confidence_uncertainty_direct_prompt
+- dataset=pop_qa
+- pre_runned_batch=popqa-vanilla-uncertainty-dp-qwen3-8b
+- metrics=all

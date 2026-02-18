@@ -1,0 +1,71 @@
+[2025-09-05 03:22:47,563][root][INFO] - qa_model:
+  name: meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8
+confidence_extractor:
+  name: semantic_uncertainty
+  qa_template: vanilla
+  sample_times: 10
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: mmlu_pro
+  url: hf://datasets/TIGER-Lab/MMLU-Pro/data/test-00000-of-00001.parquet
+  file_path: llm_linguistic_confidence_study/datasets/mmlu_pro_test_set.pkl
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id:
+  - 1cc4a3be-bf40-4239-83b7-df9d47f2c572
+  - 888d5609-0491-4cee-817e-5fb3bce9e872
+  - 97b746cb-483d-44b9-b39d-f596195188ef
+  - a5b79f2b-4658-4bbd-9844-d0acb55d7f49
+  grader_batch_id: null
+  p_true_self_eval_batch_id: null
+  semantic_ids_path: /home/ivan/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/pretrained_weights/mmlu_pro_Llama-4-Maverick-17B-128E-Instruct-FP8.npy
+seed: 42
+
+[2025-09-05 03:22:51,607][root][INFO] - Batch job 1cc4a3be-bf40-4239-83b7-df9d47f2c572 is runned before, download the output file now...
+[2025-09-05 03:22:51,608][root][INFO] - Batch job 888d5609-0491-4cee-817e-5fb3bce9e872 is runned before, download the output file now...
+[2025-09-05 03:22:51,608][root][INFO] - Batch job 97b746cb-483d-44b9-b39d-f596195188ef is runned before, download the output file now...
+[2025-09-05 03:22:51,609][root][INFO] - Batch job a5b79f2b-4658-4bbd-9844-d0acb55d7f49 is runned before, download the output file now...
+[2025-09-05 07:13:11,937][root][INFO] - Batch task file saved to llm_linguistic_confidence_study/batch_tasks/mmlu_pro_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader_20250905_071311.jsonl
+[2025-09-05 07:13:12,802][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/files "HTTP/1.1 503 Service Unavailable"
+[2025-09-05 07:13:12,803][openai._base_client][INFO] - Retrying request to /files in 0.438652 seconds
+[2025-09-05 07:13:13,794][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/files "HTTP/1.1 503 Service Unavailable"
+[2025-09-05 07:13:13,794][openai._base_client][INFO] - Retrying request to /files in 0.981065 seconds
+[2025-09-05 07:13:15,293][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/files "HTTP/1.1 503 Service Unavailable"

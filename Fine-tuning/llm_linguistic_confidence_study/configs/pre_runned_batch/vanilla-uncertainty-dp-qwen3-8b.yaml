@@ -1,0 +1,3 @@
+qa_batch_id: llm_linguistic_confidence_study/prerunned_batch/simple_qa/qwen3-8b/linguistic_confidence/vanilla-uncertainty-qwen3-8b.csv
+grader_batch_id: batch_68af16bf66108190a7c7f5d5a7b2f6d1
+ece_batch_id: batch_68c10d6235f8819087765e6ffd165d6a

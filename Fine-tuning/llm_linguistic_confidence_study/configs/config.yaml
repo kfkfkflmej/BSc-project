@@ -1,0 +1,15 @@
+defaults:
+ - qa_model: gpt-5-mini
+ - confidence_extractor: linguistic_confidence
+#  - confidence_extractor: semantic_uncertainty
+#  - confidence_extractor: verbal_numerical_confidence
+ - dataset: simple_qa
+ - metrics: all
+ - pre_runned_batch: vanilla-gpt-5-mini.yaml
+
+
+hydra:
+  run:
+    dir: llm_linguistic_confidence_study/results/${dataset.name}/${qa_model.name}/${confidence_extractor.name}/${now:%Y-%m-%d_%H-%M-%S}
+
+seed: 42

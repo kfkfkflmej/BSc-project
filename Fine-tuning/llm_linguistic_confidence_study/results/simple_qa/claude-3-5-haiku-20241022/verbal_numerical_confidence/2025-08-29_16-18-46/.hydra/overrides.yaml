@@ -1,0 +1,3 @@
+- qa_model=claude-3-5-haiku-20241022
+- confidence_extractor=verbal_numerical_confidence
+- pre_runned_batch=vanilla-vnc-claude-3-5-haiku-20241022.yaml

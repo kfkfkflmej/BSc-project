@@ -1,0 +1,71 @@
+[2025-08-27 11:15:55,333][root][INFO] - qa_model:
+  name: gpt-5-nano
+confidence_extractor:
+  name: linguistic_confidence
+  model_name: distilroberta-base
+  state_dict_path: llm_linguistic_confidence_study/pretrained_weights/human_anno_trained_reg_head.pth
+  mapper_name: self-trained
+  qa_template: vanilla
+  type: human_anno_dataset_trained
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: mini_simple_qa
+  url: None
+  file_path: llm_linguistic_confidence_study/datasets/mini_simple_qa_test_set.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: null
+  grader_batch_id: null
+seed: 42
+
+[2025-08-27 11:15:56,140][root][INFO] - Batch task file saved to llm_linguistic_confidence_study/batch_tasks/simple_qa_lc_qa_20250827_111556.jsonl
+[2025-08-27 11:15:58,156][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/files "HTTP/1.1 200 OK"
+[2025-08-27 11:15:59,281][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/batches "HTTP/1.1 200 OK"
+[2025-08-27 11:15:59,290][root][INFO] - Batch job created: batch_68ae5c4edd6081908274b35d9f63c344
+[2025-08-27 11:15:59,612][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ae5c4edd6081908274b35d9f63c344 "HTTP/1.1 200 OK"
+[2025-08-27 11:15:59,613][root][INFO] - Batch job batch_68ae5c4edd6081908274b35d9f63c344 for simple_qa_lc_qa is validating, waiting for 60 seconds...
+[2025-08-27 11:16:59,914][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ae5c4edd6081908274b35d9f63c344 "HTTP/1.1 200 OK"
+[2025-08-27 11:16:59,916][root][INFO] - Batch job batch_68ae5c4edd6081908274b35d9f63c344 for simple_qa_lc_qa is validating, waiting for 60 seconds...
+[2025-08-27 11:18:00,244][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ae5c4edd6081908274b35d9f63c344 "HTTP/1.1 200 OK"
+[2025-08-27 11:18:00,245][root][INFO] - Batch job batch_68ae5c4edd6081908274b35d9f63c344 for simple_qa_lc_qa is in_progress, waiting for 60 seconds...
+[2025-08-27 11:19:00,596][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ae5c4edd6081908274b35d9f63c344 "HTTP/1.1 200 OK"
+[2025-08-27 11:19:00,598][root][INFO] - Batch job batch_68ae5c4edd6081908274b35d9f63c344 for simple_qa_lc_qa is in_progress, waiting for 60 seconds...
+[2025-08-27 11:20:00,909][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ae5c4edd6081908274b35d9f63c344 "HTTP/1.1 200 OK"
+[2025-08-27 11:20:00,911][root][INFO] - Batch job batch_68ae5c4edd6081908274b35d9f63c344 for simple_qa_lc_qa is in_progress, waiting for 60 seconds...
+[2025-08-27 11:21:01,366][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ae5c4edd6081908274b35d9f63c344 "HTTP/1.1 200 OK"
+[2025-08-27 11:21:01,368][root][INFO] - Batch job batch_68ae5c4edd6081908274b35d9f63c344 for simple_qa_lc_qa is in_progress, waiting for 60 seconds...
+[2025-08-27 11:22:01,685][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68ae5c4edd6081908274b35d9f63c344 "HTTP/1.1 200 OK"
+[2025-08-27 11:22:01,687][root][INFO] - Batch job batch_68ae5c4edd6081908274b35d9f63c344 for simple_qa_lc_qa is in_progress, waiting for 60 seconds...

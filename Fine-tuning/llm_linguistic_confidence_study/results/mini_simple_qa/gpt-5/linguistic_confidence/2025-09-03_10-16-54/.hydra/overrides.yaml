@@ -1,0 +1,3 @@
+- qa_model=gpt-5
+- confidence_extractor=linguistic_confidence_vanilla
+- pre_runned_batch=no_run.yaml

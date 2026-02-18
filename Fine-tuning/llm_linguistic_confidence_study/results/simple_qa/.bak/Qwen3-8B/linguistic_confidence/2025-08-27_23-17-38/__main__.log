@@ -1,0 +1,88 @@
+[2025-08-27 23:17:38,215][root][INFO] - qa_model:
+  name: Qwen3-8B
+  base_model_id: Qwen/Qwen3-8B
+  lora_weight_path: improve_llm_linguistic_confidence/res/weight/qwen3_8b_lora_weight
+  save_path: improve_llm_linguistic_confidence/res/model
+  temperature: 0.6
+  top_p: 0.95
+  top_k: 20
+  min_p: 0.0
+  thinking: false
+  max_tokens: 1024
+  tokenize: false
+  add_generation_prompt: true
+  tensor_parallel_size: 1
+  gpu_memory_utilization: 0.9
+  disable_log_stats: true
+  model_name: qwen3-8b
+  trust_remote_code: true
+  dtype: auto
+confidence_extractor:
+  name: linguistic_confidence
+  model_name: distilroberta-base
+  state_dict_path: llm_linguistic_confidence_study/pretrained_weights/human_anno_trained_reg_head.pth
+  mapper_name: self-trained
+  qa_template: vanilla
+  type: human_anno_dataset_trained
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: simple_qa
+  url: https://huggingface.co/datasets/basicv8vc/SimpleQA/blob/main/simple_qa_test_set.csv
+  file_path: llm_linguistic_confidence_study/datasets/simple_qa_test_set.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: null
+  grader_batch_id: null
+seed: 42
+
+[2025-08-27 23:22:23,415][root][INFO] - Batch task file saved to llm_linguistic_confidence_study/batch_tasks/simple_qa_Qwen3-8B_lc_grader_20250827_232223.jsonl
+[2025-08-27 23:22:28,812][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/files "HTTP/1.1 200 OK"
+[2025-08-27 23:22:29,415][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/batches "HTTP/1.1 200 OK"
+[2025-08-27 23:22:29,447][root][INFO] - Batch job created: batch_68af0694f21c8190b4aa955555675b39
+[2025-08-27 23:22:29,766][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af0694f21c8190b4aa955555675b39 "HTTP/1.1 200 OK"
+[2025-08-27 23:22:29,767][root][INFO] - Batch job batch_68af0694f21c8190b4aa955555675b39 for simple_qa_Qwen3-8B_lc_grader is validating, waiting for 60 seconds...
+[2025-08-27 23:23:30,075][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af0694f21c8190b4aa955555675b39 "HTTP/1.1 200 OK"
+[2025-08-27 23:23:30,076][root][INFO] - Batch job batch_68af0694f21c8190b4aa955555675b39 for simple_qa_Qwen3-8B_lc_grader is cancelling, waiting for 60 seconds...
+[2025-08-27 23:24:30,365][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af0694f21c8190b4aa955555675b39 "HTTP/1.1 200 OK"
+[2025-08-27 23:24:30,366][root][INFO] - Batch job batch_68af0694f21c8190b4aa955555675b39 for simple_qa_Qwen3-8B_lc_grader is cancelling, waiting for 60 seconds...
+[2025-08-27 23:25:30,695][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af0694f21c8190b4aa955555675b39 "HTTP/1.1 200 OK"
+[2025-08-27 23:25:30,697][root][INFO] - Batch job batch_68af0694f21c8190b4aa955555675b39 for simple_qa_Qwen3-8B_lc_grader is cancelling, waiting for 60 seconds...
+[2025-08-27 23:26:31,030][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af0694f21c8190b4aa955555675b39 "HTTP/1.1 200 OK"
+[2025-08-27 23:26:31,033][root][INFO] - Batch job batch_68af0694f21c8190b4aa955555675b39 for simple_qa_Qwen3-8B_lc_grader is cancelling, waiting for 60 seconds...
+[2025-08-27 23:27:31,324][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af0694f21c8190b4aa955555675b39 "HTTP/1.1 200 OK"
+[2025-08-27 23:27:31,326][root][INFO] - Batch job batch_68af0694f21c8190b4aa955555675b39 for simple_qa_Qwen3-8B_lc_grader is cancelling, waiting for 60 seconds...
+[2025-08-27 23:28:31,658][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af0694f21c8190b4aa955555675b39 "HTTP/1.1 200 OK"
+[2025-08-27 23:28:31,660][root][INFO] - Batch job batch_68af0694f21c8190b4aa955555675b39 for simple_qa_Qwen3-8B_lc_grader is cancelling, waiting for 60 seconds...

@@ -1,0 +1,6 @@
+defaults:
+  - grader_model: gpt-5-mini
+
+name: simple_qa
+url: https://huggingface.co/datasets/basicv8vc/SimpleQA/blob/main/simple_qa_test_set.csv
+file_path: llm_linguistic_confidence_study/datasets/simple_qa_test_set.csv

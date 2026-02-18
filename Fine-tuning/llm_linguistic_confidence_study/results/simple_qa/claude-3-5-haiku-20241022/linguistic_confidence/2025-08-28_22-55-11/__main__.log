@@ -1,0 +1,127 @@
+[2025-08-28 22:55:11,262][root][INFO] - qa_model:
+  name: claude-3-5-haiku-20241022
+confidence_extractor:
+  name: linguistic_confidence
+  model_name: distilroberta-base
+  state_dict_path: llm_linguistic_confidence_study/pretrained_weights/human_anno_trained_reg_head.pth
+  mapper_name: self-trained
+  qa_template: vanilla_uncertainty
+  type: human_anno_dataset_trained
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: simple_qa
+  url: https://huggingface.co/datasets/basicv8vc/SimpleQA/blob/main/simple_qa_test_set.csv
+  file_path: llm_linguistic_confidence_study/datasets/simple_qa_test_set.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: msgbatch_013Y5r3mt4LhVahidcGXweRJ
+  grader_batch_id: null
+seed: 42
+
+[2025-08-28 22:55:12,114][root][INFO] - Batch job msgbatch_013Y5r3mt4LhVahidcGXweRJ is runned before, download the output file now...
+[2025-08-28 22:55:12,420][httpx][INFO] - HTTP Request: GET https://api.anthropic.com/v1/messages/batches/msgbatch_013Y5r3mt4LhVahidcGXweRJ "HTTP/1.1 200 OK"
+[2025-08-28 22:55:12,818][httpx][INFO] - HTTP Request: GET https://api.anthropic.com/v1/messages/batches/msgbatch_013Y5r3mt4LhVahidcGXweRJ/results "HTTP/1.1 200 OK"
+[2025-08-28 22:55:16,658][root][INFO] - Batch task file saved to llm_linguistic_confidence_study/batch_tasks/simple_qa_claude-3-5-haiku-20241022_lc_grader_20250828_225516.jsonl
+[2025-08-28 22:55:20,692][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/files "HTTP/1.1 200 OK"
+[2025-08-28 22:55:21,366][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/batches "HTTP/1.1 200 OK"
+[2025-08-28 22:55:21,366][root][INFO] - Batch job created: batch_68b051b923e88190920063e39f9de683
+[2025-08-28 22:55:21,639][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 22:55:21,640][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is validating, waiting for 60 seconds...
+[2025-08-28 22:56:21,907][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 22:56:21,908][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 22:57:22,159][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 22:57:22,160][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 22:58:22,416][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 22:58:22,417][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 22:59:22,693][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 22:59:22,694][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 23:00:22,967][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:00:22,968][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 23:01:23,213][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:01:23,214][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 23:02:23,504][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:02:23,505][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 23:03:23,785][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:03:23,785][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 23:04:24,039][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:04:24,039][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 23:05:24,323][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:05:24,324][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 23:06:24,638][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:06:24,638][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 23:07:24,902][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:07:24,903][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 23:08:25,340][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:08:25,345][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 23:09:25,606][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:09:25,607][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is finalizing, waiting for 60 seconds...
+[2025-08-28 23:10:25,850][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:10:25,851][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is finalizing, waiting for 60 seconds...
+[2025-08-28 23:11:26,102][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:11:26,103][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is finalizing, waiting for 60 seconds...
+[2025-08-28 23:12:26,383][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:12:26,384][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is finalizing, waiting for 60 seconds...
+[2025-08-28 23:13:26,648][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:13:26,648][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is finalizing, waiting for 60 seconds...
+[2025-08-28 23:14:26,894][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:14:26,895][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is finalizing, waiting for 60 seconds...
+[2025-08-28 23:15:27,175][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:15:27,179][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is finalizing, waiting for 60 seconds...
+[2025-08-28 23:16:27,450][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:16:27,451][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is finalizing, waiting for 60 seconds...
+[2025-08-28 23:17:27,697][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:17:27,698][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is finalizing, waiting for 60 seconds...
+[2025-08-28 23:18:27,971][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:18:27,972][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is finalizing, waiting for 60 seconds...
+[2025-08-28 23:19:28,233][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:19:28,234][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is finalizing, waiting for 60 seconds...
+[2025-08-28 23:20:28,476][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:20:28,479][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is finalizing, waiting for 60 seconds...
+[2025-08-28 23:21:28,748][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:21:28,749][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is finalizing, waiting for 60 seconds...
+[2025-08-28 23:22:29,329][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:22:29,345][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is finalizing, waiting for 60 seconds...
+[2025-08-28 23:23:29,604][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:23:29,605][root][INFO] - Batch job batch_68b051b923e88190920063e39f9de683 for simple_qa_claude-3-5-haiku-20241022_lc_grader is completed
+[2025-08-28 23:23:29,843][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b051b923e88190920063e39f9de683 "HTTP/1.1 200 OK"
+[2025-08-28 23:23:30,276][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-Y9wgLfTfp47pEPGiWxJqrP/content "HTTP/1.1 200 OK"
+[2025-08-28 23:23:31,630][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.08784096162736939
+[2025-08-28 23:23:31,632][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.17479300827966882
+[2025-08-28 23:23:31,634][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.4497042629649063
+[2025-08-28 23:23:31,637][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.43425317176488315
+[2025-08-28 23:23:31,646][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.7140468695814549
+[2025-08-28 23:23:31,650][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.6003989907880067
+[2025-08-28 23:23:31,709][root][INFO] - Outputs saved to /home/ivan/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/results/simple_qa/claude-3-5-haiku-20241022/linguistic_confidence/2025-08-28_22-55-11

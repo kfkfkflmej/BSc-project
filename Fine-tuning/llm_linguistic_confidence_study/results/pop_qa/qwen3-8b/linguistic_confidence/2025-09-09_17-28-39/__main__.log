@@ -1,0 +1,85 @@
+[2025-09-09 17:28:39,123][root][INFO] - qa_model:
+  name: qwen3-8b
+  model_name: Qwen/Qwen3-8B
+  temperature: 0.6
+  top_p: 0.95
+  top_k: 20
+  min_p: 0.0
+  enable_thinking: false
+  max_tokens: 1024
+  tokenize_output: false
+  add_generation_prompt: true
+  tensor_parallel_size: 1
+  gpu_memory_utilization: 0.8
+  disable_log_stats: true
+  trust_remote_code: true
+  dtype: auto
+  enable_lora: false
+  lora_weight_path: null
+  max_lora_rank: 32
+confidence_extractor:
+  name: linguistic_confidence
+  model_name: distilroberta-base
+  state_dict_path: llm_linguistic_confidence_study/pretrained_weights/llm_anno_trained_reg_head.pth
+  mapper_name: self-trained
+  qa_template: vanilla
+  type: llm_anno_dataset_trained
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: pop_qa
+  url: None
+  file_path: llm_linguistic_confidence_study/datasets/pop_qa_subset.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like_exclude_training
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like_exclude_training
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like_exclude_training
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like_exclude_training
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like_exclude_training
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like_exclude_training
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like_exclude_training
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: llm_linguistic_confidence_study/prerunned_batch/pop_qa/qwen3-8b/linguistic_confidence/vanilla-qwen3-8b.csv
+  grader_batch_id: batch_68bfcc72c2348190a8897e2575e6df46
+seed: 42
+
+[2025-09-09 17:28:41,717][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bfcc72c2348190a8897e2575e6df46 "HTTP/1.1 200 OK"
+[2025-09-09 17:28:42,242][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-2wt9HybgN9cjZX7xtoEzTg/content "HTTP/1.1 200 OK"
+[2025-09-09 17:28:43,302][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like_exclude_training', 'exclude_not_attempted': False}: 0.247
+[2025-09-09 17:28:43,304][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like_exclude_training', 'exclude_not_attempted': True}: 0.24924318869828457
+[2025-09-09 17:28:43,306][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like_exclude_training', 'exclude_not_attempted': False}: 0.6110707538351416
+[2025-09-09 17:28:43,307][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like_exclude_training', 'exclude_not_attempted': True}: 0.611750047514826
+[2025-09-09 17:28:43,313][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like_exclude_training', 'exclude_not_attempted': False}: 0.478152168653322
+[2025-09-09 17:28:43,318][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like_exclude_training', 'exclude_not_attempted': True}: 0.4737059771015628
+[2025-09-09 17:28:43,319][root][INFO] - {'_target_': 'metrics.AttemptedCount', 'name': 'attempted_count', 'format': 'simpleqa_like_exclude_training', 'exclude_not_attempted': True}: 991
+[2025-09-09 17:28:43,329][root][INFO] - Outputs saved to /home/linwei/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/results/pop_qa/qwen3-8b/linguistic_confidence/2025-09-09_17-28-39

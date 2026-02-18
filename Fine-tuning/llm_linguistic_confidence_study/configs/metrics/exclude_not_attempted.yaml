@@ -1,0 +1,18 @@
+acc:
+  _target_: metrics.Accuracy
+  name: acc
+  format: simpleqa_like
+  exclude_not_attempted: true
+
+ece:
+  _target_: metrics.ECE
+  name: ece
+  n_bins: 15
+  format: simpleqa_like
+  exclude_not_attempted: true
+
+auroc:
+  _target_: metrics.AUROC
+  name: auroc
+  format: simpleqa_like
+  exclude_not_attempted: true

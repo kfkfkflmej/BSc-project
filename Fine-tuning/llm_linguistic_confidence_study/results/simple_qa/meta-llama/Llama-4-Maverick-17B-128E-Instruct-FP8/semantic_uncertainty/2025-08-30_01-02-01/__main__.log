@@ -1,0 +1,155 @@
+[2025-08-30 01:02:01,938][root][INFO] - qa_model:
+  name: meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8
+confidence_extractor:
+  name: semantic_uncertainty
+  qa_template: vanilla
+  sample_times: 10
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: simple_qa
+  url: https://huggingface.co/datasets/basicv8vc/SimpleQA/blob/main/simple_qa_test_set.csv
+  file_path: llm_linguistic_confidence_study/datasets/simple_qa_test_set.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: 9a450c4a-ed90-4f90-8ff6-211eea88cc7e
+  grader_batch_id: null
+  semantic_ids_path: llm_linguistic_confidence_study/pretrained_weights/semantic_ids_Llama-4-Maverick-17B-128E-Instruct-FP8.npy
+seed: 42
+
+[2025-08-30 01:02:05,640][root][INFO] - Batch job 9a450c4a-ed90-4f90-8ff6-211eea88cc7e is runned before, download the output file now...
+[2025-08-30 01:22:07,382][root][INFO] - Batch task file saved to llm_linguistic_confidence_study/batch_tasks/simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader_20250830_012207.jsonl
+[2025-08-30 01:22:13,624][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/files "HTTP/1.1 200 OK"
+[2025-08-30 01:22:14,433][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/batches "HTTP/1.1 200 OK"
+[2025-08-30 01:22:14,435][root][INFO] - Batch job created: batch_68b1c5a5dd748190a6a632ea0a45a515
+[2025-08-30 01:22:14,694][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:22:14,694][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is validating, waiting for 60 seconds...
+[2025-08-30 01:23:14,956][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:23:14,956][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is validating, waiting for 60 seconds...
+[2025-08-30 01:24:15,215][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:24:15,215][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is validating, waiting for 60 seconds...
+[2025-08-30 01:25:15,528][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:25:15,528][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is validating, waiting for 60 seconds...
+[2025-08-30 01:26:15,802][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:26:15,803][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is validating, waiting for 60 seconds...
+[2025-08-30 01:27:16,085][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:27:16,085][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:28:16,351][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:28:16,355][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:29:16,647][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:29:16,648][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:30:16,912][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:30:16,912][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:31:17,182][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:31:17,183][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:32:17,455][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:32:17,456][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:33:17,727][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:33:17,728][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:34:18,020][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:34:18,021][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:35:18,335][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:35:18,342][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:36:18,617][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:36:18,618][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:37:18,933][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:37:18,933][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:38:19,203][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:38:19,204][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:39:19,510][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:39:19,511][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:40:29,808][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:40:29,809][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:41:30,072][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:41:30,072][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:42:30,370][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:42:30,378][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:43:30,689][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:43:30,690][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:44:30,956][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:44:30,957][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:45:31,232][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:45:31,233][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:46:31,515][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:46:31,516][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:47:31,816][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:47:31,816][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:48:32,091][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:48:32,092][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:49:32,378][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:49:32,389][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:50:32,677][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:50:32,678][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:51:32,947][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:51:32,947][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:52:33,285][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:52:33,285][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:53:33,567][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:53:33,568][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is in_progress, waiting for 60 seconds...
+[2025-08-30 01:54:33,843][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:54:33,843][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is finalizing, waiting for 60 seconds...
+[2025-08-30 01:55:34,113][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:55:34,114][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is finalizing, waiting for 60 seconds...
+[2025-08-30 01:56:34,387][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:56:34,394][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is finalizing, waiting for 60 seconds...
+[2025-08-30 01:57:34,693][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:57:34,694][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is finalizing, waiting for 60 seconds...
+[2025-08-30 01:58:34,963][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:58:34,964][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is finalizing, waiting for 60 seconds...
+[2025-08-30 01:59:35,225][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 01:59:35,226][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is finalizing, waiting for 60 seconds...
+[2025-08-30 02:00:35,522][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 02:00:35,522][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is finalizing, waiting for 60 seconds...
+[2025-08-30 02:01:35,775][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 02:01:35,776][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is finalizing, waiting for 60 seconds...
+[2025-08-30 02:02:36,047][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 02:02:36,048][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is finalizing, waiting for 60 seconds...
+[2025-08-30 02:03:36,329][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 02:03:36,337][root][INFO] - Batch job batch_68b1c5a5dd748190a6a632ea0a45a515 for simple_qa_Llama-4-Maverick-17B-128E-Instruct-FP8_su_grader is completed
+[2025-08-30 02:03:36,610][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b1c5a5dd748190a6a632ea0a45a515 "HTTP/1.1 200 OK"
+[2025-08-30 02:03:37,965][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-5VmMBXYmGsdQ49U5ta5APp/content "HTTP/1.1 200 OK"
+[2025-08-30 02:03:39,348][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.2447988904299584
+[2025-08-30 02:03:39,349][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.24576467857971687
+[2025-08-30 02:03:39,351][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.4985668053629219
+[2025-08-30 02:03:39,355][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.4973543745648642
+[2025-08-30 02:03:39,363][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.7304960787663166
+[2025-08-30 02:03:39,371][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.7307548485508826
+[2025-08-30 02:03:39,372][root][INFO] - {'_target_': 'metrics.AttemptedCount', 'name': 'attempted_count', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 4309
+[2025-08-30 02:03:39,485][root][INFO] - Outputs saved to /home/ivan/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/results/simple_qa/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8/semantic_uncertainty/2025-08-30_01-02-01

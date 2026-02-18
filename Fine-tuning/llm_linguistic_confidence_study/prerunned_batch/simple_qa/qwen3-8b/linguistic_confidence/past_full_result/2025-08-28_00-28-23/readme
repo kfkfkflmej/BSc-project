@@ -1,0 +1,4 @@
+  name: Qwen3-8B
+  name: linguistic_confidence
+  qa_template: vanilla_uncertainty
+  name: simple_qa

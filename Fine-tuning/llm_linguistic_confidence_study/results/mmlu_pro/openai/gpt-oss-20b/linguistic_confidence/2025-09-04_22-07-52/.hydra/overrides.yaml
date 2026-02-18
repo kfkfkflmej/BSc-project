@@ -1,0 +1,4 @@
+- dataset=mmlu_pro
+- qa_model=gpt-oss-20b
+- confidence_extractor=linguistic_confidence_vanilla
+- pre_runned_batch=no_run.yaml

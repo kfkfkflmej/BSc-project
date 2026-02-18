@@ -1,0 +1,3 @@
+- qa_model=claude-sonnet-4-20250514
+- confidence_extractor=linguistic_confidence
+- pre_runned_batch=vanilla-claude-sonnet-4-20250514.yaml

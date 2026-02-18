@@ -1,0 +1,6 @@
+defaults:
+  - grader_model: gpt-5-mini
+
+name: mini_simple_qa
+url: None
+file_path: llm_linguistic_confidence_study/datasets/mini_simple_qa_test_set.csv

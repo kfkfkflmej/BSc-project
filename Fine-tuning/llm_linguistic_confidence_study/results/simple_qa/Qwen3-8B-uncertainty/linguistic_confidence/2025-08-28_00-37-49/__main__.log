@@ -1,0 +1,135 @@
+[2025-08-28 00:37:49,509][root][INFO] - qa_model:
+  name: Qwen3-8B-uncertainty
+  base_model_id: Qwen/Qwen3-8B
+  lora_weight_path: improve_llm_linguistic_confidence/res/weight/qwen3_8b_lora_weight
+  save_path: improve_llm_linguistic_confidence/res/model
+  temperature: 0.6
+  top_p: 0.95
+  top_k: 20
+  min_p: 0.0
+  enable_thinking: false
+  max_tokens: 1024
+  tokenize_output: false
+  add_generation_prompt: true
+  tensor_parallel_size: 1
+  gpu_memory_utilization: 0.9
+  disable_log_stats: true
+  model_name: qwen3-8b-uncertainty
+  trust_remote_code: true
+  dtype: auto
+confidence_extractor:
+  name: linguistic_confidence
+  model_name: distilroberta-base
+  state_dict_path: llm_linguistic_confidence_study/pretrained_weights/human_anno_trained_reg_head.pth
+  mapper_name: self-trained
+  qa_template: vanilla_uncertainty
+  type: human_anno_dataset_trained
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: simple_qa
+  url: https://huggingface.co/datasets/basicv8vc/SimpleQA/blob/main/simple_qa_test_set.csv
+  file_path: llm_linguistic_confidence_study/datasets/simple_qa_test_set.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: null
+  grader_batch_id: null
+seed: 42
+
+[2025-08-28 00:40:24,373][root][INFO] - Batch task file saved to llm_linguistic_confidence_study/batch_tasks/simple_qa_Qwen3-8B-uncertainty_lc_grader_20250828_004024.jsonl
+[2025-08-28 00:40:29,876][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/files "HTTP/1.1 200 OK"
+[2025-08-28 00:40:30,222][httpx][INFO] - HTTP Request: POST https://api.openai.com/v1/batches "HTTP/1.1 200 OK"
+[2025-08-28 00:40:30,233][root][INFO] - Batch job created: batch_68af18ddfd84819080225fb9dbe4eb62
+[2025-08-28 00:40:30,505][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 00:40:30,507][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is validating, waiting for 60 seconds...
+[2025-08-28 00:41:30,800][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 00:41:30,802][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 00:42:31,074][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 00:42:31,076][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 00:43:31,356][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 00:43:31,358][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 00:44:31,680][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 00:44:31,691][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 00:45:31,958][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 00:45:31,960][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 00:46:32,332][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 00:46:32,332][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 00:47:32,654][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 00:47:32,654][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 00:48:32,930][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 00:48:32,930][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 00:49:33,194][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 00:49:33,196][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 00:50:33,520][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 00:50:33,522][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 00:51:33,811][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 00:51:33,813][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 00:52:34,094][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 00:52:34,096][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 00:53:34,372][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 00:53:34,374][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 00:54:34,665][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 00:54:34,668][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 00:55:34,957][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 00:55:34,959][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 00:56:35,228][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 00:56:35,231][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 00:57:35,506][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 00:57:35,508][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 00:58:36,363][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 00:58:36,365][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 00:59:36,676][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 00:59:36,679][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is in_progress, waiting for 60 seconds...
+[2025-08-28 01:00:37,317][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 01:00:37,318][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is finalizing, waiting for 60 seconds...
+[2025-08-28 01:01:37,589][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 01:01:37,591][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is finalizing, waiting for 60 seconds...
+[2025-08-28 01:02:37,862][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 01:02:37,864][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is finalizing, waiting for 60 seconds...
+[2025-08-28 01:03:38,211][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 01:03:38,212][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is finalizing, waiting for 60 seconds...
+[2025-08-28 01:04:38,492][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 01:04:38,494][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is finalizing, waiting for 60 seconds...
+[2025-08-28 01:05:38,805][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 01:05:38,808][root][INFO] - Batch job batch_68af18ddfd84819080225fb9dbe4eb62 for simple_qa_Qwen3-8B-uncertainty_lc_grader is completed
+[2025-08-28 01:05:39,112][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68af18ddfd84819080225fb9dbe4eb62 "HTTP/1.1 200 OK"
+[2025-08-28 01:05:40,130][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-9aa42MWbc5pgbTavmZdpgL/content "HTTP/1.1 200 OK"
+[2025-08-28 01:05:41,653][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.014794267221451687
+[2025-08-28 01:05:41,655][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.11743119266055047
+[2025-08-28 01:05:41,656][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.23195624106851676
+[2025-08-28 01:05:41,658][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.13314587954397594
+[2025-08-28 01:05:41,666][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.5742902393242608
+[2025-08-28 01:05:41,668][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.6149948024948025
+[2025-08-28 01:05:41,705][root][INFO] - Outputs saved to /home/bokai/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/results/simple_qa/Qwen3-8B-uncertainty/linguistic_confidence/2025-08-28_00-37-49

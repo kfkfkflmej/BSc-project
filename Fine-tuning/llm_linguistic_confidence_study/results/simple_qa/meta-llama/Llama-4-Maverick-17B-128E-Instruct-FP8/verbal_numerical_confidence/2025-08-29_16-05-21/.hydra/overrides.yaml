@@ -1,0 +1,3 @@
+- qa_model=Llama-4-Maverick-17B-128E-Instruct-FP8
+- confidence_extractor=verbal_numerical_confidence
+- pre_runned_batch=vanilla-vnc-Llama-4-Maverick-17B-128E-Instruct-FP8.yaml

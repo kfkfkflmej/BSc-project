@@ -1,0 +1,4 @@
+- dataset=nq_open
+- qa_model=Qwen3-235B-A22B-Instruct-2507-tput
+- confidence_extractor=linguistic_confidence_vanilla
+- pre_runned_batch=no_run.yaml

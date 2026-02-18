@@ -1,0 +1,74 @@
+[2025-09-07 01:34:32,541][root][INFO] - qa_model:
+  name: Qwen/Qwen3-235B-A22B-Instruct-2507-tput
+confidence_extractor:
+  name: p_true
+  qa_template: vanilla
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: nq_open
+  url: https://huggingface.co/datasets/baonn/nqopen
+  file_path: llm_linguistic_confidence_study/datasets/nq_open.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: b50a393b-f055-4e83-b22c-a58684e01b90
+  grader_batch_id: batch_68bc3d68520081909f4cfaff67ba045b
+  p_true_self_eval_batch_id: null
+  semantic_ids_path: null
+seed: 42
+
+[2025-09-07 01:34:32,646][root][INFO] - Batch job b50a393b-f055-4e83-b22c-a58684e01b90 is runned before, download the output file now...
+[2025-09-07 01:34:36,366][root][INFO] - Batch task file saved to llm_linguistic_confidence_study/batch_tasks/nq_open_Qwen3-235B-A22B-Instruct-2507-tput_ptrue_self_eval_20250907_013436.jsonl
+[2025-09-07 01:34:44,387][root][INFO] - Batch job 2650158d-7491-4400-89a7-96dddda46d16 for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_ptrue_self_eval is BatchJobStatus.VALIDATING, waiting for 60 seconds...
+[2025-09-07 01:35:44,555][root][INFO] - Batch job 2650158d-7491-4400-89a7-96dddda46d16 for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_ptrue_self_eval is BatchJobStatus.IN_PROGRESS, waiting for 60 seconds...
+[2025-09-07 01:36:44,724][root][INFO] - Batch job 2650158d-7491-4400-89a7-96dddda46d16 for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_ptrue_self_eval is BatchJobStatus.IN_PROGRESS, waiting for 60 seconds...
+[2025-09-07 01:37:47,928][root][INFO] - Batch job 2650158d-7491-4400-89a7-96dddda46d16 for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_ptrue_self_eval is completed
+[2025-09-07 01:37:51,149][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 01:37:51,153][root][INFO] - Batch job batch_68bc3d68520081909f4cfaff67ba045b for nq_open_Qwen3-235B-A22B-Instruct-2507-tput_ptrue_grader is completed
+[2025-09-07 01:37:51,450][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3d68520081909f4cfaff67ba045b "HTTP/1.1 200 OK"
+[2025-09-07 01:37:52,196][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-DSd6VhJQCRKQJdh7jJDwPw/content "HTTP/1.1 200 OK"
+[2025-09-07 01:37:53,483][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.502770083102493
+[2025-09-07 01:37:53,484][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.510548523206751
+[2025-09-07 01:37:53,486][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.3735496583119878
+[2025-09-07 01:37:53,488][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.3638993949022213
+[2025-09-07 01:37:53,493][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.6554631258998561
+[2025-09-07 01:37:53,497][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.6612962295036484
+[2025-09-07 01:37:53,498][root][INFO] - {'_target_': 'metrics.AttemptedCount', 'name': 'attempted_count', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 3555
+[2025-09-07 01:37:53,525][root][INFO] - Outputs saved to /home/ivan/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/results/nq_open/Qwen/Qwen3-235B-A22B-Instruct-2507-tput/p_true/2025-09-07_01-34-32

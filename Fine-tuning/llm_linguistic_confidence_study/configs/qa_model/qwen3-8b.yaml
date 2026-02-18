@@ -1,0 +1,19 @@
+name: qwen3-8b
+model_name: Qwen/Qwen3-8B
+temperature: 0.6
+top_p: 0.95
+top_k: 20
+min_p: 0.0
+enable_thinking: false
+max_tokens: 1024
+tokenize_output: false
+add_generation_prompt: true
+tensor_parallel_size: 1
+gpu_memory_utilization: 0.8
+disable_log_stats: true
+trust_remote_code: true
+dtype: auto
+enable_lora: false
+lora_weight_path: null
+max_lora_rank: 32 #default setting from official doc
+seed: 42

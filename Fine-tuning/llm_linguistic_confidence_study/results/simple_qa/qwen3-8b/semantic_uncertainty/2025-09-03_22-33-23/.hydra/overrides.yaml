@@ -1,0 +1,3 @@
+- qa_model=qwen3-8b
+- confidence_extractor=semantic_uncertainty
+- pre_runned_batch=vanilla-su-qwen3-8b.yaml

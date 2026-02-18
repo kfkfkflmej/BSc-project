@@ -1,0 +1,5 @@
+- qa_model=qwen3-8b-sftlora-mapper0
+- confidence_extractor=linguistic_confidence
+- dataset=simple_qa
+- pre_runned_batch=vanilla-qwen3-8b-sftlora-mapper0
+- metrics=all_exlude_train

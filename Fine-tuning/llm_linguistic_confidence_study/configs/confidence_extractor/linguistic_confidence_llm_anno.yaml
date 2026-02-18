@@ -1,0 +1,4 @@
+defaults:
+  - linguistic_confidence
+state_dict_path: llm_linguistic_confidence_study/pretrained_weights/llm_anno_trained_reg_head.pth
+type: llm_anno_dataset_trained

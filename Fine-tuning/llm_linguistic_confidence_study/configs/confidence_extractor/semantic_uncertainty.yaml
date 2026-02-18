@@ -1,0 +1,3 @@
+name: semantic_uncertainty
+qa_template: vanilla
+sample_times: 10

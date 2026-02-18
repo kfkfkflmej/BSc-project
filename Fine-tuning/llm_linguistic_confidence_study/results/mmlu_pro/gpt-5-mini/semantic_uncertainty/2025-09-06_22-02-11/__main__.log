@@ -1,0 +1,165 @@
+[2025-09-06 22:02:11,712][root][INFO] - qa_model:
+  name: gpt-5-mini
+confidence_extractor:
+  name: semantic_uncertainty
+  qa_template: vanilla
+  sample_times: 10
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: mmlu_pro
+  url: hf://datasets/TIGER-Lab/MMLU-Pro/data/test-00000-of-00001.parquet
+  file_path: llm_linguistic_confidence_study/datasets/mmlu_pro_test_set.pkl
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id:
+  - batch_68b99b4a362c81908e252925594375be
+  - batch_68b99b49ebb48190b7dbe82c5d3e74aa
+  - batch_68b99b5d909c8190b54feb12f8e630bd
+  - batch_68b99b497d908190b9f9355fd3767144
+  grader_batch_id: batch_68bc0e9dac0c81909acb8f2fc2e5c7be
+  p_true_self_eval_batch_id: null
+  semantic_ids_path: llm_linguistic_confidence_study/pretrained_weights/mmlu_pro_gpt-5-mini.npy
+seed: 42
+
+[2025-09-06 22:02:17,103][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b99b4a362c81908e252925594375be "HTTP/1.1 200 OK"
+[2025-09-06 22:02:17,106][root][INFO] - Batch job batch_68b99b4a362c81908e252925594375be for mmlu_pro_gpt-5-mini_su_qa_batch_0 is expired
+[2025-09-06 22:02:17,107][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b99b5d909c8190b54feb12f8e630bd "HTTP/1.1 200 OK"
+[2025-09-06 22:02:17,108][root][INFO] - Batch job batch_68b99b5d909c8190b54feb12f8e630bd for mmlu_pro_gpt-5-mini_su_qa_batch_2 is completed
+[2025-09-06 22:02:17,118][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b99b497d908190b9f9355fd3767144 "HTTP/1.1 200 OK"
+[2025-09-06 22:02:17,119][root][INFO] - Batch job batch_68b99b497d908190b9f9355fd3767144 for mmlu_pro_gpt-5-mini_su_qa_batch_3 is completed
+[2025-09-06 22:02:17,178][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b99b49ebb48190b7dbe82c5d3e74aa "HTTP/1.1 200 OK"
+[2025-09-06 22:02:17,179][root][INFO] - Batch job batch_68b99b49ebb48190b7dbe82c5d3e74aa for mmlu_pro_gpt-5-mini_su_qa_batch_1 is completed
+[2025-09-06 22:02:17,389][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b99b5d909c8190b54feb12f8e630bd "HTTP/1.1 200 OK"
+[2025-09-06 22:02:17,403][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b99b4a362c81908e252925594375be "HTTP/1.1 200 OK"
+[2025-09-06 22:02:17,408][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b99b497d908190b9f9355fd3767144 "HTTP/1.1 200 OK"
+[2025-09-06 22:02:17,453][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68b99b49ebb48190b7dbe82c5d3e74aa "HTTP/1.1 200 OK"
+[2025-09-06 22:02:18,156][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-7WV6JQKKionH8WSz1U8WSx/content "HTTP/1.1 200 OK"
+[2025-09-06 22:02:18,290][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-6THJyQe7iNrihBsmUTZGRL/content "HTTP/1.1 200 OK"
+[2025-09-06 22:02:18,941][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-TFZfKArzWaULuXPfamBAKs/content "HTTP/1.1 200 OK"
+[2025-09-06 22:02:19,403][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-7pvpwpA4ymoorZz6YuUNBw/content "HTTP/1.1 200 OK"
+[2025-09-06 22:02:22,021][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-CdfbwMLxtKbvcgbxuuFF5S/content "HTTP/1.1 200 OK"
+[2025-09-06 22:02:22,062][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-X3e7LH5BtZ2RvcmrkEB3dj/content "HTTP/1.1 200 OK"
+[2025-09-06 22:02:22,510][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-GyJs1xSLnAgbPMsvsQumdp/content "HTTP/1.1 200 OK"
+[2025-09-06 22:02:23,229][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-Mdu57vwa9xV5pvofi8LsWT/content "HTTP/1.1 200 OK"
+[2025-09-06 22:02:25,910][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:02:25,911][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:03:26,171][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:03:26,172][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:04:26,452][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:04:26,462][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:05:26,730][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:05:26,730][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:06:26,984][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:06:26,985][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:07:27,266][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:07:27,267][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:08:27,563][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:08:27,564][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:09:27,849][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:09:27,850][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:10:28,121][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:10:28,122][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:11:28,400][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:11:28,408][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:12:28,698][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:12:28,698][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:13:28,996][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:13:28,997][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:14:29,275][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:14:29,276][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:15:29,557][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:15:29,558][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:16:29,855][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:16:29,856][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:17:30,145][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:17:30,146][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:18:30,438][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:18:30,445][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:19:30,721][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:19:30,722][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:20:31,026][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:20:31,027][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:21:31,393][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:21:31,394][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:22:31,659][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:22:31,660][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:23:31,942][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:23:31,943][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:24:32,230][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:24:32,231][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:25:32,498][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:25:32,505][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:26:32,771][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:26:32,772][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:27:33,057][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:27:33,058][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:28:33,339][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:28:33,340][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:29:33,611][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:29:33,612][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:30:36,177][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:30:36,178][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:31:36,474][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:31:36,475][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is in_progress, waiting for 60 seconds...
+[2025-09-06 22:32:36,734][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:32:36,741][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is finalizing, waiting for 60 seconds...
+[2025-09-06 22:33:37,029][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:33:37,029][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is finalizing, waiting for 60 seconds...
+[2025-09-06 22:34:37,291][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:34:37,292][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is finalizing, waiting for 60 seconds...
+[2025-09-06 22:35:37,580][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:35:37,581][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is finalizing, waiting for 60 seconds...
+[2025-09-06 22:36:37,883][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:36:37,883][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is finalizing, waiting for 60 seconds...
+[2025-09-06 22:37:38,173][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:37:38,174][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is finalizing, waiting for 60 seconds...
+[2025-09-06 22:38:38,457][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:38:38,458][root][INFO] - Batch job batch_68bc0e9dac0c81909acb8f2fc2e5c7be for mmlu_pro_gpt-5-mini_su_grader is completed
+[2025-09-06 22:38:38,728][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc0e9dac0c81909acb8f2fc2e5c7be "HTTP/1.1 200 OK"
+[2025-09-06 22:38:40,025][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-PZK3RdBRft1poRZBSv14aP/content "HTTP/1.1 200 OK"
+[2025-09-06 22:38:42,622][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.6663896276595744
+[2025-09-06 22:38:42,625][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.6696175045932855
+[2025-09-06 22:38:42,627][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.15779587765957448
+[2025-09-06 22:38:42,637][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.15974611658593624
+[2025-09-06 22:38:42,659][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.6457412774421477
+[2025-09-06 22:38:42,680][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.6415735853177671
+[2025-09-06 22:38:42,682][root][INFO] - {'_target_': 'metrics.AttemptedCount', 'name': 'attempted_count', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 11974
+[2025-09-06 22:38:43,466][root][INFO] - Outputs saved to /home/ivan/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/results/mmlu_pro/gpt-5-mini/semantic_uncertainty/2025-09-06_22-02-11

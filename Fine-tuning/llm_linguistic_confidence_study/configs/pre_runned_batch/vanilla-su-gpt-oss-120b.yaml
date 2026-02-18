@@ -1,0 +1,3 @@
+qa_batch_id: 442ebaa5-0f56-415e-9888-1efb0af95d51
+grader_batch_id: batch_68b1d7315aa881908877528395e5ed00
+semantic_ids_path: llm_linguistic_confidence_study/pretrained_weights/semantic_ids_gpt-oss-120b.npy

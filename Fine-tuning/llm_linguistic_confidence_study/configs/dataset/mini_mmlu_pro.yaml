@@ -1,0 +1,6 @@
+defaults:
+  - grader_model: gpt-5-mini
+
+name: mini_mmlu_pro
+url: hf://datasets/TIGER-Lab/MMLU-Pro/data/test-00000-of-00001.parquet
+file_path: llm_linguistic_confidence_study/datasets/mini_mmlu_pro_test_set.pkl

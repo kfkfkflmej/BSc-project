@@ -1,0 +1,5 @@
+- qa_model=qwen3-8b
+- confidence_extractor=linguistic_confidence_uncertainty
+- dataset=nq_open
+- pre_runned_batch=nqopen-vanilla-uncertainty-qwen3-8b
+- metrics=all2

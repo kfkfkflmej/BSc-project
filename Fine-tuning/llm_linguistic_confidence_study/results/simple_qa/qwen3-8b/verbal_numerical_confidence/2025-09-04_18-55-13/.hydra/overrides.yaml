@@ -1,0 +1,3 @@
+- qa_model=qwen3-8b
+- confidence_extractor=verbal_numerical_confidence
+- pre_runned_batch=vanilla-vnc-qwen3-8b.yaml

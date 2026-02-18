@@ -1,0 +1,60 @@
+[2025-08-26 15:49:51,574][root][INFO] - qa_model:
+  name: gpt-5-mini
+confidence_extractor:
+  name: verbal_numerical_confidence
+  qa_template: vanilla
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: simple_qa
+  url: https://huggingface.co/datasets/basicv8vc/SimpleQA/blob/main/simple_qa_test_set.csv
+  file_path: llm_linguistic_confidence_study/datasets/simple_qa_test_set.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: batch_689da7e30b008190a9768c88d235d896
+  grader_batch_id: batch_689f4f03e654819081f9525271526e3a
+seed: 42
+
+[2025-08-26 15:49:52,203][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689da7e30b008190a9768c88d235d896 "HTTP/1.1 200 OK"
+[2025-08-26 15:49:52,763][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-TUp4SjtfnnLJejRNfLMjrf/content "HTTP/1.1 200 OK"
+[2025-08-26 15:49:54,599][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_689f4f03e654819081f9525271526e3a "HTTP/1.1 200 OK"
+[2025-08-26 15:49:55,411][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-5JvTniyfUHMG34c2iF6bo5/content "HTTP/1.1 200 OK"
+[2025-08-26 15:49:56,672][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.19463707813222375
+[2025-08-26 15:49:56,673][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.3072992700729927
+[2025-08-26 15:49:56,674][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.28110957004160886
+[2025-08-26 15:49:56,676][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.28891240875912405
+[2025-08-26 15:49:56,679][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.8079863222713402
+[2025-08-26 15:49:56,681][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.7454934435297563
+[2025-08-26 15:49:56,717][root][INFO] - Outputs saved to /home/linwei/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/results/simple_qa/gpt-5-mini/verbal_numerical_confidence/2025-08-26_15-49-51

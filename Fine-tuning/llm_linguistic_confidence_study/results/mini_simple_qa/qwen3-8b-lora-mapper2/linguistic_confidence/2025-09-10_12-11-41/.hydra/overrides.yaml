@@ -1,0 +1,5 @@
+- qa_model=qwen3-8b-lora-mapper2
+- confidence_extractor=linguistic_confidence_direct_prompt
+- dataset=mini_simple_qa
+- pre_runned_batch=mini-simpleqa-vanilla-dp-qwem3-8b-lora-mapper2
+- metrics=test

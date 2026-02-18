@@ -1,0 +1,5 @@
+- qa_model=qwen3-32b
+- confidence_extractor=linguistic_confidence
+- dataset=simple_qa
+- pre_runned_batch=vanilla-qwen3-32b
+- metrics=all_exlude_train

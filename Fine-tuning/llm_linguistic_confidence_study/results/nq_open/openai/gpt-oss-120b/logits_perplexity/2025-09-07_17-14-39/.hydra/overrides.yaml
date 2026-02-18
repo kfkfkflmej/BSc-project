@@ -1,0 +1,4 @@
+- dataset=nq_open
+- qa_model=gpt-oss-120b
+- confidence_extractor=logits_perplexity
+- pre_runned_batch=no_run.yaml

@@ -1,0 +1,5 @@
+- qa_model=qwen3-32b
+- confidence_extractor=linguistic_confidence_uncertainty
+- dataset=simple_qa
+- pre_runned_batch=vanilla-uncertainty-qwen3-32b.yaml
+- metrics=all_exlude_train.yaml

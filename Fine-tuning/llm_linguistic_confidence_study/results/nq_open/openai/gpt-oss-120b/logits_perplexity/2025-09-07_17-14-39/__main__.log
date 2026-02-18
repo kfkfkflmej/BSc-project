@@ -1,0 +1,69 @@
+[2025-09-07 17:14:39,729][root][INFO] - qa_model:
+  name: openai/gpt-oss-120b
+confidence_extractor:
+  name: logits_perplexity
+  qa_template: vanilla
+dataset:
+  grader_model:
+    name: gpt-5-mini
+  name: nq_open
+  url: https://huggingface.co/datasets/baonn/nqopen
+  file_path: llm_linguistic_confidence_study/datasets/nq_open.csv
+metrics:
+  acc2:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  acc:
+    _target_: metrics.Accuracy
+    name: acc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  ece2:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: false
+  ece:
+    _target_: metrics.ECE
+    name: ece
+    n_bins: 15
+    format: simpleqa_like
+    exclude_not_attempted: true
+  auroc2:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: false
+  auroc:
+    _target_: metrics.AUROC
+    name: auroc
+    format: simpleqa_like
+    exclude_not_attempted: true
+  attempted_count:
+    _target_: metrics.AttemptedCount
+    name: attempted_count
+    format: simpleqa_like
+    exclude_not_attempted: true
+pre_runned_batch:
+  qa_batch_id: d9626df3-aed2-4f7a-8270-ea1785ff41a5
+  grader_batch_id: batch_68bc3f999b888190a4fa6d1085b662fe
+  p_true_self_eval_batch_id: null
+  semantic_ids_path: null
+seed: 42
+
+[2025-09-07 17:14:39,825][root][INFO] - Batch job d9626df3-aed2-4f7a-8270-ea1785ff41a5 is runned before, download the output file now...
+[2025-09-07 17:14:49,461][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3f999b888190a4fa6d1085b662fe "HTTP/1.1 200 OK"
+[2025-09-07 17:14:49,464][root][INFO] - Batch job batch_68bc3f999b888190a4fa6d1085b662fe for nq_open_gpt-oss-120b_perplexity_grader is completed
+[2025-09-07 17:14:49,900][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/batches/batch_68bc3f999b888190a4fa6d1085b662fe "HTTP/1.1 200 OK"
+[2025-09-07 17:14:51,128][httpx][INFO] - HTTP Request: GET https://api.openai.com/v1/files/file-7jChNyiVhE24HnXyRY8cZW/content "HTTP/1.1 200 OK"
+[2025-09-07 17:14:52,609][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.4246537396121884
+[2025-09-07 17:14:52,610][root][INFO] - {'_target_': 'metrics.Accuracy', 'name': 'acc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.5172064777327935
+[2025-09-07 17:14:52,611][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.4037572769762988
+[2025-09-07 17:14:52,613][root][INFO] - {'_target_': 'metrics.ECE', 'name': 'ece', 'n_bins': 15, 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.3392775018489185
+[2025-09-07 17:14:52,618][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': False}: 0.7178376299446851
+[2025-09-07 17:14:52,622][root][INFO] - {'_target_': 'metrics.AUROC', 'name': 'auroc', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 0.6268257204761037
+[2025-09-07 17:14:52,623][root][INFO] - {'_target_': 'metrics.AttemptedCount', 'name': 'attempted_count', 'format': 'simpleqa_like', 'exclude_not_attempted': True}: 2964
+[2025-09-07 17:14:52,847][root][INFO] - Outputs saved to /home/ivan/Linguistic-Uncertainty-Dataset/llm_linguistic_confidence_study/results/nq_open/openai/gpt-oss-120b/logits_perplexity/2025-09-07_17-14-39
