@@ -1,0 +1,3 @@
+name: simple_qa
+url: https://huggingface.co/datasets/basicv8vc/SimpleQA/blob/main/simple_qa_test_set.csv
+file_path: datasets/data/simple_qa_test_set.csv

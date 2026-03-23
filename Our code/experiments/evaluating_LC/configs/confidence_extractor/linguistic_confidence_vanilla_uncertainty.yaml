@@ -1,0 +1,6 @@
+name: linguistic_confidence
+model_name: distilroberta-base
+state_dict_path: evaluating_LC/pretrained_weights/human_anno_trained_reg_head.pth
+mapper_name: self-trained
+qa_template: vanilla_uncertainty
+type: human_anno_dataset_trained

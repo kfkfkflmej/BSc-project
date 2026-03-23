@@ -1,0 +1,15 @@
+defaults:
+ - qa_model: gemma-3-1b-it
+ - confidence_extractor: linguistic_confidence_vanilla
+#  - confidence_extractor: semantic_uncertainty
+#  - confidence_extractor: verbal_numerical_confidence
+ - dataset: simple_qa
+ - metrics: all
+ - pre_runned_batch: vanilla-gemma-3-1b-it.yaml
+
+
+hydra:
+  run:
+    dir: evaluating_LC/results/${dataset.name}/${qa_model.name}/${confidence_extractor.name}/${now:%Y-%m-%d_%H-%M-%S}
+
+seed: 42
