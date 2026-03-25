@@ -1,1 +1,1 @@
-CUDA_VISIBLE_DEVICES=0 python -m improve_llm_linguistic_confidence mapper=mapper0
+CUDA_VISIBLE_DEVICES=0 python -m improve_gemma_linguistic_confidence mapper=mapper0
