@@ -3,4 +3,4 @@ defaults:
 
 hydra:
   run:
-    dir: improve_llm_linguistic_confidence/results/${mapper.name}/${now:%Y-%m-%d_%H-%M-%S}
+    dir: improve_gemma_linguistic_confidence/results/${mapper.name}/${now:%Y-%m-%d_%H-%M-%S}
