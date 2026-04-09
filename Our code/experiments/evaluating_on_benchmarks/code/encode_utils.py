@@ -18,11 +18,6 @@ HF_ENCODER = [
     'google/gemma-3-27b-it'
 ]
 
-GEMMA_SUPPORT_QUANTIZED_MODELS = [
-    'google/gemma-3-1b-it',
-    'google/gemma-3-12b-it',
-    'google/gemma-3-27b-it'
-]
 
 
 
@@ -32,27 +27,15 @@ class HiddenStateExtractor:
         model_name: str,
         max_length: Optional[int] = 1024
     ):
-
-        # model initialization
-        if model_name in GEMMA_SUPPORT_QUANTIZED_MODELS:
-            quantization_config = BitsAndBytesConfig(
-                load_in_4bit=True,
-                bnb_4bit_compute_dtype=torch.float16,
-            )
-            quantized_model = AutoModelForCausalLM.from_pretrained(
-                model_name, device_map="auto", 
-                quantization_config=quantization_config)
-            max_batch_size = 16
-            
-        else:
-            quantized_model = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto")
-            max_batch_size = 4
+        
+        model = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto")
+        max_batch_size = 4
 
         # Tokenizer initialization
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         if self.tokenizer.pad_token is None:
             self.tokenizer.pad_token = self.tokenizer.eos_token
-        self.model = quantized_model
+        self.model = model
         self.max_length = max_length
         self.max_batch_size = max_batch_size
 
