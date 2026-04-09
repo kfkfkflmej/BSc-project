@@ -1,5 +1,6 @@
 from omegaconf import DictConfig
-
+import torch
+import transformers
 
 
 class LLM:
