@@ -4,3 +4,4 @@ state_dict_path: evaluating_LC/pretrained_weights/human_anno_trained_reg_head.pt
 mapper_name: self-trained
 qa_template: vanilla_uncertainty
 type: human_anno_dataset_trained
+grader_model: google/google/gemma-3-4b-it
