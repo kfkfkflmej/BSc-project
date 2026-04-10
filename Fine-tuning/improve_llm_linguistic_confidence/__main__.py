@@ -4,6 +4,7 @@ import logging
 import hydra
 
 from transformers import AutoModelForCausalLM
+from transformers import BitsAndBytesConfig
 from peft import LoraConfig
 from datasets import load_dataset
 from trl import SFTConfig, SFTTrainer
@@ -51,10 +52,20 @@ def main(cfg):
     ###################
     # Base_model
     ###################
+    # model = AutoModelForCausalLM.from_pretrained(
+    #     cfg.mapper.model_base_model, 
+    #     load_in_8bit=cfg.mapper.model_load_in_8bit,
+    #     device_map=cfg.mapper.model_device_map,
+    # )
+
+    bnb_config = BitsAndBytesConfig(
+        load_in_8bit=True
+    )
+
     model = AutoModelForCausalLM.from_pretrained(
-        cfg.mapper.model_base_model, 
-        load_in_8bit=cfg.mapper.model_load_in_8bit,
-        device_map=cfg.mapper.model_device_map,
+        model_name,
+        quantization_config=bnb_config,
+        device_map="auto"
     )
 
     ###################
