@@ -1,0 +1,42 @@
+# global
+name: Gemma-4B-mapper0
+
+# model args
+model_base_model: google/google/gemma-3-4b-it
+model_load_in_8bit: true
+model_device_map: auto
+
+# dataset args
+dataset_filetype: csv
+dataset_filepath: improve_llm_linguistic_confidence/datasets/mapper0.csv
+
+# lora args
+lora_r: 32
+lora_alpha: 16
+lora_dropout: 0.05
+lora_target_modules:
+  - "q_proj"
+  - "k_proj"
+  - "v_proj"
+  - "o_proj"
+  - "gate_proj"
+  - "up_proj"
+  - "down_proj"
+lora_task_type: CAUSAL_LM
+
+# mapper args
+mapper_id: 0
+
+# sft args
+sft_learning_rate: 1e-4
+sft_output_dir: improve_llm_linguistic_confidence/model/Gemma-4B-it/8bit/mapper0/
+sft_num_train_epochs: 3
+sft_per_device_train_batch_size: 4
+sft_gradient_accumulation_steps: 8
+sft_gradient_checkpointing: true
+sft_fp16: False
+sft_bf16: True
+sft_seed: 42
+sft_max_length: 256
+sft_packing: true
+sft_warmup_steps: 100
