@@ -233,7 +233,8 @@ class LinguisticConfidenceExtractor():
         # confidence estimation
         confidences = self.confidence_mapper(response_df, batch_job_id=ece_batch_job_id, task_name=f"{dataset.name}_{task_model_name}_lc_ece")
         response_df["confidences"] = confidences
-        # grade the accuracy of the confidence scores
+        torch.cuda.empty_cache()
+        # grade the accuracy of the confidence scores 
         self.confidence_grader = self.get_confidence_grader(self.grader_model, dataset.name)
         accuracies = self.confidence_grader.grade_responses(response_df["responses"], grader_batch_job_id=grader_batch_job_id, task_name=f"{dataset.name}_{task_model_name}_lc_grader")
         response_df["accuracies"] = accuracies
