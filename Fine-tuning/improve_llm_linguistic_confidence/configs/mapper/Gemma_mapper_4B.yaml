@@ -2,7 +2,7 @@
 name: Gemma-4B-mapper
 
 # model args
-model_base_model: google/google/gemma-3-4b-it
+model_base_model: google/gemma-3-4b-it
 model_load_in_8bit: true
 model_device_map: auto
 
