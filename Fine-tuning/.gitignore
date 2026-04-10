@@ -15,4 +15,5 @@ outputs/
 *.jsonl
 .venv/
 
+improve_llm_linguistic_confidence/model
 improve_llm_linguistic_confidence/.bak

@@ -37,6 +37,6 @@ sft_gradient_checkpointing: true
 sft_fp16: False
 sft_bf16: True
 sft_seed: 42
-sft_max_length: 1024
+sft_max_length: 128
 sft_packing: true
 sft_warmup_steps: 100
