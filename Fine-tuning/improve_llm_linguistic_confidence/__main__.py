@@ -63,7 +63,7 @@ def main(cfg):
     )
 
     model = AutoModelForCausalLM.from_pretrained(
-        model_name,
+        cfg.mapper.model_base_model,
         quantization_config=bnb_config,
         device_map="auto"
     )
