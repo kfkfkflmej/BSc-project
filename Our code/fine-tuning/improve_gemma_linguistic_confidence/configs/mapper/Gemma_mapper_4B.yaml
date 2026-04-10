@@ -1,8 +1,8 @@
 # global
-name: Qwen3-8B-mapper0
+name: Gemma-4B-mapper0
 
 # model args
-model_base_model: Qwen/Qwen3-8B
+model_base_model: google/google/gemma-3-4b-it
 model_load_in_8bit: true
 model_device_map: auto
 
@@ -29,7 +29,7 @@ mapper_id: 0
 
 # sft args
 sft_learning_rate: 1e-4
-sft_output_dir: improve_llm_linguistic_confidence/model/Qwen3-8B/8bit/mapper0/
+sft_output_dir: improve_llm_linguistic_confidence/model/Gemma-4B-it/8bit/mapper0/
 sft_num_train_epochs: 3
 sft_per_device_train_batch_size: 4
 sft_gradient_accumulation_steps: 8
@@ -37,6 +37,6 @@ sft_gradient_checkpointing: true
 sft_fp16: False
 sft_bf16: True
 sft_seed: 42
-sft_max_length: 128
+sft_max_length: 256
 sft_packing: true
 sft_warmup_steps: 100
