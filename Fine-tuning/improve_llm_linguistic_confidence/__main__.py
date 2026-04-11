@@ -115,7 +115,7 @@ def main(cfg):
         args=sft_args,
         train_dataset=dataset['train'],
         peft_config=lora_config,
-        formatting_func=formatting_prompts_func,
+        #formatting_func=formatting_prompts_func,
     )
 
     print_trainable_parameters(trainer.model)
