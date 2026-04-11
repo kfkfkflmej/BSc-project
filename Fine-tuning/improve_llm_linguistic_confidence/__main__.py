@@ -45,6 +45,7 @@ def main(cfg):
         "completion": [
             {"role": "assistant", "content": f"{example['sentence']}"}
         ],
+        "token_type_ids": None,
     }
 
     dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
