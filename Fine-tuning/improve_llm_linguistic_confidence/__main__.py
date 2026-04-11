@@ -59,11 +59,14 @@ def main(cfg):
         "completion": [{"role": "assistant", "content": example["sentence"]}],
     }
 
-    dataset.to_json("output.jsonl")
+  
     
 
     dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
     
+    for split, ds in dataset.items():
+        ds.to_json(f"output_{split}.jsonl")
+
     logging.info(dataset)
 
     ###################
