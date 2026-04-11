@@ -88,6 +88,8 @@ def main(cfg):
         device_map=cfg.mapper.model_device_map,
     )
 
+    model.config.token_type_ids = None
+
     ###################
     # SFT args
     ###################
