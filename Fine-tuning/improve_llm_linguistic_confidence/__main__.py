@@ -54,17 +54,13 @@ def main(cfg):
     ###################
     dataset = load_dataset(cfg.mapper.dataset_filetype, data_files=cfg.mapper.dataset_filepath)   
     def formatting_prompts_func(example):
-        messages = [
-            {"role": "user", "content": example["problem"]},
-            {"role": "assistant", "content": example["sentence"]},
-        ]
-        # Returns a string like "<|user|>...<|assistant|>..."
-        text = tokenizer.apply_chat_template(
-            messages,
-            tokenize=False,          # Set True to get IDs directly
-            add_generation_prompt=False
-        )
-        return 
+         return {
+        "prompt": [{"role": "user", "content": example["problem"]}],
+        "completion": [
+            {"role": "assistant", "content": f"{example['sentence']}"}
+        ],
+    }
+
     
 
     dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
@@ -108,7 +104,6 @@ def main(cfg):
         packing=cfg.mapper.sft_packing,
         warmup_steps=cfg.mapper.sft_warmup_steps,
         gradient_checkpointing=cfg.mapper.sft_gradient_checkpointing,
-        dataset_text_field="text", 
     )
 
     ###################
