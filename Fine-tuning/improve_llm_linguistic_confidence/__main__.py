@@ -8,6 +8,7 @@ from transformers import BitsAndBytesConfig
 from peft import LoraConfig
 from datasets import load_dataset
 from trl import SFTConfig, SFTTrainer
+from transformers import AutoTokenizer
 
 
 def print_trainable_parameters(model):
@@ -36,6 +37,15 @@ def main(cfg):
     )
 
     ###################
+    # tokenizer
+    ###################
+    tokenizer = AutoTokenizer.from_pretrained(
+    cfg.mapper.model_base_model,
+    use_fast=True,
+    )
+
+
+    ###################
     # dataset
     ###################
     dataset = load_dataset(cfg.mapper.dataset_filetype, data_files=cfg.mapper.dataset_filepath)   
@@ -45,7 +55,6 @@ def main(cfg):
         "completion": [
             {"role": "assistant", "content": f"{example['sentence']}"}
         ],
-        "token_type_ids": None,
     }
 
     dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
@@ -59,6 +68,8 @@ def main(cfg):
     #     load_in_8bit=cfg.mapper.model_load_in_8bit,
     #     device_map=cfg.mapper.model_device_map,
     # )
+
+    
 
     bnb_config = BitsAndBytesConfig(
         load_in_8bit=True
@@ -93,6 +104,7 @@ def main(cfg):
     # Train
     ###################
     trainer = SFTTrainer(
+        tokenizer=tokenizer,
         model=model,
         args=sft_args,
         train_dataset=dataset['train'],
