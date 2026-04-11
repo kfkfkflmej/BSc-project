@@ -110,11 +110,12 @@ def main(cfg):
     # Train
     ###################
     trainer = SFTTrainer(
-        dataset_text_field="text"
         model=model,
+        processing_class=tokenizer,       # needed to tokenize the "text" field
         args=sft_args,
         train_dataset=dataset['train'],
         peft_config=lora_config,
+        dataset_text_field="text", 
     )
 
     print_trainable_parameters(trainer.model)
