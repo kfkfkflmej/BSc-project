@@ -1,4 +1,3 @@
-from omegaconf import DictConfig
 from omegaconf import DictConfig, ListConfig
 import os
 from transformers import AutoTokenizer
@@ -7,20 +6,6 @@ from vllm import LLM, SamplingParams
 import csv
 from vllm.lora.request import LoRARequest
 
-class LLM:
-    def __init__(self, model_cfg: DictConfig):
-        self.model_cfg = model_cfg
-
-
-    def __call__(self, prompts: list[str], task_name: str, batch_job_id: list[str] | str = None) -> list[str]:
-        responses = self.model(prompts, task_name, batch_job_id)
-        return responses
-
-
-    def prepare_model(self, model_cfg: DictConfig):
-        return Huggingfacemodel(model_cfg)
-
-        
 
 class Huggingfacemodel:
     def __init__(self, model_cfg: DictConfig):
@@ -91,7 +76,7 @@ class Huggingfacemodel:
             max_lora_rank=self.model_cfg.max_lora_rank,
             seed=self.model_cfg.seed, 
         )
-        """if self.model_cfg.name in [
+        if self.model_cfg.name in [
             "qwen3-8b-lora-mapper0",
             "qwen3-8b-lora-mapper1",
             "qwen3-8b-lora-mapper2",
@@ -115,7 +100,7 @@ class Huggingfacemodel:
             lora_path=self.model_cfg.lora_weight_path,
             lora_int_id=1,
         )
-    """
+
     def get_generate_config(self, cfg):
         return SamplingParams(
             temperature=cfg.temperature,
@@ -124,4 +109,3 @@ class Huggingfacemodel:
             min_p=cfg.min_p,
             max_tokens=cfg.max_tokens,
         )
-        
