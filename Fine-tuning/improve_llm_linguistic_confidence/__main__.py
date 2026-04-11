@@ -64,7 +64,7 @@ def main(cfg):
             tokenize=False,          # Set True to get IDs directly
             add_generation_prompt=False
         )
-        return {"text": text}
+        return 
     
 
     dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
@@ -120,8 +120,7 @@ def main(cfg):
         args=sft_args,
         train_dataset=dataset['train'],
         peft_config=lora_config,
-        formatting_func=formatting_prompts_func
-        
+        formatting_func=formatting_prompts_func,
     )
 
     print_trainable_parameters(trainer.model)

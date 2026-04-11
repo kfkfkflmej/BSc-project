@@ -52,18 +52,12 @@ def main(cfg):
     dataset = load_dataset(cfg.mapper.dataset_filetype, data_files=cfg.mapper.dataset_filepath)   
     
     def formatting_prompts_func(example):
-        messages = [
-        {"role": "user", "content": example["problem"]},
-        {"role": "assistant", "content": example["sentence"]},
-        ]
-
-        text = tokenizer.apply_chat_template(
-            messages,
-            tokenize=False,
-            add_generation_prompt=False,
-        )
-        
-        return {"text": text}
+       return {
+        "prompt": [{"role": "user", "content": example["problem"]}],
+        "completion": [
+            {"role": "assistant", "content": f"{example['sentence']}"}
+        ],
+    }
 
     dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
     logging.info(dataset)
@@ -87,8 +81,6 @@ def main(cfg):
         load_in_8bit=cfg.mapper.model_load_in_8bit,
         device_map=cfg.mapper.model_device_map,
     )
-
-    model.config.token_type_ids = None
 
     ###################
     # SFT args
@@ -119,7 +111,6 @@ def main(cfg):
         train_dataset=dataset['train'],
         peft_config=lora_config,
         dataset_text_field="text",
-        formatting_func=formatting_prompts_func
     )
 
     print_trainable_parameters(trainer.model)
