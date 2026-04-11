@@ -50,12 +50,18 @@ def main(cfg):
     ###################
     dataset = load_dataset(cfg.mapper.dataset_filetype, data_files=cfg.mapper.dataset_filepath)   
     def formatting_prompts_func(example):
-        return {
-        "prompt": [{"role": "user", "content": example["problem"]}],
-        "completion": [
-            {"role": "assistant", "content": f"{example['sentence']}"}
-        ],
-    }
+        messages = [
+            {"role": "user", "content": example["problem"]},
+            {"role": "assistant", "content": example["sentence"]},
+        ]
+        # Returns a string like "<|user|>...<|assistant|>..."
+        text = tokenizer.apply_chat_template(
+            messages,
+            tokenize=False,          # Set True to get IDs directly
+            add_generation_prompt=False
+        )
+        return {"text": text}
+    
 
     dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
     logging.info(dataset)
@@ -104,7 +110,7 @@ def main(cfg):
     # Train
     ###################
     trainer = SFTTrainer(
-        processing_class=tokenizer,
+        dataset_text_field="text"
         model=model,
         args=sft_args,
         train_dataset=dataset['train'],
