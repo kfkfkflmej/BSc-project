@@ -119,6 +119,7 @@ def main(cfg):
         train_dataset=dataset['train'],
         peft_config=lora_config,
         dataset_text_field="text",
+        formatting_func=formatting_prompts_func
     )
 
     print_trainable_parameters(trainer.model)
