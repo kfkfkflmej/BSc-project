@@ -104,6 +104,7 @@ def main(cfg):
         packing=cfg.mapper.sft_packing,
         warmup_steps=cfg.mapper.sft_warmup_steps,
         gradient_checkpointing=cfg.mapper.sft_gradient_checkpointing,
+        dataset_text_field="text", 
     )
 
     ###################
@@ -115,7 +116,7 @@ def main(cfg):
         args=sft_args,
         train_dataset=dataset['train'],
         peft_config=lora_config,
-        dataset_text_field="text", 
+        
     )
 
     print_trainable_parameters(trainer.model)
