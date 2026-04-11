@@ -38,5 +38,5 @@ sft_fp16: False
 sft_bf16: True
 sft_seed: 42
 sft_max_length: 256
-sft_packing: true
+sft_packing: false
 sft_warmup_steps: 100
