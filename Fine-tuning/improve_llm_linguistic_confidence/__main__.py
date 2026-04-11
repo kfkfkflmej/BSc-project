@@ -104,7 +104,7 @@ def main(cfg):
     # Train
     ###################
     trainer = SFTTrainer(
-        tokenizer=tokenizer,
+        processing_class=tokenizer,
         model=model,
         args=sft_args,
         train_dataset=dataset['train'],
