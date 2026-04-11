@@ -59,10 +59,11 @@ def main(cfg):
         "completion": [{"role": "assistant", "content": example["sentence"]}],
     }
 
-
+    dataset.to_csv("output.csv", index=False)
     
 
     dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
+    
     logging.info(dataset)
 
     ###################
