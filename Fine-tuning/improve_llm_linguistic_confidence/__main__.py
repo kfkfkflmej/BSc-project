@@ -44,8 +44,6 @@ def main(cfg):
     logging.info(dataset)
 
     
-    # Hugging Face model id
-    model_id = "cfg.mapper.model_base_model" # @param ["google/gemma-4-E2B","google/gemma-4-E4B"] {"allow-input":true}
 
 
     # Define model init arguments
@@ -102,12 +100,11 @@ def main(cfg):
         texts = []
         images = []
         for example in examples:
-            image_inputs = process_vision_info(example["messages"])
             text = processor.apply_chat_template(
                 example["messages"], add_generation_prompt=False, tokenize=False
             )
             texts.append(text.strip())
-            images.append(image_inputs)
+
 
         # Tokenize the texts and process the images
         batch = processor(text=texts, images=images, return_tensors="pt", padding=True)
