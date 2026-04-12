@@ -44,6 +44,7 @@ def main(cfg):
     token=os.environ['HF_TOKEN']
     )
     processor.tokenizer.pad_token = processor.tokenizer.eos_token
+    processor.tokenizer.token_type_ids_pattern = "all_zeros"
 
 
    
