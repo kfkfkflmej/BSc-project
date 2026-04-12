@@ -69,7 +69,7 @@ def main(cfg):
         )
         return {"text": text}
 
-    dataset = dataset.map(formatting_prompts_func, remove_columns=["question", "answer"])
+    dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
     logging.info(dataset)
 
     ###################
@@ -124,7 +124,7 @@ def main(cfg):
     train_dataset=dataset['train'],
     peft_config=lora_config,
     )
-    
+
     print_trainable_parameters(trainer.model)
 
     trainer.train()
