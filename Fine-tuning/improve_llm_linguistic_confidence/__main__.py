@@ -5,11 +5,10 @@ import hydra
 
 from transformers import AutoModelForCausalLM
 from transformers import BitsAndBytesConfig
-from transformers import DataCollatorForLanguageModeling
 from peft import LoraConfig
 from datasets import load_dataset
 from trl import SFTConfig, SFTTrainer
-from transformers import AutoTokenizer
+from transformers import GemmaTokenizer
 
 
 def print_trainable_parameters(model):
@@ -50,13 +49,8 @@ def main(cfg):
     # pad_token = '<pad>'
     )
 
-    data_collator = DataCollatorForLanguageModeling(
-    tokenizer=tokenizer,
-    mlm=False
-    )
-
-    tokenizer.model_input_names = ["input_ids", "attention_mask"]
-    
+    print(tokenizer.special_tokens_map)
+    print(tokenizer.all_special_tokens)
 
 
     # tokenizer.pad_token = tokenizer.eos_token
@@ -141,7 +135,6 @@ def main(cfg):
         args=sft_args,
         train_dataset=dataset['train'],
         peft_config=lora_config,
-        data_collator=data_collator
     )
 
     print_trainable_parameters(trainer.model)
