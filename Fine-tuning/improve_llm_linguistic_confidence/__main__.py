@@ -7,7 +7,7 @@ import torch
 from datasets import Image, load_dataset
 from PIL import Image as PILImage
 from peft import LoraConfig
-from transformers import AutoModelForImageTextToText, AutoProcessor, BitsAndBytesConfig
+from transformers import AutoModelForCausalLM, AutoProcessor, BitsAndBytesConfig
 from trl import SFTConfig, SFTTrainer
 
 @hydra.main(config_path="configs", config_name="config", version_base=None)
@@ -16,21 +16,15 @@ def main(cfg):
     dataset = load_dataset(cfg.mapper.dataset_filetype, data_files=cfg.mapper.dataset_filepath)
     model_id = cfg.mapper.model_base_model
 
-    def formatting_prompts_func(example, processor=None):
-        conversation = [
-            {"role": "user", "content": example["problem"]},
-            {"role": "assistant", "content": example["sentence"]}
-        ]
-
-        text = processor.apply_chat_template(
-            conversation,
-            tokenize=False
-        )
-
-        return {"text": text}
-
+    def formatting_prompts_func(example):
+        return {
+            "text": (
+                f"User: {example['problem']}\n"
+                f"Assistant: {example['sentence']}"
+            )
+        }
     processor = AutoProcessor.from_pretrained(model_id, token=os.environ['HF_TOKEN'])
-    
+        
     dataset = dataset.map(
         formatting_prompts_func,
         fn_kwargs={"processor": processor},
@@ -62,7 +56,7 @@ def main(cfg):
     )
 
     # Load model and tokenizer
-    model = AutoModelForImageTextToText.from_pretrained(model_id, **model_kwargs)
+    model = AutoModelForCausalLM.from_pretrained(model_id, **model_kwargs)
      # Load the Instruction Tokenizer to use the official Gemma template
 
     peft_config = LoraConfig(
@@ -97,26 +91,17 @@ def main(cfg):
 
     # Create a data collator to encode text and image pairs
     def collate_fn(examples):
-        texts = []
-        images = []
-        for example in examples:
-            text = processor.apply_chat_template(
-                example["text"], add_generation_prompt=False, tokenize=False
-            )
-            texts.append(text.strip())
+        texts = [ex["text"] for ex in examples]
 
+        batch = processor(
+            text=texts,
+            padding=True,
+            truncation=True,
+            return_tensors="pt"
+        )
 
-        # Tokenize the texts and process the images
-        batch = processor(text=texts, images=images, return_tensors="pt", padding=True)
-
-        # The labels are the input_ids, and we mask the padding tokens and image tokens in the loss computation
         labels = batch["input_ids"].clone()
-
-        # Mask tokens for not being used in the loss computation
         labels[labels == processor.tokenizer.pad_token_id] = -100
-        labels[labels == processor.tokenizer.boi_token_id] = -100
-        labels[labels == processor.tokenizer.image_token_id] = -100
-        labels[labels == processor.tokenizer.eoi_token_id] = -100
 
         batch["labels"] = labels
         return batch
@@ -126,8 +111,7 @@ def main(cfg):
         model=model,
         args=args,
         train_dataset=dataset["train"],
-        peft_config=peft_config,
-        processing_class=processor,
+        peft_config=peft_config,    
         data_collator=collate_fn,
     )
 
