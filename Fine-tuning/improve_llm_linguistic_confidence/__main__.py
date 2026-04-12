@@ -40,7 +40,7 @@ def main(cfg):
 
 
     # Convert dataset to OAI messages
-    dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
+    
     logging.info(dataset)
 
     
