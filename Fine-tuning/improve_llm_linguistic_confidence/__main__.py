@@ -83,7 +83,7 @@ def main(cfg):
         bf16=True,                                  # use bfloat16 precision
         dataset_text_field="",                      # need a dummy field for collator
         dataset_kwargs={"skip_prepare_dataset": True}, # important for collator
-        remove_unused_columns = False               # important for collator
+        remove_unused_columns = False,             # important for collator
         max_length=cfg.mapper.sft_max_length,
         packing=cfg.mapper.sft_packing,
         warmup_steps=cfg.mapper.sft_warmup_steps,
