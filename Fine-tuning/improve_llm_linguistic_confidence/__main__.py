@@ -67,7 +67,20 @@ def main(cfg):
             tokenize=False,
             add_generation_prompt=False,
         )
-        return {"text": text}
+        
+        # Tokenize here directly, explicitly requesting token_type_ids
+        tokenized = processor(
+            text=text,
+            return_token_type_ids=True,
+            truncation=True,
+            max_length=cfg.mapper.sft_max_length,
+        )
+        
+        return {
+            "input_ids": tokenized["input_ids"],
+            "attention_mask": tokenized["attention_mask"],
+            "token_type_ids": tokenized["token_type_ids"],
+        }
 
     dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
     logging.info(dataset)
@@ -119,12 +132,12 @@ def main(cfg):
     ###################
     trainer = SFTTrainer(
     model=model,
-    processing_class=processor,  # not tokenizer
+    processing_class=processor,
     args=sft_args,
     train_dataset=dataset['train'],
     peft_config=lora_config,
-    )
-
+    dataset_kwargs={"skip_prepare_dataset": True},  # critical
+)
     print_trainable_parameters(trainer.model)
 
     trainer.train()
