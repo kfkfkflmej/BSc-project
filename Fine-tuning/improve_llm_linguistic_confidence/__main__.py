@@ -8,7 +8,7 @@ from transformers import BitsAndBytesConfig
 from peft import LoraConfig
 from datasets import load_dataset
 from trl import SFTConfig, SFTTrainer
-from transformers import GemmaTokenizer
+from transformers import AutoTokenizer
 
 
 def print_trainable_parameters(model):
