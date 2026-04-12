@@ -5,6 +5,7 @@ import hydra
 
 from transformers import AutoModelForCausalLM
 from transformers import BitsAndBytesConfig
+from transformers import DataCollatorForLanguageModeling
 from peft import LoraConfig
 from datasets import load_dataset
 from trl import SFTConfig, SFTTrainer
@@ -42,8 +43,20 @@ def main(cfg):
     tokenizer = AutoTokenizer.from_pretrained(
     cfg.mapper.model_base_model,
     use_fast=True,
-    token=os.environ['HF_TOKEN']
+    token=os.environ['HF_TOKEN'],
+    # unk_token = '<unk>',
+    # bos_token = '<bos>',
+    # eos_token = '<eos>',
+    # pad_token = '<pad>'
     )
+
+    data_collator = DataCollatorForLanguageModeling(
+    tokenizer=tokenizer,
+    mlm=False
+    )
+
+    tokenizer.model_input_names = ["input_ids", "attention_mask"]
+    
 
 
     # tokenizer.pad_token = tokenizer.eos_token
@@ -116,6 +129,7 @@ def main(cfg):
         packing=cfg.mapper.sft_packing,
         warmup_steps=cfg.mapper.sft_warmup_steps,
         gradient_checkpointing=cfg.mapper.sft_gradient_checkpointing,
+        dataset_text_field="text",
     )
 
     ###################
@@ -127,6 +141,7 @@ def main(cfg):
         args=sft_args,
         train_dataset=dataset['train'],
         peft_config=lora_config,
+        data_collator=data_collator
     )
 
     print_trainable_parameters(trainer.model)
