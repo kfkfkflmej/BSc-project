@@ -17,7 +17,16 @@ def main(cfg):
     model_id = cfg.mapper.model_base_model
 
     def formatting_prompts_func(example, processor=None):
-        text = processor.apply_chat_template(...)
+        conversation = [
+            {"role": "user", "content": example["problem"]},
+            {"role": "assistant", "content": example["sentence"]}
+        ]
+
+        text = processor.apply_chat_template(
+            conversation,
+            tokenize=False
+        )
+
         return {"text": text}
 
     processor = AutoProcessor.from_pretrained(model_id, token=os.environ['HF_TOKEN'])
@@ -26,7 +35,7 @@ def main(cfg):
         formatting_prompts_func,
         fn_kwargs={"processor": processor},
         remove_columns=["problem", "sentence"]
-    )
+    )   
 
 
 
