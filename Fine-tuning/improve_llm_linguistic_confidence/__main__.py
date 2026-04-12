@@ -101,7 +101,7 @@ def main(cfg):
         images = []
         for example in examples:
             text = processor.apply_chat_template(
-                example["messages"], add_generation_prompt=False, tokenize=False
+                example["text"], add_generation_prompt=False, tokenize=False
             )
             texts.append(text.strip())
 
