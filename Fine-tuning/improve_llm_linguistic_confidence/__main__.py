@@ -42,6 +42,7 @@ def main(cfg):
     tokenizer = AutoTokenizer.from_pretrained(
     cfg.mapper.model_base_model,
     use_fast=True,
+    token=os.environ['HF_TOKEN']
     )
 
     if tokenizer.pad_token is None:
@@ -53,17 +54,23 @@ def main(cfg):
     # dataset
     ###################
     dataset = load_dataset(cfg.mapper.dataset_filetype, data_files=cfg.mapper.dataset_filepath)   
-    def formatting_prompts_func(example):
-         return {
-        "prompt": [{"role": "user", "content": example["problem"]}],
-        "completion": [{"role": "assistant", "content": example["sentence"]}],
-    }
+    # def formatting_prompts_func(example):
+    #      return {
+    #     "prompt": [{"role": "user", "content": example["problem"]}],
+    #     "completion": [{"role": "assistant", "content": example["sentence"]}],
+    # }
+    #dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
 
-  
+    def formatting_func(example):
+        return {
+            "text": f"User: {example['problem']}\nAssistant: {example['sentence']}"
+        }
+
+    dataset = dataset.map(formatting_func, remove_columns=["problem", "sentence"])
     
 
-    dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
-    
+    #dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
+
     for split, ds in dataset.items():
         ds.to_json(f"output_{split}.jsonl")
 
