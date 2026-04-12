@@ -56,32 +56,26 @@ def main(cfg):
     #     "completion": [{"role": "assistant", "content": example["sentence"]}],
     # }
     #dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
-
+ 
     def formatting_prompts_func(example):
         messages = [
             {"role": "user", "content": str(example["problem"])},
             {"role": "assistant", "content": str(example["sentence"])},
         ]
-        text = processor.tokenizer.apply_chat_template(
-            messages,
-            tokenize=False,
-            add_generation_prompt=False,
-        )
-        
-        # Tokenize here directly, explicitly requesting token_type_ids
-        tokenized = processor(
-            text=text,
-            return_token_type_ids=True,
+        tokenized = processor.tokenizer(
+            processor.tokenizer.apply_chat_template(
+                messages, tokenize=False, add_generation_prompt=False
+            ),
             truncation=True,
             max_length=cfg.mapper.sft_max_length,
         )
-        
+        # All zeros since there are no image tokens
+        tokenized["token_type_ids"] = [0] * len(tokenized["input_ids"])
         return {
             "input_ids": tokenized["input_ids"],
             "attention_mask": tokenized["attention_mask"],
             "token_type_ids": tokenized["token_type_ids"],
-        }
-
+    }
     dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
     logging.info(dataset)
 
