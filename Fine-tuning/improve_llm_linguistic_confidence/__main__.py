@@ -27,7 +27,6 @@ def main(cfg):
         
     dataset = dataset.map(
         formatting_prompts_func,
-        fn_kwargs={"processor": processor},
         remove_columns=["problem", "sentence"]
     )   
 
