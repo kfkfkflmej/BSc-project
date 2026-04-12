@@ -59,8 +59,8 @@ def main(cfg):
 
     def formatting_prompts_func(example):
         messages = [
-            {"role": "user", "content": str(example["question"])},
-            {"role": "assistant", "content": str(example["answer"])},
+            {"role": "user", "content": str(example["problem"])},
+            {"role": "assistant", "content": str(example["sentence"])},
         ]
         text = processor.tokenizer.apply_chat_template(
             messages,
