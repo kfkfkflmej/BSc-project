@@ -15,22 +15,16 @@ from trl import SFTConfig, SFTTrainer
 def main(cfg):
     dataset = load_dataset(cfg.mapper.dataset_filetype, data_files=cfg.mapper.dataset_filepath)
 
-    def formatting_prompts_func(example):
-        messages = [
-        {"role": "user", "content" : [{"type": "text", "text": str(example["problem"])}]},
-        {"role": "assistant", "content": [{"type": "text", "text": str(example["sentence"])}]},
-        ]
+    def formatting_prompts_func(example, processor=None):
+        text = processor.apply_chat_template(...)
+        return {"text": text}
 
-        text = processor.apply_chat_template(
-            messages,
-            tokenize=False,
-            add_generation_prompt=False,
-        )
-        
-        return {"messages": text}
+    dataset = dataset.map(
+        formatting_prompts_func,
+        fn_kwargs={"processor": processor},
+        remove_columns=["problem", "sentence"]
+    )
 
-    # Load dataset'
-    dataset = load_dataset(cfg.mapper.dataset_filetype, data_files=cfg.mapper.dataset_filepath)
 
 
     # Convert dataset to OAI messages
