@@ -1,217 +1,136 @@
 import os
-import torch
+from omegaconf import OmegaConf
 import logging
+import hydra
 
-from datasets import load_dataset
-from transformers import (
-    AutoProcessor,
-    AutoModelForImageTextToText,
-    BitsAndBytesConfig,
-)
+from transformers import AutoModelForImageTextToText
+from transformers import BitsAndBytesConfig
 from peft import LoraConfig
-from trl import SFTTrainer, SFTConfig
+from datasets import Image, load_dataset
+from trl import SFTConfig, SFTTrainer
+from transformers import AutoProcessor
 
 
-logging.basicConfig(level=logging.INFO)
+def print_trainable_parameters(model):
+    trainable_params = 0
+    all_param = 0
+    for _, param in model.named_parameters():
+        all_param += param.numel()
+        if param.requires_grad:
+            trainable_params += param.numel()
+    logging.info(
+        f"trainable params: {trainable_params} || all params: {all_param} || trainable%: {100 * trainable_params / all_param}"
+    )
 
-# =========================
-# Config
-# =========================
-model_id = "google/gemma-4-E2B-it"  # or E4B if you have more VRAM
+@hydra.main(config_path="configs", config_name="config", version_base=None)
+def main(cfg):
+    logging.info(OmegaConf.to_yaml(cfg, resolve=True))
+    ###################
+    # LoRA
+    ###################
+    lora_config = LoraConfig(
+        r=cfg.mapper.lora_r,
+        lora_alpha=cfg.mapper.lora_alpha,
+        lora_dropout=cfg.mapper.lora_dropout,
+        task_type=cfg.mapper.lora_task_type,
+        target_modules=cfg.mapper.lora_target_modules
+    )
 
-system_message = "You are an expert product description writer for Amazon."
-
-user_prompt = """Create a Short Product description based on the provided <PRODUCT> and <CATEGORY>.
-Only return description. The description should be SEO optimized and for a better mobile search experience.
-
-<PRODUCT>
-{product}
-</PRODUCT>
-
-<CATEGORY>
-{category}
-</CATEGORY>
-"""
-
-
-# =========================
-# Dataset formatting (TEXT ONLY)
-# =========================
-def format_data(sample):
-    return {
-        "messages": [
-            {
-                "role": "system",
-                "content": system_message,
-            },
-            {
-                "role": "user",
-                "content": user_prompt.format(
-                    product=sample["Product Name"],
-                    category=sample["Category"],
-                ),
-            },
-            {
-                "role": "assistant",
-                "content": sample["description"].strip(),
-            },
-        ],
-    }
-
-
-# =========================
-# Load dataset
-# =========================
-dataset = load_dataset(
-    "philschmid/amazon-product-descriptions-vlm",
-    split="train"
-)
-
-dataset = dataset.train_test_split(test_size=0.1)
-
-dataset_train = [format_data(x) for x in dataset["train"]]
-dataset_test = [format_data(x) for x in dataset["test"]]
-
-logging.info(f"Train size: {len(dataset_train)}")
-logging.info(f"Test size: {len(dataset_test)}")
-
-
-# =========================
-# Processor
-# =========================
-processor = AutoProcessor.from_pretrained(model_id)
-
-# ensure padding token exists
-if processor.tokenizer.pad_token is None:
+    ###################
+    # tokenizers
+    ###################
+    processor = AutoProcessor.from_pretrained(
+    cfg.mapper.model_base_model,
+    token=os.environ['HF_TOKEN']
+    )
     processor.tokenizer.pad_token = processor.tokenizer.eos_token
 
 
-# =========================
-# Quantization (QLoRA)
-# =========================
-bnb_config = BitsAndBytesConfig(
-    load_in_4bit=True,
-    bnb_4bit_use_double_quant=True,
-    bnb_4bit_quant_type="nf4",
-    bnb_4bit_compute_dtype=torch.bfloat16,
-)
+   
 
 
-# =========================
-# Model
-# =========================
-model = AutoModelForImageTextToText.from_pretrained(
-    model_id,
-    device_map="auto",
-    quantization_config=bnb_config,
-    torch_dtype=torch.bfloat16,
-)
+    ###################
+    # dataset
+    ###################
+    dataset = load_dataset(cfg.mapper.dataset_filetype, data_files=cfg.mapper.dataset_filepath)
+    
+    def formatting_prompts_func(example):
+        messages = [
+        {"role": "user", "content" : [{"type": "text", "text": str(example["problem"])}]},
+        {"role": "assistant", "content": [{"type": "text", "text": str(example["sentence"])}]},
+        ]
 
-
-# =========================
-# LoRA config
-# =========================
-peft_config = LoraConfig(
-    r=16,
-    lora_alpha=16,
-    lora_dropout=0.05,
-    bias="none",
-    target_modules="all-linear",
-    task_type="CAUSAL_LM",
-    modules_to_save=["lm_head", "embed_tokens"],
-)
-
-
-# =========================
-# Collate function (TEXT ONLY)
-# =========================
-def collate_fn(examples):
-    texts = []
-
-    for example in examples:
         text = processor.apply_chat_template(
-            example["messages"],
+            messages,
             tokenize=False,
             add_generation_prompt=False,
         )
-        texts.append(text.strip())
 
-    batch = processor(
-        text=texts,
-        padding=True,
-        return_tensors="pt",
+        return {"messages": messages}
+
+    dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
+    logging.info(dataset)
+
+    ###################
+    # Base_model
+    ###################
+    # model = AutoModelForCausalLM.from_pretrained(
+    #     cfg.mapper.model_base_model, 
+    #     load_in_8bit=cfg.mapper.model_load_in_8bit,
+    #     device_map=cfg.mapper.model_device_map,
+    # )
+
+    
+
+    bnb_config = BitsAndBytesConfig(
+        load_in_8bit=True
     )
 
-    labels = batch["input_ids"].clone()
+    model = AutoModelForImageTextToText.from_pretrained(
+        cfg.mapper.model_base_model,
+        quantization_config=bnb_config,
+        device_map="auto"
+    )
 
-    # mask padding tokens
-    labels[labels == processor.tokenizer.pad_token_id] = -100
+    
 
-    batch["labels"] = labels
-    return batch
+    ###################
+    # SFT args
+    ###################
+    sft_args = SFTConfig(
+        run_name=cfg.mapper.name,
+        output_dir=cfg.mapper.sft_output_dir,
+        per_device_train_batch_size=cfg.mapper.sft_per_device_train_batch_size,
+        gradient_accumulation_steps=cfg.mapper.sft_gradient_accumulation_steps,
+        learning_rate=cfg.mapper.sft_learning_rate,
+        num_train_epochs=cfg.mapper.sft_num_train_epochs,
+        seed=cfg.mapper.sft_seed,
+        fp16=cfg.mapper.sft_fp16,
+        bf16=cfg.mapper.sft_bf16,
+        max_length=cfg.mapper.sft_max_length,
+        packing=cfg.mapper.sft_packing,
+        warmup_steps=cfg.mapper.sft_warmup_steps,
+        gradient_checkpointing=cfg.mapper.sft_gradient_checkpointing,
+    )
 
+    ###################
+    # Train
+    ###################
+    trainer = SFTTrainer(
+        model=model,
+        processing_class=processor,
+        args=sft_args,
+        train_dataset=dataset['train'],
+        peft_config=lora_config,
+    )
 
-# =========================
-# Training config
-# =========================
-training_args = SFTConfig(
-    output_dir="gemma-text-product-desc",
-    num_train_epochs=3,
-    per_device_train_batch_size=2,
-    gradient_accumulation_steps=4,
-    learning_rate=2e-4,
-    logging_steps=10,
-    save_strategy="epoch",
-    eval_strategy="epoch",
-    bf16=True,
-    max_grad_norm=0.3,
-    warmup_steps=50,
-    lr_scheduler_type="constant",
-    report_to="tensorboard",
+    print_trainable_parameters(trainer.model)
 
-    # important for custom collator
-    dataset_text_field="",
-    dataset_kwargs={"skip_prepare_dataset": True},
-    remove_unused_columns=False,
-)
+    trainer.train()
 
-
-# =========================
-# Trainer
-# =========================
-trainer = SFTTrainer(
-    model=model,
-    args=training_args,
-    train_dataset=dataset_train,
-    eval_dataset=dataset_test,
-    peft_config=peft_config,
-    processing_class=processor,
-    data_collator=collate_fn,
-)
+    logging.info("Saving last checkpoint of the model")
+    trainer.save_model(sft_args.output_dir)
 
 
-# =========================
-# Debug sample
-# =========================
-sample_text = processor.apply_chat_template(
-    dataset_train[0]["messages"],
-    tokenize=False
-)
-
-print("\n===== SAMPLE TRAIN TEXT =====\n")
-print(sample_text)
-print("\n============================\n")
-
-
-# =========================
-# Train
-# =========================
-trainer.train()
-
-
-# =========================
-# Save model
-# =========================
-trainer.save_model("gemma-text-final")
-
-logging.info("Training complete and model saved.")
+if __name__ == "__main__":
+    main()
