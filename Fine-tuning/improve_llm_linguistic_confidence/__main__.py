@@ -19,6 +19,8 @@ def main(cfg):
         text = processor.apply_chat_template(...)
         return {"text": text}
 
+    processor = AutoProcessor.from_pretrained(model_id)
+    
     dataset = dataset.map(
         formatting_prompts_func,
         fn_kwargs={"processor": processor},
@@ -53,7 +55,7 @@ def main(cfg):
 
     # Load model and tokenizer
     model = AutoModelForImageTextToText.from_pretrained(model_id, **model_kwargs)
-    processor = AutoProcessor.from_pretrained(model_id) # Load the Instruction Tokenizer to use the official Gemma template
+     # Load the Instruction Tokenizer to use the official Gemma template
 
     peft_config = LoraConfig(
         lora_alpha=16,
