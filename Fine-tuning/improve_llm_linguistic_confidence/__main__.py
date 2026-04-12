@@ -15,12 +15,12 @@ from trl import SFTConfig, SFTTrainer
 def main(cfg):
     dataset = load_dataset(cfg.mapper.dataset_filetype, data_files=cfg.mapper.dataset_filepath)
     model_id = "cfg.mapper.model_base_model"
-    
+
     def formatting_prompts_func(example, processor=None):
         text = processor.apply_chat_template(...)
         return {"text": text}
 
-    processor = AutoProcessor.from_pretrained(model_id)
+    processor = AutoProcessor.from_pretrained(model_id, token=os.environ['HF_TOKEN'])
     
     dataset = dataset.map(
         formatting_prompts_func,
