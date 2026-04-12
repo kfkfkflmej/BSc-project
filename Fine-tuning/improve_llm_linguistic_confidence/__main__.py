@@ -56,8 +56,8 @@ def main(cfg):
     
     def formatting_prompts_func(example):
         messages = [
-        {"role": "user", "type": "text","content": str(example["problem"])},
-        {"role": "assistant", "type": "text", "content": str(example["sentence"])},
+        {"role": "user", "content" : [{"type": "text", "text": str(example["problem"])}]},
+        {"role": "assistant", "content": [{"type": "text", "text": str(example["sentence"])}]},
         ]
 
         text = processor.apply_chat_template(
@@ -66,7 +66,7 @@ def main(cfg):
             add_generation_prompt=False,
         )
 
-        return {"text": text}
+        return {"messages": messages}
 
     dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
     logging.info(dataset)
