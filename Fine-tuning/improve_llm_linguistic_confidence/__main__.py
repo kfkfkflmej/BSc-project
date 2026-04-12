@@ -98,6 +98,24 @@ def main(cfg):
         device_map="auto"
     )
 
+    # Explicitly set pad_token_id and eos_token_id for the model's config and generation_config
+    # to match the tokenizer, which helps suppress the warning.
+    model.config.pad_token_id = tokenizer.pad_token_id
+    model.config.eos_token_id = tokenizer.eos_token_id
+
+    # Ensure generation config also reflects these changes
+    if model.generation_config is not None:
+        model.generation_config.pad_token_id = tokenizer.pad_token_id
+        model.generation_config.eos_token_id = tokenizer.eos_token_id
+    else:
+        # If generation_config doesn't exist, create a new one with the tokenizer's values
+        from transformers import GenerationConfig
+        model.generation_config = GenerationConfig(
+            pad_token_id=tokenizer.pad_token_id,
+            eos_token_id=tokenizer.eos_token_id,
+            # Add any other relevant generation parameters here if needed
+        )
+
     ###################
     # SFT args
     ###################
@@ -126,7 +144,6 @@ def main(cfg):
         args=sft_args,
         train_dataset=dataset['train'],
         peft_config=lora_config,
-        #formatting_func=formatting_prompts_func,
     )
 
     print_trainable_parameters(trainer.model)
