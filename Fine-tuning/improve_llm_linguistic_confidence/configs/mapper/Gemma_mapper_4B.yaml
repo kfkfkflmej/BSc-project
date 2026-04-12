@@ -8,7 +8,7 @@ model_device_map: auto
 
 # dataset args
 dataset_filetype: csv
-dataset_filepath: improve_llm_linguistic_confidence/datasets/mapper0.csv
+dataset_filepath: improve_llm_linguistic_confidence\datasets\gemma-3-4b-it_mapper_nemo.csv
 
 # lora args
 lora_r: 32
