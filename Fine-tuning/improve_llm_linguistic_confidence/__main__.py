@@ -125,8 +125,7 @@ def main(cfg):
     trainer = SFTTrainer(
         model=model,
         args=args,
-        train_dataset=dataset_train,
-        eval_dataset=dataset_test,
+        train_dataset=dataset,
         peft_config=peft_config,
         processing_class=processor,
         data_collator=collate_fn,
