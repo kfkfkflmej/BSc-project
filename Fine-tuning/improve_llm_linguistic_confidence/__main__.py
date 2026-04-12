@@ -3,10 +3,10 @@ from omegaconf import OmegaConf
 import logging
 import hydra
 
-from transformers import AutoModelForImageTextToText  # for Gemma 3
+from transformers import AutoModelForImageTextToText
 from transformers import BitsAndBytesConfig
 from peft import LoraConfig
-from datasets import load_dataset
+from datasets import Image, load_dataset
 from trl import SFTConfig, SFTTrainer
 from transformers import AutoProcessor
 
@@ -37,7 +37,7 @@ def main(cfg):
     )
 
     ###################
-    # processor
+    # tokenizers
     ###################
     processor = AutoProcessor.from_pretrained(
     cfg.mapper.model_base_model,
@@ -46,36 +46,28 @@ def main(cfg):
     processor.tokenizer.pad_token = processor.tokenizer.eos_token
 
 
+   
+
+
     ###################
     # dataset
     ###################
-    dataset = load_dataset(cfg.mapper.dataset_filetype, data_files=cfg.mapper.dataset_filepath)   
-    # def formatting_prompts_func(example):
-    #      return {
-    #     "prompt": [{"role": "user", "content": example["problem"]}],
-    #     "completion": [{"role": "assistant", "content": example["sentence"]}],
-    # }
-    #dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
- 
+    dataset = load_dataset(cfg.mapper.dataset_filetype, data_files=cfg.mapper.dataset_filepath)
+    
     def formatting_prompts_func(example):
         messages = [
-            {"role": "user", "content": str(example["problem"])},
-            {"role": "assistant", "content": str(example["sentence"])},
+        {"role": "user", "type": "text","content": str(example["problem"])},
+        {"role": "assistant", "type": "text", "content": str(example["sentence"])},
         ]
-        tokenized = processor.tokenizer(
-            processor.tokenizer.apply_chat_template(
-                messages, tokenize=False, add_generation_prompt=False
-            ),
-            truncation=True,
-            max_length=cfg.mapper.sft_max_length,
+
+        text = processor.apply_chat_template(
+            messages,
+            tokenize=False,
+            add_generation_prompt=False,
         )
-        # All zeros since there are no image tokens
-        tokenized["token_type_ids"] = [0] * len(tokenized["input_ids"])
-        return {
-            "input_ids": tokenized["input_ids"],
-            "attention_mask": tokenized["attention_mask"],
-            "token_type_ids": tokenized["token_type_ids"],
-    }
+
+        return {"text": text}
+
     dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
     logging.info(dataset)
 
@@ -98,7 +90,7 @@ def main(cfg):
         cfg.mapper.model_base_model,
         quantization_config=bnb_config,
         device_map="auto"
-    )   
+    )
 
     
 
@@ -119,19 +111,19 @@ def main(cfg):
         packing=cfg.mapper.sft_packing,
         warmup_steps=cfg.mapper.sft_warmup_steps,
         gradient_checkpointing=cfg.mapper.sft_gradient_checkpointing,
-        dataset_kwargs={"skip_prepare_dataset": True}
     )
 
     ###################
     # Train
     ###################
     trainer = SFTTrainer(
-    model=model,
-    processing_class=processor,
-    args=sft_args,
-    train_dataset=dataset['train'],
-    peft_config=lora_config, 
+        model=model,
+        processing_class=processor,
+        args=sft_args,
+        train_dataset=dataset['train'],
+        peft_config=lora_config,
     )
+
     print_trainable_parameters(trainer.model)
 
     trainer.train()
