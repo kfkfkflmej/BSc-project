@@ -3,12 +3,12 @@ from omegaconf import OmegaConf
 import logging
 import hydra
 
-from transformers import AutoModelForCausalLM
+from transformers import AutoModelForImageTextToText  # for Gemma 3
 from transformers import BitsAndBytesConfig
 from peft import LoraConfig
 from datasets import load_dataset
 from trl import SFTConfig, SFTTrainer
-from transformers import AutoTokenizer
+from transformers import AutoProcessor
 
 
 def print_trainable_parameters(model):
@@ -36,53 +36,40 @@ def main(cfg):
         target_modules=cfg.mapper.lora_target_modules
     )
 
-    # ###################
-    # # tokenizer
-    # ###################
-    # tokenizer = AutoTokenizer.from_pretrained(
-    # cfg.mapper.model_base_model,
-    # use_fast=True,
-    # token=os.environ['HF_TOKEN'],
-    # # unk_token = '<unk>',
-    # # bos_token = '<bos>',
-    # # eos_token = '<eos>',
-    # # pad_token = '<pad>'
-    # )
-
-    # print(tokenizer.special_tokens_map)
-    # print(tokenizer.all_special_tokens)
-
-
-    # tokenizer.pad_token = tokenizer.eos_token
+    ###################
+    # processor
+    ###################
+    processor = AutoProcessor.from_pretrained(
+    cfg.mapper.model_base_model,
+    token=os.environ['HF_TOKEN']
+    )
+    processor.tokenizer.pad_token = processor.tokenizer.eos_token
 
 
     ###################
     # dataset
     ###################
     dataset = load_dataset(cfg.mapper.dataset_filetype, data_files=cfg.mapper.dataset_filepath)   
+    # def formatting_prompts_func(example):
+    #      return {
+    #     "prompt": [{"role": "user", "content": example["problem"]}],
+    #     "completion": [{"role": "assistant", "content": example["sentence"]}],
+    # }
+    #dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
 
     def formatting_prompts_func(example):
-         return {
-        "prompt": [{"role": "user", "content": example["problem"]}],
-        "completion": [{"role": "assistant", "content": example["sentence"]}],
-    }
-    dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
+        messages = [
+            {"role": "user", "content": str(example["question"])},
+            {"role": "assistant", "content": str(example["answer"])},
+        ]
+        text = processor.tokenizer.apply_chat_template(
+            messages,
+            tokenize=False,
+            add_generation_prompt=False,
+        )
+        return {"text": text}
 
-    # def formatting_prompts_func(example):
-    #     messages = [
-    #     {"role": "user", "content": str(example["question"])},
-    #     {"role": "assistant", "content": str(example["answer"])},
-    #     ]
-
-    #     text = tokenizer.apply_chat_template(
-    #         messages,
-    #         tokenize=False,
-    #         add_generation_prompt=False,
-    #     )
-
-    #     return {"text": text}
-
-    # dataset = dataset.map(formatting_prompts_func, remove_columns=["question", "answer"])
+    dataset = dataset.map(formatting_prompts_func, remove_columns=["question", "answer"])
     logging.info(dataset)
 
     ###################
@@ -100,13 +87,14 @@ def main(cfg):
         load_in_8bit=True
     )
 
-    model = AutoModelForCausalLM.from_pretrained(
+    model = AutoModelForImageTextToText.from_pretrained(
         cfg.mapper.model_base_model,
         quantization_config=bnb_config,
         device_map="auto"
-    )
+    )   
 
-  
+    
+
     ###################
     # SFT args
     ###################
@@ -124,20 +112,19 @@ def main(cfg):
         packing=cfg.mapper.sft_packing,
         warmup_steps=cfg.mapper.sft_warmup_steps,
         gradient_checkpointing=cfg.mapper.sft_gradient_checkpointing,
-        # dataset_text_field="text",
     )
 
     ###################
     # Train
     ###################
     trainer = SFTTrainer(
-        model=model,
-        # processing_class=tokenizer,
-        args=sft_args,
-        train_dataset=dataset['train'],
-        peft_config=lora_config,
+    model=model,
+    processing_class=processor,  # not tokenizer
+    args=sft_args,
+    train_dataset=dataset['train'],
+    peft_config=lora_config,
     )
-
+    
     print_trainable_parameters(trainer.model)
 
     trainer.train()
