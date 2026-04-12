@@ -34,8 +34,8 @@ sft_num_train_epochs: 3
 sft_per_device_train_batch_size: 4
 sft_gradient_accumulation_steps: 8
 sft_gradient_checkpointing: true
-sft_fp16: False
-sft_bf16: True
+sft_fp16: false
+sft_bf16: true
 sft_seed: 42
 sft_max_length: 256
 sft_packing: false
