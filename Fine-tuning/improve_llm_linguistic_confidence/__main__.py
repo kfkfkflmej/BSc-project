@@ -56,7 +56,7 @@ def main(cfg):
     def formatting_prompts_func(example):
          return {
         "prompt": [{"role": "user", "content": example["problem"]}],
-        "completion": [{"role": "assistant", "content": example["sentence"]}],
+        "response": [{"role": "assistant", "content": example["sentence"]}],
     }
 
   
