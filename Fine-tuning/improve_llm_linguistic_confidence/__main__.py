@@ -33,7 +33,7 @@ def main(cfg):
         lora_alpha=cfg.mapper.lora_alpha,
         lora_dropout=cfg.mapper.lora_dropout,
         task_type=cfg.mapper.lora_task_type,
-        target_modules=cfg.mapper.lora_target_modules
+        target_modules=None
     )
 
     ###################
