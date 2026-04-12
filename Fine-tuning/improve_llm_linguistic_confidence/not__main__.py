@@ -45,8 +45,9 @@ def main(cfg):
     token=os.environ['HF_TOKEN']
     )
 
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
 
-    tokenizer.pad_token = tokenizer.eos_token
 
 
     ###################
@@ -60,21 +61,17 @@ def main(cfg):
     # }
     #dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
 
-    def formatting_prompts_func(example):
-        messages = [
-        {"role": "user", "content": str(example["question"])},
-        {"role": "assistant", "content": str(example["answer"])},
-        ]
+    def formatting_func(example):
+        return {
+            "text": f"User: {example['problem']}\nAssistant: {example['sentence']}"
+        }
 
-        text = tokenizer.apply_chat_template(
-            messages,
-            tokenize=False,
-            add_generation_prompt=False,
-        )
+    dataset = dataset.map(formatting_func, remove_columns=["problem", "sentence"])
+    
 
-        return {"text": text}
+    #dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
 
-    dataset = dataset.map(formatting_prompts_func, remove_columns=["question", "answer"])
+   
     logging.info(dataset)
 
     ###################
@@ -122,7 +119,7 @@ def main(cfg):
     ###################
     trainer = SFTTrainer(
         model=model,
-        processing_class=tokenizer,
+        processing_class=tokenizer,       # needed to tokenize the "text" field
         args=sft_args,
         train_dataset=dataset['train'],
         peft_config=lora_config,
