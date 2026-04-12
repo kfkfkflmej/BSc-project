@@ -14,7 +14,7 @@ from trl import SFTConfig, SFTTrainer
 
 def main(cfg):
     dataset = load_dataset(cfg.mapper.dataset_filetype, data_files=cfg.mapper.dataset_filepath)
-    model_id = "cfg.mapper.model_base_model"
+    model_id = cfg.mapper.model_base_model
 
     def formatting_prompts_func(example, processor=None):
         text = processor.apply_chat_template(...)
