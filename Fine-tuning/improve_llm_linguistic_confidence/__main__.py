@@ -1,150 +1,124 @@
 import os
-from omegaconf import OmegaConf
 import logging
+
+from omegaconf import OmegaConf
 import hydra
-
-from transformers import AutoModelForCausalLM
-from transformers import BitsAndBytesConfig
+import torch
+from datasets import Image, load_dataset
+from PIL import Image as PILImage
 from peft import LoraConfig
-from datasets import load_dataset
+from transformers import AutoModelForCausalLM, AutoProcessor, BitsAndBytesConfig
 from trl import SFTConfig, SFTTrainer
-from transformers import AutoTokenizer
-
-
-def print_trainable_parameters(model):
-    trainable_params = 0
-    all_param = 0
-    for _, param in model.named_parameters():
-        all_param += param.numel()
-        if param.requires_grad:
-            trainable_params += param.numel()
-    logging.info(
-        f"trainable params: {trainable_params} || all params: {all_param} || trainable%: {100 * trainable_params / all_param}"
-    )
 
 @hydra.main(config_path="configs", config_name="config", version_base=None)
+
 def main(cfg):
-    logging.info(OmegaConf.to_yaml(cfg, resolve=True))
-    ###################
-    # LoRA
-    ###################
-    lora_config = LoraConfig(
-        r=cfg.mapper.lora_r,
-        lora_alpha=cfg.mapper.lora_alpha,
-        lora_dropout=cfg.mapper.lora_dropout,
-        task_type=cfg.mapper.lora_task_type,
-        target_modules=cfg.mapper.lora_target_modules
-    )
-
-    # ###################
-    # # tokenizer
-    # ###################
-    # tokenizer = AutoTokenizer.from_pretrained(
-    # cfg.mapper.model_base_model,
-    # use_fast=True,
-    # token=os.environ['HF_TOKEN'],
-    # # unk_token = '<unk>',
-    # # bos_token = '<bos>',
-    # # eos_token = '<eos>',
-    # # pad_token = '<pad>'
-    # )
-
-    # print(tokenizer.special_tokens_map)
-    # print(tokenizer.all_special_tokens)
-
-
-    # tokenizer.pad_token = tokenizer.eos_token
-
-
-    ###################
-    # dataset
-    ###################
-    dataset = load_dataset(cfg.mapper.dataset_filetype, data_files=cfg.mapper.dataset_filepath)   
+    dataset = load_dataset(cfg.mapper.dataset_filetype, data_files=cfg.mapper.dataset_filepath)
+    model_id = cfg.mapper.model_base_model
 
     def formatting_prompts_func(example):
-         return {
-        "prompt": [{"role": "user", "content": example["problem"]}],
-        "completion": [{"role": "assistant", "content": example["sentence"]}],
-    }
-    dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
+        return {
+            "text": (
+                f"User: {example['problem']}\n"
+                f"Assistant: {example['sentence']}"
+            )
+        }
+    processor = AutoProcessor.from_pretrained(model_id, token=os.environ['HF_TOKEN'])
+        
+    dataset = dataset.map(
+        formatting_prompts_func,
+        remove_columns=["problem", "sentence"]
+    )   
 
-    # def formatting_prompts_func(example):
-    #     messages = [
-    #     {"role": "user", "content": str(example["question"])},
-    #     {"role": "assistant", "content": str(example["answer"])},
-    #     ]
 
-    #     text = tokenizer.apply_chat_template(
-    #         messages,
-    #         tokenize=False,
-    #         add_generation_prompt=False,
-    #     )
 
-    #     return {"text": text}
-
-    # dataset = dataset.map(formatting_prompts_func, remove_columns=["question", "answer"])
+    # Convert dataset to OAI messages
+    
     logging.info(dataset)
-
-    ###################
-    # Base_model
-    ###################
-    # model = AutoModelForCausalLM.from_pretrained(
-    #     cfg.mapper.model_base_model, 
-    #     load_in_8bit=cfg.mapper.model_load_in_8bit,
-    #     device_map=cfg.mapper.model_device_map,
-    # )
 
     
 
-    bnb_config = BitsAndBytesConfig(
-        load_in_8bit=True
+
+    # Define model init arguments
+    model_kwargs = dict(
+        dtype=torch.bfloat16, # What torch dtype to use, defaults to auto
+        device_map="auto", # Let torch decide how to load the model
     )
 
-    model = AutoModelForCausalLM.from_pretrained(
-        cfg.mapper.model_base_model,
-        quantization_config=bnb_config,
-        device_map="auto"
+    # BitsAndBytesConfig int-4 config
+    model_kwargs["quantization_config"] = BitsAndBytesConfig(
+        load_in_4bit=True,
+        bnb_4bit_use_double_quant=True,
+        bnb_4bit_quant_type="nf4",
+        bnb_4bit_compute_dtype=model_kwargs["dtype"],
+        bnb_4bit_quant_storage=model_kwargs["dtype"],
     )
 
-  
-    ###################
-    # SFT args
-    ###################
-    sft_args = SFTConfig(
+    # Load model and tokenizer
+    model = AutoModelForCausalLM.from_pretrained(model_id, **model_kwargs)
+     # Load the Instruction Tokenizer to use the official Gemma template
+
+    peft_config = LoraConfig(
+        lora_alpha=16,
+        lora_dropout=0.05,
+        r=16,
+        bias="none",
+        target_modules="all-linear",
+        task_type="CAUSAL_LM",
+        modules_to_save=["lm_head", "embed_tokens"], # make sure to save the lm_head and embed_tokens as you train the special tokens
+        ensure_weight_tying=True,
+    )
+
+    args = SFTConfig(
+
         run_name=cfg.mapper.name,
-        output_dir=cfg.mapper.sft_output_dir,
-        per_device_train_batch_size=cfg.mapper.sft_per_device_train_batch_size,
+        output_dir=cfg.mapper.sft_output_dir,     # directory to save and repository id
+        num_train_epochs=cfg.mapper.sft_num_train_epochs,                    # number of training epochs
+        per_device_train_batch_size=cfg.mapper.sft_per_device_train_batch_size,            # batch size per device during training
         gradient_accumulation_steps=cfg.mapper.sft_gradient_accumulation_steps,
         learning_rate=cfg.mapper.sft_learning_rate,
-        num_train_epochs=cfg.mapper.sft_num_train_epochs,
-        seed=cfg.mapper.sft_seed,
-        fp16=cfg.mapper.sft_fp16,
-        bf16=cfg.mapper.sft_bf16,
+        bf16=True,                                  # use bfloat16 precision
+        dataset_text_field="",                      # need a dummy field for collator
+        dataset_kwargs={"skip_prepare_dataset": True}, # important for collator
+        remove_unused_columns = False,             # important for collator
         max_length=cfg.mapper.sft_max_length,
         packing=cfg.mapper.sft_packing,
         warmup_steps=cfg.mapper.sft_warmup_steps,
         gradient_checkpointing=cfg.mapper.sft_gradient_checkpointing,
-        # dataset_text_field="text",
+        fp16=cfg.mapper.sft_fp16,
     )
 
-    ###################
-    # Train
-    ###################
+    # Create a data collator to encode text and image pairs
+    def collate_fn(examples):
+        texts = [ex["text"] for ex in examples]
+
+        batch = processor(
+            text=texts,
+            padding=True,
+            truncation=True,
+            return_tensors="pt"
+        )
+
+        labels = batch["input_ids"].clone()
+        labels[labels == processor.tokenizer.pad_token_id] = -100
+
+        batch["labels"] = labels
+        return batch
+
+    # Create Trainer object
     trainer = SFTTrainer(
         model=model,
-        # processing_class=tokenizer,
-        args=sft_args,
-        train_dataset=dataset['train'],
-        peft_config=lora_config,
+        args=args,
+        train_dataset=dataset["train"],
+        peft_config=peft_config,    
+        data_collator=collate_fn,
     )
 
-    print_trainable_parameters(trainer.model)
-
+    # Start training, the model will be automatically saved to the Hub and the output directory
     trainer.train()
 
-    logging.info("Saving last checkpoint of the model")
-    trainer.save_model(sft_args.output_dir)
-
+    # Save the final model again to the Hugging Face Hub
+    trainer.save_model()
 
 if __name__ == "__main__":
     main()
