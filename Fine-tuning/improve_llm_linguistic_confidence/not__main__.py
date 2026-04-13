@@ -36,53 +36,42 @@ def main(cfg):
         target_modules=cfg.mapper.lora_target_modules
     )
 
-    # ###################
-    # # tokenizer
-    # ###################
-    # tokenizer = AutoTokenizer.from_pretrained(
-    # cfg.mapper.model_base_model,
-    # use_fast=True,
-    # token=os.environ['HF_TOKEN'],
-    # # unk_token = '<unk>',
-    # # bos_token = '<bos>',
-    # # eos_token = '<eos>',
-    # # pad_token = '<pad>'
-    # )
+    ###################
+    # tokenizer
+    ###################
+    tokenizer = AutoTokenizer.from_pretrained(
+    cfg.mapper.model_base_model,
+    use_fast=True,
+    token=os.environ['HF_TOKEN']
+    )
 
-    # print(tokenizer.special_tokens_map)
-    # print(tokenizer.all_special_tokens)
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
 
-
-    # tokenizer.pad_token = tokenizer.eos_token
 
 
     ###################
     # dataset
     ###################
     dataset = load_dataset(cfg.mapper.dataset_filetype, data_files=cfg.mapper.dataset_filepath)   
-
-    def formatting_prompts_func(example):
-         return {
-        "prompt": [{"role": "user", "content": example["problem"]}],
-        "completion": [{"role": "assistant", "content": example["sentence"]}],
-    }
-    dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
-
     # def formatting_prompts_func(example):
-    #     messages = [
-    #     {"role": "user", "content": str(example["question"])},
-    #     {"role": "assistant", "content": str(example["answer"])},
-    #     ]
+    #      return {
+    #     "prompt": [{"role": "user", "content": example["problem"]}],
+    #     "completion": [{"role": "assistant", "content": example["sentence"]}],
+    # }
+    #dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
 
-    #     text = tokenizer.apply_chat_template(
-    #         messages,
-    #         tokenize=False,
-    #         add_generation_prompt=False,
-    #     )
+    def formatting_func(example):
+        return {
+            "text": f"User: {example['problem']}\nAssistant: {example['sentence']}"
+        }
 
-    #     return {"text": text}
+    dataset = dataset.map(formatting_func, remove_columns=["problem", "sentence"])
+    
 
-    # dataset = dataset.map(formatting_prompts_func, remove_columns=["question", "answer"])
+    #dataset = dataset.map(formatting_prompts_func, remove_columns=["problem", "sentence"])
+
+   
     logging.info(dataset)
 
     ###################
@@ -106,7 +95,6 @@ def main(cfg):
         device_map="auto"
     )
 
-  
     ###################
     # SFT args
     ###################
@@ -124,7 +112,6 @@ def main(cfg):
         packing=cfg.mapper.sft_packing,
         warmup_steps=cfg.mapper.sft_warmup_steps,
         gradient_checkpointing=cfg.mapper.sft_gradient_checkpointing,
-        # dataset_text_field="text",
     )
 
     ###################
@@ -132,10 +119,11 @@ def main(cfg):
     ###################
     trainer = SFTTrainer(
         model=model,
-        # processing_class=tokenizer,
+        processing_class=tokenizer,       # needed to tokenize the "text" field
         args=sft_args,
         train_dataset=dataset['train'],
         peft_config=lora_config,
+        #formatting_func=formatting_prompts_func,
     )
 
     print_trainable_parameters(trainer.model)
