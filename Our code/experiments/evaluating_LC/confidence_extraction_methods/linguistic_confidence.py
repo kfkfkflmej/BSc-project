@@ -212,7 +212,7 @@ class LinguisticConfidenceExtractor():
     
     def get_confidence_grader(self, confidence_extraction_method_cfg):
         
-        confidence_grader = ConfidenceGrader(confidence_extraction_method_cfg.confidence_grader_model)
+        confidence_grader = CorrectnessGrader(confidence_extraction_method_cfg.confidence_grader_model)
         return confidence_grader
         
         
@@ -301,7 +301,7 @@ class LinguisticConfidenceEstimator(nn.Module):
 
         return all_confidences
     
-class ConfidenceGrader():
+class CorrectnessGrader():
     def __init__(self, confidence_grader_model_cfg, dataset_name):
         self.confidence_grader_model = LLM(confidence_grader_model_cfg)
         self.dataset = dataset_name
