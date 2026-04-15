@@ -1,13 +1,13 @@
 import re
 import logging
+import math_equivalence
 
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s | %(message)s'
 )
 
-name = "pop_qa_subset"
-
+name = "gsm8k"
 
 paraphrase_prompt = """
     Paraphrase the following question, without changing its meaning.
@@ -26,51 +26,55 @@ clarify_prompt = """
 
 sampling_prompt = """
     Please answer the following question. 
-    Question : {q} 
-    At the end of your solution, indicate your final answer inside a boxed environment, like: $\\boxed{{answer}}$.
+    Think carefully and in a step-by-step fashion. 
+    At the end of your solution, put your final result in a boxed environment, 
+    e.g. $\\boxed{{answer}}$.
+    Q: {q} 
 """
 
 check_prompt = """
-    Following is your previous response to the question:
-    Question : {q} 
-
+    Following is your previous response to the question.
+    Q: {q}
     Your previous response: {a}
-    Check your previous response carefully and respond the question again.
-    At the end of your solution, indicate your final answer inside a boxed environment, like: $\\boxed{{answer}}$.
+    Check your previous response carefully and solve the same question again step by step.
+    At the end of your solution, put your final result in a boxed environment,
+    eg. ($\\boxed{{answer}}$).
+    Output:
 """
 
 iterative_prompt = """
     Consider the following question:
     Question: {q}
-
     Below are other proposed solutions:
     {aseq}
     
-    Now, provide your own solution to the question.  
-    At the end of your solution, indicate your final answer inside a boxed environment, like: $\\boxed{{answer}}$.
+    Now, provide your own solution to the question. 
+    At the end of your solution, put your final result in a boxed environment, e.g. $\\boxed{{answer}}$.
 """
 
 def extract_answer(text):
-    pattern = r"boxed\{\s*([A-Ea-e])\s*\}"
+    # text = output.split("answer to the question is")[-1]
+    pattern = r"boxed\{([^}]+)\}"
     match = re.search(pattern, text)
     if match:
-        return match.group(1).upper()
+        answer = match.group(1)
     else:
-        # Fallback: check if single capital letters A–E appear in the text
-        for letter in ['A', 'B', 'C', 'D', 'E']:
-            if letter in text:
-                return letter
-    return ""
+        # if not match return subsequence
+        answer = ""
+    return answer
+
 
 def eval_answer(model_output, ground_truth_text, question):
     ground_truth = extract_ground_truth(ground_truth_text)
     model_pred = extract_answer(model_output)
-    logging.info(model_output)
     logging.info(model_pred)
     logging.info(ground_truth)
-    result = True if model_pred == ground_truth else False
+    result = math_equivalence.is_equiv(model_pred, ground_truth, verbose=True)
+    logging.info(f"{ground_truth} ----> {model_pred}")
     logging.info(f"eval answer : {result}")
     return result
 
+
 def extract_ground_truth(text):
-    return text
+    return re.match(r'[\S\s]*#### (.*)$', text)[1].replace(',', '').replace(' ', '')
+
