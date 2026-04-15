@@ -187,7 +187,7 @@ class vlmModel():
             tensor_parallel_size=tensor_parallel_size,
             gpu_memory_utilization=gpu_memory_utilization,
             max_num_seqs=64,
-            task="generate",
+            #task="generate",
             trust_remote_code=True, 
             enforce_eager=True
         )
