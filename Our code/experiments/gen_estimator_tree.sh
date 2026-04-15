@@ -44,7 +44,7 @@ datasets=(
 for dataset in "${datasets[@]}"; do
     for model in "${models[@]}"; do
         model_name=$(basename "$model")
-        data_path="data/${dataset}.csv"
+        data_path="data/${dataset}.json"
 
         PYTHONPATH=lib python3 bin/gen_estimator_tree.py \
             --model "$model" \
