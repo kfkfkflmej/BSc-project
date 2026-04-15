@@ -1,34 +1,50 @@
+#!/bin/bash
+#SBATCH --job-name=bench
+#SBATCH --output=bench.out
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=40G
+#SBATCH --nodes=1
+#SBATCH --time=07:30:00
+#SBATCH --partition=acltr
+# #SBATCH --exclusive
+#SBATCH --constraint=gpu_a100_80gb
+#SBATCH --gres=gpu:1
+#SBATCH --mail-type=END          # Send an email when the job finishes
+
+set -e
+set -x
+
+module load Anaconda3
+module load CUDA
+module load GCC
+source "/opt/itu/easybuild/software/Anaconda3/2025.06-1/etc/profile.d/conda.sh"
+
+export CONDA_PKGS_DIRS=/home/pavd/conda_pkgs_cache/
+
+
+conda activate unc_com
+
+export HF_TOKEN=$(cat hf_token.txt)
 
 models=(
-    'google/google/gemma-3-1b-it'
-    'google/google/gemma-3-12b-it'
-    'google/google/gemma-3-27b-it'
-    'google/google/gemma-3-1b-it--LoRA_SFT'
-    'google/google/gemma-3-12b-it--LoRA_SFT'
-    'google/google/gemma-3-27b-it--LoRA_SFT'
+'google/gemma-3-4b-it'
+'OOOss/gemma3-4B-it-uncertain'
 )
-
 
 datasets=(
     'truthfulQA'
     'commonsenseQA'
-    'math'
-    #'triviaQA'
+    'gsm8k'
+    'triviaQA'
     'nq_open'
-    #'popQA'
-    'simpleQA'
+    'pop_qa_subset'
+    'simple_qa_test_set'
 )
 
 for dataset in "${datasets[@]}"; do
     for model in "${models[@]}"; do
         model_name=$(basename "$model")
-        data_path="datasets/data/${dataset}.csv"
-
-        
-        if [ -f "$output" ]; then
-            echo "Skipping $model_name on $dataset"
-            continue        
-        fi
+        data_path="data/${dataset}.csv"
 
         PYTHONPATH=lib python3 bin/gen_estimator_tree.py \
             --model "$model" \
