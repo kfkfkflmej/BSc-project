@@ -26,7 +26,8 @@ VLM_MODELS = [
     'mistralai/Mistral-7B-Instruct-v0.3',
     'deepseek-ai/DeepSeek-R1-Distill-Llama-8B',
     'deepseek-ai/DeepSeek-R1-Distill-Qwen-7B',
-    'deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B'
+    'deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B',
+    'google/gemma-3-4b-it'
 ]
 
 class GenerateOutput():
