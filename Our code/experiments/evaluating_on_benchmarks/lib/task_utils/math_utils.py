@@ -7,7 +7,7 @@ logging.basicConfig(
     format='%(asctime)s | %(message)s'
 )
 
-name = "math"
+name = "math"   
 
 paraphrase_prompt = """
     Paraphrase the following question, without changing its meaning.

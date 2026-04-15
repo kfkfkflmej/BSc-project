@@ -24,4 +24,18 @@ dependencies = [
     "deepspeed>=0.17.5",
     "ipykernel>=6.30.1",
     "bitsandbytes>=0.47.0",
+    "tqdm",
+    "transformers",
+    "openai",
+    "python-dotenv",
+    "vllm",
+    "torch",
+    "tiktoken",
+    "numpy",
+    "scikit-learn",
+    "nltk",
+    "evaluate",
+    "pandas",
+    "math-verify",
+    "ipdb"
 ]

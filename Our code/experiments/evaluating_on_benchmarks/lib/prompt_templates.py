@@ -15,5 +15,3 @@ verbC_prompt = """
     Output in the following format:  
     Confidence score: $\\boxed{{score}}$.
 """
-
-

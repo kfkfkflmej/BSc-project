@@ -3,7 +3,7 @@ import time
 import threading
 from queue import Queue
 from typing import List
-#import openai
+import openai
 from dotenv import load_dotenv
 from vllm import LLM, SamplingParams
 from textwrap import dedent
@@ -17,10 +17,17 @@ OPENAI_API_MODELS = [
     'o3-mini'
 ]
 VLM_MODELS = [
-    'google/gemma-3-1b-it',
-    'google/gemma-3-12b-it',
-    'google/gemma-3-27b-it',
-    # our models
+    'meta-llama/Llama-3.2-1B-Instruct',
+    'meta-llama/Llama-3.2-3B-Instruct',
+    'meta-llama/Meta-Llama-3-8B-Instruct',
+    'google/gemma-2-2b-it',
+    'google/gemma-2-9b-it',
+    'google/gemma-2-27b-it',
+    'mistralai/Mistral-7B-Instruct-v0.3',
+    'deepseek-ai/DeepSeek-R1-Distill-Llama-8B',
+    'deepseek-ai/DeepSeek-R1-Distill-Qwen-7B',
+    'deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B',
+    'google/gemma-3-4b-it'
 ]
 
 class GenerateOutput():
@@ -58,7 +65,7 @@ class OpenAIWorker(threading.Thread):
         self.queue = queue
         self.model = model
         self.max_tokens = max_tokens
-        self.client = None #openai.OpenAI(api_key=api_key)
+        self.client = openai.OpenAI(api_key=api_key)
         self.rate_limit_per_min = rate_limit_per_min
 
     def run(self):
@@ -180,7 +187,7 @@ class vlmModel():
             tensor_parallel_size=tensor_parallel_size,
             gpu_memory_utilization=gpu_memory_utilization,
             max_num_seqs=64,
-            task="generate",
+            #task="generate",
             trust_remote_code=True, 
             enforce_eager=True
         )

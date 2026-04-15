@@ -1,9 +1,10 @@
 import os
+from openai import OpenAI
 from dotenv import load_dotenv
 from typing import List, Optional
 import torch
 import tiktoken
-from vllm import LLM
+from vllm import LLM, SamplingParams
 from llm_utils import OPENAI_API_MODELS, VLM_MODELS
 from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 
@@ -11,14 +12,53 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 import ipdb
 load_dotenv()
 
-
+OPENAI_API_ENCODER = [
+    'text-embedding-3-large',
+    'text-embedding-3-small'
+]
 HF_ENCODER = [
-    'google/gemma-3-1b-it',
-    'google/gemma-3-12b-it',
-    'google/gemma-3-27b-it'
+    'meta-llama/Llama-3.2-1B-Instruct',
+    'meta-llama/Llama-3.2-3B-Instruct',
+    'meta-llama/Meta-Llama-3-8B-Instruct',
+    'google/gemma-2-2b-it',
+    'google/gemma-2-9b-it',
+    'google/gemma-2-27b-it',
+    'mistralai/Mistral-7B-Instruct-v0.3',
+    'deepseek-ai/DeepSeek-R1-Distill-Llama-8B',
+    'deepseek-ai/DeepSeek-R1-Distill-Qwen-7B',
+    'deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B'
+]
+VLM_ENCODER = [
+    'intfloat/multilingual-e5-large',
+    'jinaai/jina-embeddings-v3'
+]
+LLAMA_SUPPORT_QUANTIZED_MODELS = [
+    'meta-llama/Llama-3.2-1B-Instruct',
+    'meta-llama/Llama-3.2-3B-Instruct',
+    'meta-llama/Meta-Llama-3-8B-Instruct'
+]
+GEMMA_SUPPORT_QUANTIZED_MODELS = [
+    'google/gemma-2-2b-it',
+    'google/gemma-2-9b-it',
+    'google/gemma-2-27b-it'
 ]
 
-
+class openaiEmbedModel():
+    def __init__(
+        self, 
+        model: str
+    ):
+        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY1", ""))
+        self.model_name = model
+    
+    def process_batch(
+        self, 
+        texts: List[str]
+    ) -> List[List[float]]:
+        
+        embed_result = self.client.embeddings.create(input=texts, model=self.model_name)
+        output = [list(vec.embedding) for vec in embed_result.data]
+        return output
 
 
 class HiddenStateExtractor:
@@ -27,15 +67,39 @@ class HiddenStateExtractor:
         model_name: str,
         max_length: Optional[int] = 1024
     ):
-        
-        model = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto")
-        max_batch_size = 4
+
+        # model initialization
+        if model_name in LLAMA_SUPPORT_QUANTIZED_MODELS:
+            quantization_config = BitsAndBytesConfig(
+                load_in_4bit=True,
+                bnb_4bit_compute_dtype=torch.bfloat16,
+                bnb_4bit_use_double_quant=True,
+                bnb_4bit_quant_type= "nf4")
+            quantized_model = AutoModelForCausalLM.from_pretrained(
+                model_name, device_map="auto", 
+                torch_dtype=torch.bfloat16, 
+                quantization_config=quantization_config)
+            max_batch_size = 16
+            
+        elif model_name in GEMMA_SUPPORT_QUANTIZED_MODELS:
+            quantization_config = BitsAndBytesConfig(
+                load_in_4bit=True,
+                bnb_4bit_compute_dtype=torch.float16,
+            )
+            quantized_model = AutoModelForCausalLM.from_pretrained(
+                model_name, device_map="auto", 
+                quantization_config=quantization_config)
+            max_batch_size = 16
+            
+        else:
+            quantized_model = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto")
+            max_batch_size = 4
 
         # Tokenizer initialization
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         if self.tokenizer.pad_token is None:
             self.tokenizer.pad_token = self.tokenizer.eos_token
-        self.model = model
+        self.model = quantized_model
         self.max_length = max_length
         self.max_batch_size = max_batch_size
 

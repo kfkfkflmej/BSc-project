@@ -1,6 +1,6 @@
 import pickle
 import os
-import pandas as pd
+import json
 from tqdm import tqdm
 import copy
 from pathlib import Path
@@ -8,7 +8,7 @@ from typing import List, Optional, Union, Any, Dict
 from data_structs import GT_Tree, Estimator_Tree
 import llm_utils
 import encode_utils
-from task_utils import math_utils, commonsenseqa_utils, triviaqa_utils, truthfulqa_utils, simple_qa_test_set_utils, pop_qa_utils, nq_open_utils
+from task_utils import gsm8k_utils, math_utils, commonsenseqa_utils, triviaqa_utils, truthfulqa_utils, ambigqa_utils
 from transformers import AutoTokenizer
 
 MCQ_UTILS = ["commonsenseQA", "truthfulQA"]
@@ -90,8 +90,8 @@ def get_encoder(
     return encoder
 
 def get_util(data_name):
-    if data_name == 'nq_open':
-        return nq_open_utils
+    if data_name == 'gsm8k':
+        return gsm8k_utils
     elif data_name == 'math':
         return math_utils
     elif data_name == 'commonsenseQA':
@@ -100,12 +100,12 @@ def get_util(data_name):
         return triviaqa_utils
     elif data_name == 'truthfulQA':
         return truthfulqa_utils
-    elif data_name == 'popQA':
-        return pop_qa_utils
-    elif data_name == 'simpleQA':
-        return simple_qa_test_set_utils
+    elif data_name == 'ambigQA':
+        return ambigqa_utils
     else:
         raise ValueError(f"Unsupported dataset: {data_name}")
 
 def get_data(data_path):
-    return pd.read_csv(data_path, encoding='utf-8')
+    with open(data_path, 'r', encoding='utf-8') as f:
+        dataset = json.load(f)
+    return dataset
