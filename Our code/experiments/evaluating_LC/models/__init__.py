@@ -21,7 +21,7 @@ class LLM:
         return Huggingfacemodel(model_cfg)
 
         
-
+#Changed the name of the class to Huggingfacemodel to avoid confusion with the LLM class from vLLM library, which is also used in this code. The Huggingfacemodel class is a wrapper around the LLM class from vLLM library, and it is responsible for loading the model and generating responses based on the prompts.
 class Huggingfacemodel:
     def __init__(self, model_cfg: DictConfig):
         self.model_cfg = model_cfg
